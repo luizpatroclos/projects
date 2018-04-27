@@ -1,0 +1,171 @@
+@CHARSET "ISO-8859-1";
+
+.areaPrincipal{
+	vertical-align:		top;
+	text-align:			left;
+	overflow-y:auto;
+	overflow-x:hidden;
+	
+}
+
+h1{
+	 text-indent: -999999em;
+	 float      : left;
+	 display    : block;
+	 width      : 190px;
+	 height     : 5px;
+ 
+ }	
+
+h2 {
+	 font-size : 25px;
+	 color     : #004A95;
+	 color     : white;
+	 float     : center;
+	 display   : block;
+	 
+	 padding   : 0 0 0 10px;
+	 margin-top: 5px;
+	 overflow-y:hidden;
+
+}
+
+#header
+{		  
+	 background : url(/ProsurWeb/resources/imagens/headerINPIOLD.jpg);
+	 background-repeat: no-repeat;
+	 background-position: bottom top;
+	 overflow-y:auto;
+}
+
+#rodape {
+	 background: url(/ProsurWeb/resources/imagens/rodapeCor.gif) repeat-x;
+	 width     : 100%;
+	 height    : 0px;
+	 text-align: center;
+	 float     : left;
+	 
+	 clear     : both;
+	 padding   : 25px 0;
+	 z-index   : 0;
+	 
+	 overflow-y:hidden;
+	 overflow-x:hidden;
+	
+}
+
+.inputTextMenor {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 100px; 
+ 	height 	: 16px;
+ 	text-align: left;
+}
+
+.inputTextSemAltura {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 193px;}
+}
+
+/* referente ao texto2 do style.css */
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;	
+	color: #00005A;
+	text-decoration: none;
+}
+
+.inputText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 193px; 
+ 	height 	: 16px;
+}
+
+/* layout do usuarioSessão */
+.ui-widget {  
+    font-size: 11px !important;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;  
+}
+
+#conteudo {
+   /* width:300px; tamanho da div */
+   /* height:170px; altura da div */
+   /* position: absolute; posicionando a div */
+   /* left: 300px;posicionando a div */
+     /* top:200px;posicionando a div */
+   /* overflow: auto; barra de rolagem automática */
+  /*height:800px;*/
+  overflow-y:auto;
+  overflow-x:auto;
+
+}
+
+.rotulos { 
+
+    /*  margin:8px; Especifica preta a cor da fonte do elemento */
+
+    color: #000000; 
+
+}
+
+.ui-messages {
+    width: 575px;
+    margin: 0 auto;
+    border: 1px white solid;
+    border-collapse: collapse;
+    color:red;
+    
+}
+
+.ui-growl{
+	width:500px; /* Tamanho da Largura da Div */
+	height:200px; /* Tamanho da Altura da Div */
+	left:50%;
+	top:80%;
+	 }
+	 
+.abc{
+	color:red; 
+	background-color:Black; 
+	size:20;
+	
+}
+
+.semBorda tr, .semBorda td {  
+    border: none !important;  
+}
+
+.semBordaPanel{
+	
+	border: none !important;
+}
+
+.panel{
+	
+	position: center, top;
+}
+
+.paginated{
+	position: relative;
+}
+
+.tabs{
+	margin-top:25px !important;
+	width: 1210px !important;
+	height: 650px !important;
+	position: absolute, center !important;
+}
+
+.mensagem{
+	
+	width: 50%;
+	margin-top: 50%;
+}

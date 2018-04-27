@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+	
+	        <ui:insert>
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+	
+		<h:form onkeypress="return event.keyCode != 13" id="formPrincipal">
+			<h:outputScript library="js" name="LocalPt_Br.js" />
+			<p:growl id="msg" showDetail="true" autoUpdate="true" life="10000"
+		  	 closable="true" style="width: 50%" />
+			
+			            <p:fieldset legend="Cargas Retroativas" styleClass="tabs">
+		            	     <div style="margin-left:35%; margin-top: 15%; text-align: center">
+			            	     <p:panelGrid>
+		            	     		<f:facet name="header">
+		            	     			<p:row>
+		            	     				<p:column>#{msg.tipo_carga}</p:column>
+		            	     				<p:column>#{msg.processos_enviados_sucesso}</p:column>
+		            	     				<p:column>#{msg.quantidade_restante}</p:column>
+		            	     			</p:row>
+		            	     		</f:facet>
+			            	     	
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="#{msg.marcas}" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{cargaRetroativaMB.qtdMarcasRetroExecutadas} " /> <!-- VOLUME TOTAL MARCAS -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value="#{cargaRetroativaMB.qtdMarcasRetroExecutar}" /> <!-- VOLUME RESTANTE MARCAS -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="#{msg.desenho}" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{cargaRetroativaMB.qtdDiRetroExecutado} " /> <!-- VOLUME TOTAL DI -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{cargaRetroativaMB.qtdDiRetroExecutar} " /> <!-- VOLUME RESTANTE DI -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="#{msg.patentes}" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{cargaRetroativaMB.qtdPatenteRetroExecutado} " /> <!-- VOLUME TOTAL PATENTE -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{cargaRetroativaMB.qtdPatenteRetroExecutar} " /> <!-- VOLUME RESTANTE PATENTE -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	
+			            	     	
+			            	     </p:panelGrid>
+			            	 </div>			            	
+	            	    </p:fieldset>
+		
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

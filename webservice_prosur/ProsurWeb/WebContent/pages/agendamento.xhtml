@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  
+<ui:composition template="/templates/conteudo.xhtml"          
+  	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:define name="content" id="conteudo1">
+			<ui:insert>
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+			
+
+	<h:form onkeypress="return event.keyCode != 13" id="formAgenda">			
+
+			<h:outputScript library="js" name="LocalPt_Br.js" />
+			<p:growl id="msg" showDetail="true" autoUpdate="true" life="10000"
+		  	 closable="true" />
+		  	   
+           		<p:fieldset legend="Cargas Agendadas" styleClass="tabs">
+           			<br/><br/>
+           			
+           			<div style="text-align: center; margin-left:9px; margin-right: 5px;">
+           				 <!-- CARGAS AGENDADAS -->
+	            	     <p:dataTable id="dtCargaAgendada" var="carga" value="#{agendamentoMB.listaAgendaCarga}" emptyMessage="Nenhuma carga encontrada !" 
+	            	      rows="16" paginator="true" sortMode="multiple" border="1" styleClass="paginated" paginatorPosition="bottom"
+	            	      filteredValue="#{agendamentoMB.filteredListaAgendaCarga}" >
+		            	     	<p:column width="120" filterBy="#{carga.tipoCarga.toLowerCase()} || #{carga.tipoCarga}" filterMatchMode="contains">
+		            	     		<f:facet name="header">Tipo de Carga</f:facet>
+									<h:outputText value="#{carga.tipoCarga}" />
+		            	     	</p:column>
+		            	     	<p:column width="145" >
+		            	     		<f:facet name="header">Tipo de Agendamento</f:facet>
+									<h:outputText value="#{carga.tipoAgendamento}" />
+		            	     	</p:column>
+		            	     	<p:column width="125" sortBy="#{carga.dataHoraAgenda}">
+		            	     		<f:facet name="header">Data/Hora</f:facet>
+									<h:outputText value="#{carga.dataHoraAgenda}" rendered="#{carga.tipoAgendamento eq 'MANUAL'}" >
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</h:outputText>
+									<h:outputText value="#{carga.dataHoraAgenda}" rendered="#{carga.tipoAgendamento eq 'AUTOMATICO'}" >
+										<f:convertDateTime pattern="EEEEEE HH:mm" />
+									</h:outputText>
+		            	     	</p:column>
+		            	     	<p:column width="30">
+		            	     		<f:facet name="header">Ativo</f:facet>
+									<h:outputText value="#{carga.statusAgenda}" />
+		            	     	</p:column>
+		            	     	<p:column width="83">
+		            	     		<f:facet name="header">Tipo de Base</f:facet>
+									<h:outputText value="#{carga.tipoBase}" />
+		            	     	</p:column>
+		            	     	<p:column width="25">
+		            	     		<f:facet name="header">RPI</f:facet>
+									<h:outputText value="#{carga.numRpi}" />
+		            	     	</p:column>
+		            	     	
+		            	     	<p:column width="55">
+		            	     		<f:facet name="header">Processo</f:facet>
+									<h:outputText value="#{carga.qtdProcesso}" />
+		            	     	</p:column>
+		            	     	<p:column width="115">	
+		            	     		<f:facet name="header">Quantidade Marcas</f:facet>
+									<h:outputText value="#{carga.qtdMarcas}" />
+		            	     	</p:column>
+		            	     	<p:column width="115">
+		            	     		<f:facet name="header">Quantidade Patente</f:facet>
+									<h:outputText value="#{carga.qtdPatente}" />
+		            	     	</p:column>
+		            	     	<p:column width="115">
+		            	     		<f:facet name="header">Quantidade Desenho</f:facet>
+									<h:outputText value="#{carga.qtdDesenho}" />
+		            	     	</p:column>
+		            	     	<p:column width="60">
+		            	     	
+		            	     		<f:facet name="header">Ações</f:facet>
+		            	     		
+			            	     	<p:commandButton rendered="#{carga.tipoAgendamento eq 'AUTOMATICO'}" id="btnEditarAutomatico"
+			            	     	 update=":dlgEditarAutomatico:"
+			            	     	 oncomplete="PF('varEditarAutomatico').show()" icon="ui-icon-pencil" style="border-width:0; background:none;" >					            	     	 	
+			            	     		<p:tooltip id="toolTipEditarAgendamentoAutomatico" for="btnEditarAutomatico"
+			            	     		 value="Editar Agendamento" showEffect="clip"/>
+			            	     		<f:setPropertyActionListener value="#{carga}" target="#{agendamentoMB.dtoAgendaCarga}" />
+			            	     		<f:setPropertyActionListener value="false" target="#{agendamentoMB.isReset}" />
+			            	     	</p:commandButton>
+			            	     	
+			            	     	<p:commandButton rendered="#{carga.tipoAgendamento eq 'MANUAL'}" id="btnEditarManual" 
+			            	     	 update=":dlgEditarManual"  
+			            	     	 oncomplete="PF('varEditarManual').show()" icon="ui-icon-pencil" style="border-width:0; background:none;" >
+			            	     	 	<p:tooltip id="toolTipEditarAgendamentoManual" for="btnEditarManual"
+			            	     		 value="Editar Agendamento" showEffect="clip"/>
+			            	     		<f:setPropertyActionListener value="#{carga}" target="#{agendamentoMB.dtoAgendaCarga}" />
+			            	     		<f:setPropertyActionListener value="false" target="#{agendamentoMB.isReset}" />
+			            	     	</p:commandButton>
+			            	     	
+		            	     		<p:commandButton id="btnExcluirAgendamento" icon="ui-icon-trash"
+		            	     		 style="border-width:0; background:none;" onclick="PF('dialogExcluir').show()">
+			            	     		<p:tooltip id="toolTipExcluirAgendamento" for="btnExcluirAgendamento"
+			            	     		 value="Excluir Agendamento" showEffect="clip"/>
+			            	     		<f:setPropertyActionListener value="#{carga}" target="#{agendamentoMB.dtoAgendaCarga}" />
+		            	     		</p:commandButton>
+		            	     	</p:column>
+		            	 </p:dataTable>
+           			 </div>
+          				
+          				<div style="position: absolute; margin-top: 5px; margin-left: 77%">
+           				 	<p:commandButton id="btnIncluirAgendamento" value="Incluir novo Agendamento"
+         					  icon="ui-icon-plus" actionListener="#{agendamentoMB.preparaNovoAgendamento}" 
+         					  oncomplete="PF('dialogNovoAgendamento').show()" update=":dlgNovoAgendamento" />
+          				</div>
+           		</p:fieldset>
+	            		
+		</h:form>
+			
+		<!-- EXCLUIR AGENDAMENTO -->
+		<p:confirmDialog global="true" severity="info"
+			message="#{msg.confirmacao_excluir_registro}"
+			showEffect="fade" hideEffect="explode" header="Excluir"
+			widgetVar="dialogExcluir" id="excluir">
+			<h:form id="formExcluir">
+				<p:commandButton id="confirm" value="Sim" oncomplete="PF('dialogExcluir').hide()" 
+				 actionListener="#{agendamentoMB.deleteAgendaCarga}" />
+				<p:commandButton id="decline" value="Não" onclick="PF('dialogExcluir').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+		<!-- FIM EXCLUIR AGENDAMENTO -->
+		
+		<!-- NOVO AGENDAMENTO -->
+		<p:dialog id="dlgNovoAgendamento" header="Novo Agendamento" showEffect="puff" hideEffect="puff" 
+  		 resizable="false" dynamic="true"
+  		 widgetVar="dialogNovoAgendamento" height="400" width="400">
+  		  	
+  		  	<h:form id="formNovoAgendamento">
+  		  		<div align="center" style="margin-top: 10%">
+	  		  		<h:panelGroup id="agendamento">	
+	  		  		
+		  		  		<p:panelGrid columns="2" styleClass="semBorda">
+				  		  	<h:outputText value="Tipo de Agendamento: "/>
+				    		<p:selectOneMenu id="tipoAgendamento" value="#{agendamentoMB.tipoAgendamento}"
+				    		 style="width: 115px">
+								<f:selectItem itemLabel="AUTOMATICO" itemValue="AUTOMATICO"/>
+								<f:selectItem itemLabel="MANUAL" itemValue="MANUAL" />
+								<p:ajax update="agendamento" resetValues="true"/>
+							</p:selectOneMenu>
+			  		  	</p:panelGrid>
+			  		  	
+			  		  	<!-- CASO AUTOMATICO -->
+			  		  	<p:panelGrid columns="2" rendered="#{agendamentoMB.tipoAgendamento eq 'AUTOMATICO'}"
+			  		  	 style="margin-top: 5%">
+			  		  		<h:outputText value="Dia: " />
+							<p:selectOneMenu id="diaAgendamento" value="#{agendamentoMB.dataNovoAgendamento}"
+				    		 style="width: 115px">
+							  	 <f:selectItems value="#{agendamentoMB.diasSemana}" />
+							</p:selectOneMenu>
+							<h:outputText value="Hora:" />
+							<p:inputMask value="#{agendamentoMB.hora}"
+							 mask="99:99" size="4" />
+							 
+							<h:outputText value="Tipo Carga:" />
+							<p:selectOneMenu value="#{agendamentoMB.tipoCarga}" style="width: 95%" >
+							  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+								<f:selectItem itemLabel="SEMANAL" itemValue="SEMANAL"/>
+								<f:selectItem itemLabel="RETROATIVA" itemValue="RETROATIVA"/>
+							</p:selectOneMenu>
+			  		  	</p:panelGrid>
+			  		  	<!-- CASO AUTOMATICO -->
+			  		  	
+			  		  	<!-- CASO MANUAL -->
+		  		  		<p:panelGrid columns="2" rendered="#{agendamentoMB.tipoAgendamento eq 'MANUAL'}"
+		  		  		 style="margin-top: 5%">
+			    			<h:outputText value="Data:" />
+							<p:calendar id="calendarAgendamentoManual" readonlyInput="true" 
+							 value="#{agendamentoMB.calendarDataNovoAgendamento}" size="11" locale="pt_BR" pattern="dd/MM/yyyy" 
+							 showOn="button" mindate="#{currentDate}">
+								<p:ajax event="dateSelect" listener="#{agendamentoMB.calendarNovoAgendamento}" />
+							</p:calendar>
+							<h:outputText value="Hora:" />
+							<p:inputMask id="idHora" value="#{agendamentoMB.hora}" mask="99:99" size="4">
+								<p:ajax event="blur" update="idHora" />
+							</p:inputMask>
+							 
+							<h:outputText value="Tipo Carga:" />
+							<p:selectOneMenu value="#{agendamentoMB.tipoCarga}" style="width: 95%" >
+							  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+								<f:selectItem itemLabel="SEMANAL" itemValue="SEMANAL"/>
+								<f:selectItem itemLabel="RETROATIVA" itemValue="RETROATIVA"/>
+								<f:selectItem itemLabel="PROCESSO" itemValue="PROCESSO"/>
+								<p:ajax update="agendamento"/>
+							</p:selectOneMenu>
+							
+							<h:outputText for="quantidadeMarca" value="Quantidade Marca: " 
+							 rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+							<p:inputText id="quantidadeMarca" size="7" maxlength="7" value="#{agendamentoMB.cargaRetroativa.qtMarcas}" 
+							 rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+							<h:outputText value="Quantidade Desenho: " rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+							<p:inputText id="quantidadeDesenho" size="7" maxlength="7" value="#{agendamentoMB.cargaRetroativa.qtDi}" 
+							 rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+							<h:outputText value="Quantidade Patente: " rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+							<p:inputText size="7" maxlength="7" value="#{agendamentoMB.cargaRetroativa.qtPatentes}"
+							 rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA'}" />
+						
+							<h:outputText value="RPI: " rendered="#{agendamentoMB.tipoCarga eq 'SEMANAL'}" />
+							<p:inputMask mask="9999" size="4" value="#{agendamentoMB.cargaSemanal.noRpi}" 
+							 rendered="#{agendamentoMB.tipoCarga eq 'SEMANAL'}" maxlength="5" />
+						</p:panelGrid>
+							<p:selectManyCheckbox style="margin-top: 5%"
+							 layout="grid" columns="3" value="#{agendamentoMB.checkTipoBase}" 
+							 rendered="#{agendamentoMB.tipoCarga eq 'SEMANAL' and agendamentoMB.tipoAgendamento eq 'MANUAL'}" >															 
+							 	<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />													         													
+							</p:selectManyCheckbox>
+							
+							<!-- INICIO CASO PROCESSO -->
+							<h:panelGroup id="painel1"  rendered="#{agendamentoMB.tipoCarga eq 'PROCESSO'}">
+							
+							<h:panelGrid style="margin-top: 5%" columns="2" >
+							
+							<h:outputText value="Tipo Carga:" />
+							<p:selectOneMenu value="#{agendamentoMB.tipoProcesso}" var="proc" style="width: 115px" >
+							  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+								<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />
+					            <p:ajax id="good" update="agendamento"/>
+								<p:ajax id="good" resetValues="true"  update=":formNovoAgendamento:painel2"/>
+							</p:selectOneMenu>
+							
+							</h:panelGrid>
+							
+							<h:panelGroup id="painel2" style="width: 115px" rendered="#{agendamentoMB.tipoProcesso eq 'M' or agendamentoMB.tipoProcesso eq 'D' or agendamentoMB.tipoProcesso eq 'P'}">
+								
+								
+								<p:remoteCommand autoRun="true" update=":formNovoAgendamento:display" actionListener="#{agendamentoMB.verificaListaVazia}" />
+								
+								<h:panelGrid style="margin-top: 5%" columns="3" >
+								
+								
+								<h:outputLabel value="Processo:" style="display:block" />
+
+								<p:inputText id="quantidadeProcesso" value="#{agendamentoMB.numProcesso}" size="9" maxlength="10" />
+
+								<p:commandButton  process="@form"
+									actionListener="#{agendamentoMB.setProcess()}" update="display, :formNovoAgendamento:quantidadeProcesso"
+									icon="ui-icon-plus" style="border-width:0; background:none;"/>
+									
+									
+								</h:panelGrid>
+								
+								<h:panelGrid columns="2" >
+								<h:outputText value="Processos à executar:" />
+								<p:dataList id="display" value="#{agendamentoMB.listProcs}"
+									var="font" emptyMessage="Nenhum Processo">
+									<h:outputText id="processoValido" value="#{font}" style="font-weight: bold" />
+								</p:dataList>
+								</h:panelGrid>
+							
+							</h:panelGroup>
+							</h:panelGroup>
+							<p:spacer/>
+							<p:spacer/>
+							<!-- FIM CASO PROCESSO -->
+							
+						<!-- FIM CASO MANUAL -->
+						
+						<div style="bottom: 10%; left: 30%">
+							<p:panelGrid styleClass="semBorda">
+								<p:row>
+									<p:column>								
+										<p:commandButton id="btnSalvarNovoAgendamento" process="@form" value="Salvar"
+										 actionListener="#{agendamentoMB.salvarNovoAgendamento}" />
+										<p:commandButton value="Limpar" actionListener="#{agendamentoMB.resetValuesNovoAgendamento}"
+										 update="@form" process="@this" style="margin-right:20px;" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</div>
+		  		  	</h:panelGroup>
+	  		  	</div>
+  		  	</h:form>
+		</p:dialog>
+	    <!-- FIM NOVO AGENDAMENTO -->
+		
+		<!-- EDITAR AGENDAMENTO MANUAL -->
+		<p:dialog id="dlgEditarManual" header="Editar Agendamento" showEffect="puff" hideEffect="puff"
+		 resizable="false" widgetVar="varEditarManual" height="270" width="400">
+			<p:ajax update="formEditarManual" resetValues="true" />
+			<f:event listener="#{agendamentoMB.preparaAtualizacao}" type="preRenderView" />
+			
+			<h:form id="formEditarManual">
+				<div align="center">
+					<p:panelGrid columns="2" rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'RETROATIVA'}">
+						
+						<h:outputText value="Ativo:" />
+						<p:selectOneMenu style="width: 120px" value="#{agendamentoMB.statusAgenda}">
+			    			<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="SIM" itemValue="S"/>
+							<f:selectItem itemLabel="NÃO" itemValue="N"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="Data:" />
+						<p:calendar readonlyInput="true" value="#{agendamentoMB.calendarDataNovoAgendamento}" 
+						 size="11" locale="pt_BR" pattern="dd/MM/yyyy" showOn="button" mindate="#{currentDate}">
+							<p:ajax event="dateSelect" listener="#{agendamentoMB.calendarAtualizarAgendamento}" />
+						</p:calendar>
+						
+						<h:outputText value="Hora:" />
+						<p:inputMask value="#{agendamentoMB.hora}" 
+						 mask="99:99" size="4" />
+						
+						<h:outputText for="quantidadeMarca" value="Quantidade Marca: " />
+						<p:inputText id="quantidadeMarca" size="7" maxlength="7" 
+						 value="#{agendamentoMB.cargaRetroativa.qtMarcas}" />
+						 
+						<h:outputText value="Quantidade Desenho: " />
+						<p:inputText id="quantidadeDesenho" size="7" maxlength="7" 
+						 value="#{agendamentoMB.cargaRetroativa.qtDi}"/>
+						 
+						<h:outputText value="Quantidade Patente: " />
+						<p:inputText size="7" maxlength="7"
+						 value="#{agendamentoMB.cargaRetroativa.qtPatentes}"/>						
+						
+					</p:panelGrid>
+					
+					<p:panelGrid columns="2" rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'SEMANAL'}">
+						
+						<h:outputText value="Ativo:" />
+						<p:selectOneMenu style="width: 120px" value="#{agendamentoMB.statusAgenda}">
+			    			<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="SIM" itemValue="S"/>
+							<f:selectItem itemLabel="NÃO" itemValue="N"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="Data:" />
+						<p:calendar readonlyInput="true" size="11" locale="pt_BR" value="#{agendamentoMB.calendarDataNovoAgendamento}"
+						 pattern="dd/MM/yyyy" showOn="button" mindate="#{currentDate}">
+							<p:ajax event="dateSelect" listener="#{agendamentoMB.calendarAtualizarAgendamento}" />
+						</p:calendar>
+						
+						<h:outputText value="Hora:" />
+						<p:inputMask value="#{agendamentoMB.hora}" mask="99:99" size="4" />
+						
+						<h:outputText value="RPI: " />
+						<inputMask mask="9999" size="4" maxlength="4" value="#{agendamentoMB.cargaSemanal.noRpi}" />
+					</p:panelGrid>
+					
+					<h:panelGroup columns="2" rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'PROCESSO'}">
+						
+						<h:panelGrid columns="2">
+						
+						<h:outputText value="Ativo:" />
+						<p:selectOneMenu style="width: 120px" value="#{agendamentoMB.statusAgenda}">
+			    			<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="SIM" itemValue="S"/>
+							<f:selectItem itemLabel="NÃO" itemValue="N"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="Data:" />
+						<p:calendar readonlyInput="true" size="11" locale="pt_BR" value="#{agendamentoMB.calendarDataNovoAgendamento}"
+						 pattern="dd/MM/yyyy" showOn="button" mindate="#{currentDate}">
+							<p:ajax event="dateSelect" listener="#{agendamentoMB.calendarAtualizarAgendamento}" />
+						</p:calendar>
+						
+						<h:outputText value="Hora:" />
+						<p:inputMask value="#{agendamentoMB.hora}" mask="99:99" size="4" />
+							
+						</h:panelGrid>
+							<p:spacer/>
+						<h:panelGroup> 	
+						
+						<h:panelGrid columns="2">
+							<h:outputText value="Tipo Carga: " />
+							<p:selectOneMenu value="#{agendamentoMB.tipoProcesso}" var="proc" style="width: 115px" >
+							  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+								<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />
+								<p:ajax update=":formEditarManual:painel2"/>
+								
+							</p:selectOneMenu>
+						</h:panelGrid>
+						
+						<h:panelGroup id="painel2" style="width: 115px" rendered="#{agendamentoMB.tipoProcesso eq 'M' or agendamentoMB.tipoProcesso eq 'D' or agendamentoMB.tipoProcesso eq 'P'}">
+
+								<h:panelGrid style="margin-top: 5%" columns="3" >
+								<h:outputLabel value="Processo:" style="display:block" />
+
+								<p:inputText id="quantidadeProcesso" value="#{agendamentoMB.numProcesso}" size="9" maxlength="10" />
+
+									<p:commandButton  process="@form"
+									actionListener="#{agendamentoMB.setProcess()}" update="display, :formEditarManual:quantidadeProcesso"
+									icon="ui-icon-plus" style="border-width:0; background:none;"/>
+									
+								</h:panelGrid>
+								
+								<h:panelGroup>
+								<h:panelGrid columns="3" >
+								<h:outputText value="Processos à executar:" />
+								<p:dataList id="display" value="#{agendamentoMB.listProcsDto}"
+									var="font" update="painel2:quantidadeProcesso"
+									emptyMessage="Nenhum Processo">
+									<h:outputText value="#{font}" style="font-weight: bold"/>
+									<p:commandButton actionListener="#{agendamentoMB.validaProc()}" update="display" process="@this" icon="ui-icon-minus" style="border-width:0; background:none;">
+									
+									<f:setPropertyActionListener target="#{agendamentoMB.onSelected}" value="#{font}"/>
+									</p:commandButton>
+									
+									
+								</p:dataList>
+								</h:panelGrid>
+								
+								</h:panelGroup>
+							
+							</h:panelGroup>
+						
+						</h:panelGroup>
+						
+						</h:panelGroup>
+					
+					<h:panelGroup rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'SEMANAL'}">
+						<div style="margin-right: 45%">
+							<p:selectManyCheckbox style="margin-top: 5%; margin-left: 40%"
+							 layout="grid" columns="3" value="#{agendamentoMB.checkTipoBase}">															 
+							 	<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />													         													
+							</p:selectManyCheckbox><br/>
+						</div>
+					</h:panelGroup>
+				</div>
+				
+				<div style="margin-top: 15px; margin-left: 120px">
+		    		<p:commandButton value="Salvar" actionListener="#{agendamentoMB.atualizarAgendamento}">
+		    			<f:setPropertyActionListener target="#{agendamentoMB.isReset}" value="false" />
+		    		</p:commandButton>
+		    		<p:commandButton value="Limpar" update="formEditarManual" process="@this" style="margin-right:20px;" 
+		    		 actionListener="#{agendamentoMB.resetValues}">
+		    		 	<f:setPropertyActionListener target="#{agendamentoMB.isReset}" value="true" />
+		    		 </p:commandButton>
+		    	</div>
+			</h:form>
+			
+		</p:dialog>
+		<!-- FIM EDITAR AGENDAMENTO MANUAL -->
+		
+		<!-- EDITAR AGENDAMENTO AUTOMATICO -->
+		<p:dialog id="dlgEditarAutomatico" header="Editar Agendamento" showEffect="puff" hideEffect="puff"
+   		 resizable="false" dynamic="true" widgetVar="varEditarAutomatico" height="180" width="400">
+   		 	<p:ajax update="formEditarAutomatico" resetValues="true" />
+   		 	<f:event listener="#{agendamentoMB.preparaAtualizacao}" type="preRenderView" />
+   		 	
+		    <h:form id="formEditarAutomatico">
+		    	<div align="center">
+			    	<p:panelGrid columns="2">
+			    	
+			    		<h:outputText value="Ativo:"/>
+			    		<p:selectOneMenu style="width: 120px" value="#{agendamentoMB.statusAgenda}">
+			    			<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="SIM" itemValue="S"/>
+							<f:selectItem itemLabel="NÃO" itemValue="N"/>
+				    	</p:selectOneMenu>
+			    		
+			    		<h:outputText value="Dia: " />
+			    		<p:selectOneMenu id="diaAgendamento" value="#{agendamentoMB.dataNovoAgendamento}"
+					     style="width: 115px">
+							<f:selectItems value="#{agendamentoMB.diasSemana}" />
+						</p:selectOneMenu>
+						
+						<h:outputText value="Hora:" />
+						<p:inputMask id="txtHora" value="#{agendamentoMB.hora}" 
+						 mask="99:99" size="8" />
+			    	</p:panelGrid>
+		    	</div>
+		    	<div align="center" style="margin-top: 15px">
+		    		<p:commandButton value="Salvar" actionListener="#{agendamentoMB.atualizarAgendamento}">
+		    			<f:setPropertyActionListener target="#{agendamentoMB.isReset}" value="false" />
+		    		</p:commandButton>
+		    		<p:commandButton value="Limpar" update="formEditarAutomatico" process="@this" style="margin-right:20px;" 
+		    		 actionListener="#{agendamentoMB.resetValues}">
+		    		 	<f:setPropertyActionListener target="#{agendamentoMB.isReset}" value="true" />
+		    		</p:commandButton>
+		    	</div>
+		    </h:form>								    
+	    </p:dialog>
+	    <!-- FIM EDITAR AGENDAMENTO AUTOMATICO -->
+	    
+	   </ui:define>
+</ui:composition>

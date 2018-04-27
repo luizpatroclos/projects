@@ -1,0 +1,380 @@
+@CHARSET "ISO-8859-1";
+
+/* Parte que influencia diretamente os includes da pagina conteudo.xhtml */
+h1{
+	 text-indent: -999999em;
+	 float      : left;
+	 display    : block;
+	 width      : 190px;
+	 height     : 5px;
+ 
+ }	
+
+h2 {
+	 font-size : 20px;
+	 color     : #004A95;
+	 float     : left;
+	 display   : block;
+	 width     : 700px;
+	 padding   : 0 0 0 50px;
+	 margin-top: 30px;
+	 overflow-y:hidden;
+
+}
+
+h3 {
+ 	font-size : 14px; 
+}
+
+h6 {
+	 font-size : 8pt;
+	 text-align: center;
+	 margin    : 1px 0 0px 0;
+}
+
+/* Itens do Menu Principal */
+#Menu {
+ 
+	 width       : 100%;
+	 clear       : both;
+	 line-height : 20px;
+}
+
+#Menu td {
+ border: none 0px;
+}
+
+.menuPrincipal {
+
+	 background    : #FFF url(/spnWeb/pages/images/bgItemMenu.jpg) top left repeat-x;
+	 height        : 43px;
+	 width         : 100%;
+	 clear         : both;
+	 padding       : 0 0 0 10px;
+	 vertical-align:top;
+}
+.sidemenu
+{
+	text-align:			center;
+	vertical-align:		top;
+	
+}
+
+.areaPrincipal{
+	vertical-align:		center;
+	text-align:			center;
+	
+}
+
+.colunaBorder{
+	
+	border-style: solid;
+	border-bottom-width: 0;
+	border-top-width: 0;
+	border-right-width: 3px; 
+	border-left-width: 0;
+}
+.menuPrincipal a {
+	 padding-left: 7px;
+	 color       : #036;
+	 font-weight : bold;
+	 font-size   : 13px;
+	 margin      : 0 0 5px 0;
+}
+.menuPrincipal a:link    { text-decoration:none; }
+.menuPrincipal a:active  { text-decoration:none; }
+.menuPrincipal a:visited { text-decoration:none; }
+.menuPrincipal a:hover 	 { text-decoration:underline; color:#1371cf;}
+
+.itemSubMenuPrincipal
+{
+    color      : #036;
+    padding    : 0;
+    margin     : 0;
+    font-weight: bold;
+}
+
+#header
+{
+	width           : 100%;
+	height          : 100%;
+	font-size       : 26px;
+	font-weight     : bold;
+	line-height     : 18px;
+	background-color: navy;
+	color           : white;
+	text-align      : center;
+	background      : #DEEFF7 url(/spnWeb/pages/images/bgHeader.jpg) top left;
+	
+}
+
+body {
+    background : #FFF url(/spnWeb/pages/images/fundoGrad.gif) top left repeat-y;
+    margin     : 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size  : 11px;
+    color      : #036;
+    overflow-y:hidden;
+}
+
+#rodape {
+	 width     : 100%;
+	 height    : 0px;
+	 text-align: center;
+	 float     : left;
+	 background: url(/spnWeb/pages/images/rodapeCor.gif) repeat-x;
+	 clear     : both;
+	 padding   : 25px 0;
+	 z-index   : 0;
+	 margin    : 0px;
+	 overflow-y:hidden;
+}
+
+.linha{
+	
+	padding: 5px;
+	border     : solid 1px #036;
+}
+
+
+
+/* FORMS */
+
+input { 	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;}
+
+.combo {
+	 font-family: Verdana, Arial, Helvetica, sans-serif;
+	 font-size  : 11px;
+	 color      : #036;
+	 height     : 14px;
+	 padding    : 2px 0;
+	 border     : solid 1px #C0DEEF;
+	 font-size  : 11px;
+	 color      : #036;
+}
+
+.caixaTexto {
+	 height     : 14px;
+	 padding    : 2px 0;
+	 background : #FFF;
+	 border     : solid 1px #C0DEEF;
+	 font-family: Verdana, Arial, Helvetica, sans-serif;
+	 font-size  : 11px;
+	 color      : #036;
+}
+
+.caixaTextoMenor {
+	 height     : 16px;
+	 background : #FFF;
+	 border     : solid 1px #C0DEEF;
+	 width      : 75px;
+	 font-family: Verdana, Arial, Helvetica, sans-serif;
+	 font-size  : 11px;
+	 color      : #036;
+	 margin-bottom:5px;
+}
+
+.listBoxes {
+	 background: #FFF;
+	 border    : solid 1px #C0DEEF;
+	 font-size : 12px;
+	 margin-bottom: 5px;
+}
+
+.checkRadio { border:none 0px; margin-bottom: 5px; height: 16px; }
+.checkBox   { border:none 0px; margin-bottom: 5px; height: 16px; }
+
+
+
+
+.imgBotao { border-style:none; border-width:0px; }
+
+.textarea {
+	 font-family: Arial, helvetica, verdana, sans-serif;
+	 border     : solid 1px #AAD3EA;
+	 margin-bottom: 5px;
+	 overflow-y:hidden;
+}
+
+
+/* ALTERACOES DEBORA */
+
+/* referente ao texto2 do style.css */
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;	
+	color: #00005A;
+	text-decoration: none;
+}
+
+.inputText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 193px; 
+ 	height 	: 16px;
+}
+
+.inputTextSemAltura {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 193px;}
+}
+
+.inputTextMenor {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 100px; 
+ 	height 	: 16px;
+ 	text-align: left;
+}
+
+.inputMask {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 182px; 
+ 	height 	: 14px;
+}
+
+.radio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 150px; 
+ 	height 	: 18px; 
+}
+
+.selectOneMenu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 193px; 
+ 	height 	: 23px; 
+}
+
+.selectOneMenuLargo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	width 	: 350px; 
+ 	height 	: 23px; 
+}
+
+.inputBotao   {
+	 background : #9abee9 url(images/fundoBot.gif) repeat-x;
+	 font-weight: bold;
+	 border     : solid 1px #036;
+	 cursor     : hand;
+	 font-size  : 11px;
+	 padding    : 1px 3px 2px 3px;
+	 color      : #036;
+	 width 		: 60px; 
+	 height 	: 17px;
+}
+
+.tabela{
+	width: 100%;
+	padding: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #00005A;
+	overflow-y:hidden;
+	text-decoration: none;	
+}
+
+.tabelaMenor{	
+	width: 50%;
+	padding: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #00005A;
+	text-decoration: none;	
+}
+
+.mensagem {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;	
+	color: #00005A;
+	text-decoration: none;
+}
+
+.cssColumn1 {
+
+     width: 90px;
+
+}
+
+.cssColumn2 {
+
+     width: 200px;
+	 
+}
+
+.cssColumn1b {
+
+     width: 40px;
+
+}
+
+.cssColumn2b {
+
+     width: 500px;
+	 align: left;
+}
+
+.cssColumn3 {
+
+     width: 200px;
+     text-align: left;
+
+}
+
+.cssColumn4 {
+
+     width: 5px;
+     text-align: left;
+     font-size: 9px;
+
+}
+
+.cssColumn5 {
+
+     width: 400px;
+     text-align: left;
+
+}
+
+.ui-widget {  
+    font-size: 11px !important;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;  
+}
+
+.myDiver{
+     min-height:100px;
+     height:auto !important;
+     height:100px;
+     text-align:			center;
+	 vertical-align:		top;
+}
+
+.columnTabela{
+	font-size:9px;
+}
+
+.semBorda tr, .semBorda td {  
+    border: none !important;  
+} 

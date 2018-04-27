@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+		<p:messages id="mensagemLogin" showDetail="true" autoUpdate="true"
+			closable="true" />
+		<h:form>
+
+				<div style="margin-top: 240px; margin-left: 270px">
+					<f:event listener="#{loginProsurBean.validarLogin}" 
+					 type="postValidate"/>
+					         
+					<p:panelGrid
+						style="margin-left:23%; vertical-align: center; margin-right:15%;">
+	
+						<f:facet name="header">
+							<p:row>
+								<h:outputText value="AutentificaÃ§Ã£o" />
+	
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column style="text-align: right">
+								<h:outputText  style="font-weight:bold" value="Usuário:" />
+							</p:column>
+							
+							<p:column style="text-align: left; color: #000000;">
+								<p:inputText id="usuario"
+									value="#{loginProsurBean.usuarioProsur.usuario}" />
+							</p:column>
+							
+						</p:row>
+						<p:row>
+							<p:column style="text-align: right">
+								<h:outputText style="font-weight:bold" value="Senha:" />
+							</p:column>
+		
+							<p:column style="text-align: left">
+								<p:password id="password" value="#{loginProsurBean.usuarioProsur.psw}" />							
+							</p:column>
+								</p:row>						
+						<p:row>
+	
+							<p:column colspan="2" style="display:block; text-align:center">
+								<h:commandButton value="Login"
+									actionListener="#{loginProsurBean.efetuarAutenficicacao}" />
+							</p:column>
+						</p:row>
+	
+					</p:panelGrid>
+				</div>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

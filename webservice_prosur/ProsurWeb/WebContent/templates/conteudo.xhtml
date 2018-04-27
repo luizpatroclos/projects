@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">	
+
+<h:outputStylesheet library="css" name="principalProsur.css" />
+
+<f:view contentType="text/html" id="fview">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>INPI</title>
+    <ui:debug />
+    <f:metadata>
+        <ui:insert name="metadata" />
+    </f:metadata>
+
+	<h:head>
+		 <p:layout fullPage="true" style="background-color:#FFFFFF; border: none">
+			<p:layoutUnit position="north" style="border: none" resizable="false" id="north">
+				<ui:include src="header.xhtml" />
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="center" style="border: none">
+                <p:panel styleClass="#{fn:contains(view.viewId, '/pages/') ? 'panel' : 'semBordaPanel'}">
+                	<ui:insert name="content" />
+                </p:panel>
+	        </p:layoutUnit>
+
+			<p:layoutUnit position="south" style="border: none" id="south">
+	            <ui:include src="footer.xhtml" />
+	        </p:layoutUnit>
+		</p:layout>
+	</h:head>
+</f:view>
+</html>

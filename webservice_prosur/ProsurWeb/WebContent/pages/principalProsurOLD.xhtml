@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+		<h:form onkeypress="return event.keyCode != 13" id="formPrincipal">
+			<h:outputScript library="js" name="LocalPt_Br.js" />
+			<p:growl id="msg" showDetail="true" autoUpdate="true" life="10000"
+		  	 closable="true" style="width: 50%" />
+			<p:panel style="border:none; position: center, top;">
+				 <p:tabView id="tabView" activeIndex="#{principalProsur.tabIndex}" binding="#{principalProsur.tabView}" dynamic="true" cache="false">
+				 	<p:ajax event="tabChange" listener="#{principalProsur.onTabChange}" />
+				 	
+			        <p:tab title="Agendamentos">
+			        	
+	            		<p:fieldset legend="Cargas Agendadas" style="margin-bottom:20px;
+	            	     width: 1170px; height: 650px; position: absolute, center">
+	            			<br/><br/>
+	            			
+	            			<div style="text-align: center; margin-left:9px; margin-right: 5px;">
+	            				 <!-- CARGAS AGENDADAS -->
+			            	     <p:dataTable id="dtCargaAgendada" var="carga" value="#{principalProsur.listaAgendaCarga}" emptyMessage="Nenhuma carga encontrada !" 
+			            	      rows="16" paginator="true" sortMode="multiple" border="1" styleClass="paginated" paginatorPosition="bottom"
+			            	      filteredValue="#{principalProsur.filteredListaAgendaCarga}" >
+				            	     	<p:column width="120" filterBy="#{carga.tipoCarga.toLowerCase()} || #{carga.tipoCarga}" filterMatchMode="contains">
+				            	     		<f:facet name="header">Tipo de Carga</f:facet>
+											<h:outputText value="#{carga.tipoCarga}" />
+				            	     	</p:column>
+				            	     	<p:column width="145" >
+				            	     		<f:facet name="header">Tipo de Agendamento</f:facet>
+											<h:outputText value="#{carga.tipoAgendamento}" />
+				            	     	</p:column>
+				            	     	<p:column width="125" sortBy="#{carga.dataHoraAgenda}">
+				            	     		<f:facet name="header">Data/Hora</f:facet>
+											<h:outputText value="#{carga.dataHoraAgenda}" rendered="#{carga.tipoAgendamento eq 'MANUAL'}" >
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+											<h:outputText value="#{carga.dataHoraAgenda}" rendered="#{carga.tipoAgendamento eq 'AUTOMATICO'}" >
+												<f:convertDateTime pattern="EEEEEE HH:mm" />
+											</h:outputText>
+				            	     	</p:column>
+				            	     	<p:column width="30">
+				            	     		<f:facet name="header">Ativo</f:facet>
+											<h:outputText value="#{carga.statusAgenda}" />
+				            	     	</p:column>
+				            	     	<p:column width="83">
+				            	     		<f:facet name="header">Tipo de Base</f:facet>
+											<h:outputText value="#{carga.tipoBase}" />
+				            	     	</p:column>
+				            	     	<p:column width="25">
+				            	     		<f:facet name="header">RPI</f:facet>
+											<h:outputText value="#{carga.numRpi}" />
+				            	     	</p:column>
+				            	     	<p:column width="120">
+				            	     		<f:facet name="header">Quantidade Marcas</f:facet>
+											<h:outputText value="#{carga.qtdMarcas}" />
+				            	     	</p:column>
+				            	     	<p:column width="125">
+				            	     		<f:facet name="header">Quantidade Patente</f:facet>
+											<h:outputText value="#{carga.qtdPatente}" />
+				            	     	</p:column>
+				            	     	<p:column width="130">
+				            	     		<f:facet name="header">Quantidade Desenho</f:facet>
+											<h:outputText value="#{carga.qtdDesenho}" />
+				            	     	</p:column>
+				            	     	<p:column width="60">
+				            	     		<f:facet name="header">Ações</f:facet>
+					            	     	<p:commandButton id="btnEditarAgendamento" oncomplete="PF('dialogEditar').show()" update=":dlgEditar"
+					            	     	 icon="ui-icon-tag" style="border-width:0; background:none;" >					            	     	 	
+					            	     		<p:tooltip id="toolTipEditarAgendamento" for="btnEditarAgendamento"
+					            	     		 value="Editar Agendamento" showEffect="clip"/>
+					            	     		<f:setPropertyActionListener value="#{carga}" target="#{agendamentoMB.dtoAgendaCarga}" />
+					            	     	</p:commandButton>
+				            	     		<p:commandButton id="btnExcluirAgendamento" icon="ui-icon-trash"
+				            	     		 style="border-width:0; background:none;" oncomplete="PF('dialogExcluir').show()">
+					            	     		<p:tooltip id="toolTipExcluirAgendamento" for="btnExcluirAgendamento"
+					            	     		 value="Excluir Agendamento" showEffect="clip"/>
+					            	     		<f:setPropertyActionListener value="#{carga}" target="#{agendamentoMB.dtoAgendaCarga}" />
+				            	     		</p:commandButton>
+				            	     	</p:column>
+				            	 </p:dataTable>
+	            			 </div>
+            				
+            				<div style="position: absolute; margin-top: 5px; margin-left: 77%">
+	            				<p:commandButton id="btnIncluirAgendamento" value="Incluir novo Agendamento"
+	          					 icon="ui-icon-plus" oncomplete="PF('dialogNovoAgendamento').show()" update=":dlgNovoAgendamento" />
+            				</div>
+	            		</p:fieldset>
+			        </p:tab>
+			        <!-- FIM CARGAS AGENDADAS -->
+
+				   <!-- RETROATIVA -->
+			       <p:tab title="Retroativa">
+			            <p:fieldset legend="Cargas Retroativas" style="margin-bottom:20px;
+ 	            	     width: 1170px; height: 650px; position: absolute, center">
+		            	     <div style="margin-left:35%; margin-top: 15%; text-align: center">
+			            	     <p:panelGrid>
+		            	     		<f:facet name="header">
+		            	     			<p:row>
+		            	     				<p:column>Tipo de Carga</p:column>
+		            	     				<p:column>Quantidade Carga</p:column>
+		            	     				<p:column>Quantidade Restante</p:column>
+		            	     			</p:row>
+		            	     		</f:facet>
+			            	     	
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="M" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{principalProsur.qtdMarcasRetroExecutadas} " /> <!-- VOLUME TOTAL MARCAS -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value="#{principalProsur.qtdMarcasRetroExecutar}" /> <!-- VOLUME RESTANTE MARCAS -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="D" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{principalProsur.qtdDiRetroExecutado} " /> <!-- VOLUME TOTAL DI -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{principalProsur.qtdDiRetroExecutar} " /> <!-- VOLUME RESTANTE DI -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	<p:row>
+			            	     		<p:column>
+			            	     			<h:outputText value="P" />
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{principalProsur.qtdPatenteRetroExecutado} " /> <!-- VOLUME TOTAL PATENTE -->
+			            	     		</p:column>
+			            	     		<p:column>
+			            	     			<h:outputText value=" #{principalProsur.qtdPatenteRetroExecutar} " /> <!-- VOLUME RESTANTE PATENTE -->
+			            	     		</p:column>
+			            	     	</p:row>
+			            	     	
+			            	     	
+			            	     </p:panelGrid>
+			            	 </div>			            	
+	            	    </p:fieldset>
+			       </p:tab>		  
+			       <!-- FIM RETROATIVA -->
+			       
+					<!-- HISTORICO -->
+			        <p:tab title="Histórico">
+			            
+			            <p:fieldset legend="Histórico de Cargas" style="margin-bottom:20px;
+	            	     width: 1170px; height: 650px; position: absolute, center">
+	            	     <br/><br/>
+	            	     
+	            	     <div style="text-align: center; margin-left:9px; margin-right: 5px;">
+		            	     <p:dataTable var="historico" value="#{principalProsur.listaHistoricoCarga}" emptyMessage="Nenhum histórico encontrado !" 
+				              rows="6" paginator="true" border="1" styleClass="paginated" paginatorPosition="bottom"
+				              filteredValue="#{principalProsur.filteredListaHistoricoCarga}" autoUpdate="true">
+				            	      		<p:column width="5">				            	     		
+					            	     		<f:facet name="header">Carga</f:facet>
+												<h:outputText value="#{historico.noRpi eq null ? '-' : historico.noRpi}" />
+					            	     	</p:column>
+					            	     	<p:column width="30" sortBy="#{historico.dhProcesso}">				            	     		
+					            	     		<f:facet name="header">Agendamento</f:facet>
+												<h:outputText value="#{historico.dhProcesso}" >
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+												</h:outputText>
+					            	     	</p:column>
+					            	     	<p:column width="40" filterBy="#{historico.tpAgenda.toLowerCase()} || #{historico.tpAgenda}" filterMatchMode="contains">
+					            	     		<f:facet name="header">Tipo de Agendamento</f:facet>
+												<h:outputText value="#{historico.tpAgenda}" />
+					            	     	</p:column>
+					            	     	<p:column width="30">
+					            	     		<f:facet name="header">Tipo de Carga</f:facet>
+												<h:outputText value="#{historico.tpCarga}" />
+					            	     	</p:column>
+					            	     	<p:column width="30" sortBy="#{historico.dhInicioCarga}">				            	     		
+					            	     		<f:facet name="header">Início Execução</f:facet>
+												<h:outputText value="#{historico.dhInicioCarga}" >
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+												</h:outputText>
+					            	     	</p:column>
+					            	     	<p:column width="30">
+					            	     		<f:facet name="header">Fim execução</f:facet>
+												<h:outputText value="#{historico.dhFimCarga}" >
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+												</h:outputText>
+					            	     	</p:column>
+					            	     	<p:column width="30">
+					            	     		<f:facet name="header">Quantidades</f:facet>
+					            	     		<p:panelGrid styleClass="semBorda">
+					            	     			<p:row rendered="#{!(historico.qtMarcasProc eq null)}">
+					            	     				<p:column>
+						            	     				<h:outputText value="Marcas - " />
+															<h:outputText value="#{historico.qtMarcasProc}"/>
+					            	     				</p:column>
+													</p:row>
+													<p:row rendered="#{!(historico.qtDiProc eq null)}" >
+														<p:column>
+															<h:outputText value="Desenho - " />
+															<h:outputText value="#{historico.qtDiProc}" />
+														</p:column>
+													</p:row>
+													<p:row rendered="#{!(historico.qtPatentesProc eq null)}" >
+														<p:column>
+															<h:outputText value="Patente - " />
+															<h:outputText value="#{historico.qtPatentesProc} " />
+														</p:column>
+													</p:row>
+												</p:panelGrid>
+					            	     	</p:column>
+					            	     	<p:column width="65">
+					            	     		<f:facet name="header">Resultado</f:facet>
+					            	     		<p:panelGrid styleClass="semBorda">
+					            	     			<p:row rendered="#{!(historico.qtMarcasOk eq null)}">
+					            	     				<p:column>
+															<h:outputText value="Marcas Sucesso - " />
+															<h:outputText value="#{historico.qtMarcasOk} " />
+															<h:outputText value="Marcas Erro - " rendered="#{!(historico.qtMarcasErro eq null)}"/>
+															<h:outputText value="#{historico.qtMarcasErro}" rendered="#{!(historico.qtMarcasErro eq null)}"/>
+														</p:column>
+													</p:row>
+													<p:row rendered="#{!(historico.qtDiOk eq null)}" >
+														<p:column>
+															<h:outputText value="Desenho Sucesso - " />
+															<h:outputText value="#{historico.qtDiOk} " />
+															<h:outputText value="Desenho Erro - " />
+															<h:outputText value="#{historico.qtDiErro} " />
+															<h:outputText value="Desenho Sigilo - " />
+															<h:outputText value="#{historico.qtDiSigiloProc}" />
+														</p:column>
+													</p:row>
+													<p:row rendered="#{!(historico.qtPatenteOk eq null)}" >
+														<p:column>
+															<h:outputText value="Patente Sucesso - " />
+															<h:outputText value="#{historico.qtPatenteOk} " />
+															<h:outputText value="Patente Erro - " />
+															<h:outputText value="#{historico.qtPatenteErro} " />
+															<h:outputText value="Patente Sigilo - " />
+															<h:outputText value="#{historico.qtPatentesSigiloProc} " />
+														</p:column>
+													</p:row>
+												</p:panelGrid>
+					            	     	</p:column>
+				            	 </p:dataTable>
+	            	     </div>
+	            	    </p:fieldset>	            
+			        </p:tab>			    
+			        <!-- FIM HISTORICO -->
+			            
+			        <!-- ACESSOS -->
+			        <p:tab title="ACESSOS">
+			            <p:fieldset legend="Controle de Acesso" style="margin-bottom:20px;
+	            	     width: 1170px; height: 650px; position: absolute, center">
+	            	     
+	            	     <div align="center" style="margin-top: 10%; margin-left: 40%; text-align: center">
+	            	     	<p:dataTable id="dtUsuario" var="acesso" value="#{usuarioProsurMB.listaAcessoCarga}" emptyMessage="Nenhum usuário encontrado."
+	            	     	 rows="5" paginator="true" styleClass="paginated" paginatorPosition="bottom" style="width: 30%">
+	            	     		<p:column width="10">
+		            	     		<f:facet name="header">Usuário</f:facet>
+									<h:outputText value="#{acesso.nmLogin}" />
+		            	     	</p:column>
+		            	     	
+		            	     	<p:column width="10">
+		            	     		<f:facet name="header">Excluir</f:facet>
+		            	     		<p:commandButton id="btnExcluirUsuario" icon="ui-icon-trash"
+		            	     		 style="border-width:0; background:none;" oncomplete="PF('dialogExcluirUsuario').show()">
+			            	     		<p:tooltip id="toolTipExcluirUsuario" for="btnExcluirUsuario"
+			            	     		 value="Excluir Usuário" showEffect="clip"/>
+			            	     		<f:setPropertyActionListener value="#{acesso}" target="#{usuarioProsurMB.acessoCarga}" />
+		            	     		</p:commandButton>
+		            	     	</p:column>
+	            	     	</p:dataTable> 
+		            	 </div>
+		            	 <br/>
+		            	 <div align="center" style="margin-top: 10%">
+			            	 <p:panelGrid columns="3">
+			            	     	<h:outputText value="Incluir novo usuário: " />
+			            	     	<p:inputText value="#{usuarioProsurMB.nomeUsuario}" maxlength="15"/>	
+			            	     	<p:commandButton value="Salvar" actionListener="#{usuarioProsurMB.salvarNovoUsuario}" />
+			            	 </p:panelGrid>
+		            	 </div>
+	            	    </p:fieldset>
+			        </p:tab>
+			        <!-- FIM ACESSOS -->
+			              
+		    	</p:tabView>
+			</p:panel>
+		</h:form>
+		
+		<!-- EXCLUIR AGENDAMENTO -->
+		<p:confirmDialog global="true" severity="info"
+			message="Você deseja realmente excluir o registro ? "
+			showEffect="fade" hideEffect="explode" header="Excluir"
+			widgetVar="dialogExcluir" id="excluir">
+			<h:form>
+				<p:commandButton id="confirm" value="Sim" oncomplete="PF('dialogExcluir').hide()" 
+				 actionListener="#{agendamentoMB.deleteAgendaCarga}" update="@(.ui-datatable)" />
+				<p:commandButton id="decline" value="Não"
+					onclick="PF('dialogExcluir').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+		<!-- FIM EXCLUIR AGENDAMENTO -->
+		
+		<!-- EXCLUIR USUARIO -->
+		<p:confirmDialog global="true" severity="info"
+			message="Você deseja realmente excluir o registro ? "
+			showEffect="fade" hideEffect="explode" header="Excluir"
+			widgetVar="dialogExcluirUsuario" id="dlgExcluir">
+			<h:form>
+				<p:commandButton id="confirm" value="Sim" oncomplete="PF('dialogExcluirUsuario').hide()" 
+				 actionListener="#{usuarioProsurMB.excluirUsuarioNovo}" update="@(.ui-datatable)" />
+				<p:commandButton id="decline" value="Não"
+					onclick="PF('dialogExcluirUsuario').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+		<!-- FIM EXCLUIR USUARIO -->
+		
+		<!-- NOVO AGENDAMENTO -->
+		<p:dialog id="dlgNovoAgendamento" header="Novo Agendamento" showEffect="puff" hideEffect="puff" 
+  		  resizable="false" dynamic="true" onHide="PF('dialogNovoAgendamento').content.empty()"
+  		  widgetVar="dialogNovoAgendamento" height="400" width="400">
+		    <h:form id="formNovoAgendamento">
+		    	<br/><br/><br/>
+		    	
+		    	<div align="center">	
+					<p:panelGrid columns="2" styleClass="semBorda">
+						<h:outputText value="Tipo de Agendamento: "/>
+			    		<p:selectOneMenu id="tipoAgendamento" value="#{agendamentoMB.tipoAgendamento}"
+			    		 style="width: 115px">
+						  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="AUTOMATICO" itemValue="AUTOMATICO"/>
+							<f:selectItem itemLabel="MANUAL" itemValue="MANUAL" />
+							<p:ajax update="carga, calendar" resetValues="true"/>
+						</p:selectOneMenu>
+					</p:panelGrid>
+					
+			    	<h:panelGroup id="calendar">
+			    		<h:panelGroup rendered="#{agendamentoMB.tipoAgendamento eq 'MANUAL'}">
+				    		<div style="margin-right: 25%">
+				    			<p:panelGrid columns="2" styleClass="semBorda">
+					    			<h:outputText value="Data:" />
+									<p:calendar id="calendarAgendamentoManual" readonlyInput="true"
+									 size="11" locale="pt_BR" pattern="dd/MM/yyyy" 
+									 showOn="button">
+										<p:ajax event="dateSelect" listener="#{agendamentoMB.onDateSelect}" />
+									</p:calendar>
+									<h:outputText value="Hora:" />
+									<p:inputMask value="#{agendamentoMB.hora}"
+									 mask="99:99" size="8" />
+								 </p:panelGrid>
+							</div>
+						</h:panelGroup>
+						
+						<h:panelGroup rendered="#{agendamentoMB.tipoAgendamento eq 'AUTOMATICO'}">
+							<div style="margin-right: 26%">
+								<p:panelGrid columns="2" styleClass="semBorda">
+									<h:outputText value="Dia: " />
+									<p:selectOneMenu id="diaAgendamento" value="#{agendamentoMB.dataNovoAgendamento}"
+						    		 style="width: 115px">
+									  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+										<f:selectItem itemLabel="Segunda" itemValue="Segunda-feira"/>
+										<f:selectItem itemLabel="Terça" itemValue="Terça-feira" />
+										<f:selectItem itemLabel="Quarta" itemValue="Quarta-feira" />
+										<f:selectItem itemLabel="Quinta" itemValue="Quinta-feira" />
+										<f:selectItem itemLabel="Sexta" itemValue="Sexta-feira" />
+										<f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+										<f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+									</p:selectOneMenu>
+
+									<h:outputText value="Hora:" />
+									<p:inputMask value="#{agendamentoMB.hora}" 
+									 mask="99:99" size="8" />
+								 </p:panelGrid>
+							</div>
+						</h:panelGroup>
+					</h:panelGroup>
+				
+					<div style="margin-right: 16%">
+						<p:panelGrid columns="2" styleClass="semBorda">
+							<h:outputText value="Tipo Carga:" />
+							<p:selectOneMenu id="tipoCarga" value="#{agendamentoMB.tipoCarga}"
+							style="width: 115px">
+							  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+								<f:selectItem itemLabel="SEMANAL" itemValue="SEMANAL"/>
+								<f:selectItem itemLabel="RETROATIVA" itemValue="RETROATIVA"/>
+								<p:ajax update="carga" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</div>
+				</div>
+				
+				<div style="margin-left: 15%">
+					<h:panelGroup id="carga">													
+						<h:panelGroup rendered="#{agendamentoMB.tipoCarga eq 'SEMANAL' and agendamentoMB.tipoAgendamento eq 'MANUAL'}">														
+							<br/><br/>
+							<div style="margin-right: 40%">
+							<p:selectManyCheckbox style="margin-top: 5%; margin-left: 20%"
+							 layout="grid" columns="3" value="#{agendamentoMB.checkTipoBase}">															 
+							 	<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />													         													
+							</p:selectManyCheckbox><br/>
+							</div> <br/>
+							<div style="margin-right: 20%">
+								<h:outputText value="RPI: " style="margin-left: 17%"/>
+								<p:inputText size="4" value="#{agendamentoMB.cargaSemanal.noRpi}" />
+							</div>
+						</h:panelGroup><br/><br/>
+						
+						<h:panelGroup rendered="#{agendamentoMB.tipoCarga eq 'RETROATIVA' and agendamentoMB.tipoAgendamento eq 'MANUAL'}">
+							<h:outputText for="quantidadeMarca" value="Quantidade Marca: " style="margin-left: 10%"/>
+							<p:inputText id="quantidadeMarca" size="7" maxlength="7" 
+							 value="#{agendamentoMB.cargaRetroativa.qtMarcas}" />														
+							<br/><br/>
+							<h:outputText value="Quantidade Desenho: " style="margin-left: 6%"/>
+							<p:inputText id="quantidadeDesenho" size="7" maxlength="7" 
+							 value="#{agendamentoMB.cargaRetroativa.qtDi}"/><br/><br/>
+							<h:outputText value="Quantidade Patente: " style="margin-left: 8%"/>
+							<p:inputText size="7" maxlength="7"
+							 value="#{agendamentoMB.cargaRetroativa.qtPatentes}"/>
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+				
+				<div style="position: absolute; bottom: 10%; left: 30%">
+					<p:panelGrid styleClass="semBorda">
+						<p:row>
+							<p:column>								
+								<p:commandButton id="btnSalvarNovoAgendamento" process="@form" value="Salvar"
+								 actionListener="#{agendamentoMB.salvarNovoAgendamento}" />
+								<p:commandButton value="Limpar" update="formNovoAgendamento" process="@this" style="margin-right:20px;" >
+					                <p:resetInput target="formNovoAgendamento" />
+					            </p:commandButton>					            
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</div>
+		    </h:form>
+	    
+		    <p:dialog global="true" severity="info" showEffect="fade"
+			 hideEffect="fade" header="Aviso" draggable="false" resizable="false" closable="false"
+			 id="salvoSucesso" widgetVar="dialogSalvoSucesso" >
+				<h:outputText value="Agendamento efetuado com sucesso." /><br/><br/>
+				<p:commandButton id="btnSalvoSucesso" style="margin-left: 40%" value="Ok"
+				 actionListener="#{agendamentoMB.redirecionar}"/>
+			</p:dialog>
+		</p:dialog>
+	    <!-- FIM NOVO AGENDAMENTO -->
+		
+		<!-- EDITAR AGENDAMENTO -->
+		<p:dialog id="dlgEditar" header="Editar Agendamento" showEffect="puff" hideEffect="puff"
+   		 resizable="false" dynamic="true" widgetVar="dialogEditar" onHide="PF('dialogEditar').content.empty()"
+   		 height="#{agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'AUTOMATICO' ? 180 : 270}" width="400">
+   		 	<p:ajax update="formEditar" resetValues="true" />
+		    <h:form id="formEditar">
+		    	<div align="center">
+			    	<p:panelGrid columns="2">
+			    		<h:outputText value="Ativo:"/>
+			    		<p:selectOneMenu style="width: 120px" value="#{agendamentoMB.statusAgenda}">
+			    			<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="SIM" itemValue="S"/>
+							<f:selectItem itemLabel="NÃO" itemValue="N"/>
+			    		</p:selectOneMenu>
+			    		
+			    		<h:outputText value="Data:" rendered="#{agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'MANUAL'}" />
+						<p:calendar id="calendarNovoAgendamento" readonlyInput="true"
+						 size="11" locale="pt_BR" 
+						 pattern="dd/MM/yyyy" 
+						 showOn="button" rendered="#{agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'MANUAL'}">
+							<p:ajax event="dateSelect" listener="#{agendamentoMB.onDateSelect}" />
+						</p:calendar>
+						
+						<h:outputText value="Dia: " rendered="#{agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'AUTOMATICO'}"/>
+						<p:selectOneMenu id="diaAgendamento" value="#{agendamentoMB.dataNovoAgendamento}"
+			    		 style="width: 115px" rendered="#{agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'AUTOMATICO'}">
+						  	<f:selectItem itemLabel="SELECIONE.." itemValue="" />
+							<f:selectItem itemLabel="Segunda" itemValue="Segunda-feira"/>
+							<f:selectItem itemLabel="Terça" itemValue="Terça-feira" />
+							<f:selectItem itemLabel="Quarta" itemValue="Quarta-feira" />
+							<f:selectItem itemLabel="Quinta" itemValue="Quinta-feira" />
+							<f:selectItem itemLabel="Sexta" itemValue="Sexta-feira" />
+							<f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+							<f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+						</p:selectOneMenu>
+						
+						<h:outputText value="Hora:" />
+						<p:inputMask id="txtHora" value="#{agendamentoMB.hora}" 
+						 mask="99:99" size="8" />
+			    	</p:panelGrid>
+			    	
+			    	<h:panelGroup rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'SEMANAL' and agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'MANUAL'}">
+							<div style="margin-right: 40%">
+							<p:selectManyCheckbox style="margin-top: 5%; margin-left: 40%"
+							 layout="grid" columns="3" value="#{agendamentoMB.checkTipoBase}">															 
+							 	<f:selectItem itemLabel="Marcas" itemValue="M" />
+					            <f:selectItem itemLabel="Desenho" itemValue="D" />
+					            <f:selectItem itemLabel="Patente" itemValue="P" />													         													
+							</p:selectManyCheckbox><br/>
+							</div> <br/>
+							<div style="margin-right: 20%">
+								<h:outputText value="RPI: " style="margin-left: 17%"/>
+								<p:inputText size="4" value="#{agendamentoMB.cargaSemanal.noRpi}" />
+							</div>
+					</h:panelGroup><br/><br/>
+						
+					<h:panelGroup rendered="#{agendamentoMB.dtoAgendaCarga.tipoCarga eq 'RETROATIVA' and agendamentoMB.dtoAgendaCarga.tipoAgendamento eq 'MANUAL'}">
+						<h:outputText for="quantidadeMarca" value="Quantidade Marca: " style="margin-left: 10%"/>
+						<p:inputText id="quantidadeMarca" size="7" maxlength="7" 
+						 value="#{agendamentoMB.cargaRetroativa.qtMarcas}" />
+						<br/><br/>
+						<h:outputText value="Quantidade Desenho: " style="margin-left: 6%"/>
+						<p:inputText id="quantidadeDesenho" size="7" maxlength="7" 
+						 value="#{agendamentoMB.cargaRetroativa.qtDi}"/><br/><br/>
+						<h:outputText value="Quantidade Patente: " style="margin-left: 8%"/>
+						<p:inputText size="7" maxlength="7"
+						 value="#{agendamentoMB.cargaRetroativa.qtPatentes}"/>
+					</h:panelGroup>
+		    	</div>
+		    	<div align="center" style="margin-top: 15px">
+		    		<p:commandButton value="Salvar" actionListener="#{agendamentoMB.atualizarAgendamento}"/>
+		    		<p:commandButton value="Limpar" update="formEditar" process="@this" style="margin-right:20px;" >
+		                <p:resetInput target="formEditar" />
+		            </p:commandButton>
+		    	</div>
+		    </h:form>								    
+	    </p:dialog>
+	    <!-- FIM EDITAR AGENDAMENTO -->
+	</ui:define>
+</ui:composition>

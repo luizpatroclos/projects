@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+	
+			<ui:insert>
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+	
+		<h:form onkeypress="return event.keyCode != 13" id="formPrincipal">
+			<h:outputScript library="js" name="LocalPt_Br.js" />
+			<p:growl id="msg" showDetail="true" autoUpdate="true" life="10000"
+		  	 closable="true" style="width: 50%" />
+			
+			            <p:fieldset legend="Controle de Acesso" styleClass="tabs">
+	            	     
+	            	     <div align="center" style="margin-top: 10%; margin-left: 40%; text-align: center">
+	            	     	<p:dataTable id="dtUsuario" var="acesso" value="#{usuarioProsurMB.listaAcessoCarga}" emptyMessage="Nenhum usuário encontrado."
+	            	     	 rows="5" paginator="true" styleClass="paginated" paginatorPosition="bottom" style="width: 30%">
+	            	     		<p:column width="10">
+		            	     		<f:facet name="header">Usuário</f:facet>
+									<h:outputText value="#{acesso.nmLogin}" />
+		            	     	</p:column>
+		            	     	
+		            	     	<p:column width="10">
+		            	     		<f:facet name="header">Excluir</f:facet>
+		            	     		<p:commandButton id="btnExcluirUsuario" icon="ui-icon-trash"
+		            	     		 style="border-width:0; background:none;" onclick="PF('dialogExcluirUsuario').show()">
+			            	     		<p:tooltip id="toolTipExcluirUsuario" for="btnExcluirUsuario"
+			            	     		 value="Excluir Usuário" showEffect="clip"/>
+			            	     		<f:setPropertyActionListener value="#{acesso}" target="#{usuarioProsurMB.acessoCarga}" />
+		            	     		</p:commandButton>
+		            	     	</p:column>
+	            	     	</p:dataTable> 
+		            	 </div>
+		            	 <br/>
+		            	 <div align="center" style="margin-top: 10%">
+			            	 <p:panelGrid columns="3">
+			            	     	<h:outputText value="Incluir novo usuário: " />
+			            	     	<p:inputText value="#{usuarioProsurMB.nomeUsuario}" maxlength="15"/>	
+			            	     	<p:commandButton value="Salvar" actionListener="#{usuarioProsurMB.salvarNovoUsuario}" />
+			            	 </p:panelGrid>
+		            	 </div>
+	            	    </p:fieldset>
+			 
+		</h:form>
+		
+		<p:confirmDialog global="true" severity="info"
+			message="#{msg.confirmacao_excluir_registro}"
+			showEffect="fade" hideEffect="explode" header="Excluir"
+			widgetVar="dialogExcluirUsuario" id="dlgExcluir">
+			<h:form>
+				<p:commandButton id="confirm" value="Sim" oncomplete="PF('dialogExcluirUsuario').hide()" 
+				 actionListener="#{usuarioProsurMB.excluirUsuarioNovo}" update="@(.ui-datatable)" />
+				<p:commandButton id="decline" value="Não"
+					onclick="PF('dialogExcluirUsuario').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+		
+	</ui:define>
+</ui:composition>

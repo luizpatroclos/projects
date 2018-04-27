@@ -1,0 +1,23 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<center>
+		<div id="header" align="center" style="overflow-y:hidden;overflow-x:hidden;width:100%; height:100%">
+			<div align="right">
+				<h:form>   
+					<h2 title="Instituto Nacional da Propriedade Industrial" align="center">Gerenciador de Cargas - Prosur</h2>
+					<h:outputText escape="false" style="font-size:10px;color:#FFFF; font-weight:bold; text-align: right;" value="Usuário: " rendered="#{not empty sessionScope.usuario}"/>
+					<h:outputText escape="false" style="font-size:10px;color:#FFFF; font-weight:bold; text-align: right;" value="#{sessionScope.usuario} - " rendered="#{not empty sessionScope.usuario}"/> 
+					<h:outputText escape="false" style="font-size:10px;color:#FFFF; font-weight:bold; text-align: right;" value="#{sessionScope.data} " rendered="#{not empty sessionScope.data}"/>
+					<h:outputText escape="false" style="font-size:10px;color:#FFFF; font-weight:bold; text-align: right;" value="--" rendered="#{not empty sessionScope.data}"/>
+					
+					<p:commandLink id="logout" style="font-size:10px;color:#FFFF; font-weight:bold; text-align: right;" value="Logout" action="#{loginProsurBean.encerraSessao}" rendered="#{not empty sessionScope.usuario}" ajax="false"/>
+				</h:form> 
+			</div>
+		</div>
+	</center>
+</ui:composition>

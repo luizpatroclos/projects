@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:body>
+	<!-- Colocar id para nao gerar conflito com as outras paginas que utilizam o template - Debora -->              
+      
+     
+    <p:stack icon="/pages/imagens/menu/stack.png">  
+    <p:menuitem value="Consula Parametros" icon="/pages/imagens/menu/aperture.png" url="/parametro.jsf"/>  
+    <p:menuitem value="Consulta Gateway" icon="/pages/imagens/menu/photoshop.png" url="#"/>  
+    <p:menuitem value="Consulta Redes" icon="/pages/imagens/menu/coda.png" url="#"/>  
+    <p:menuitem value="Consulta Solic." icon="/pages/imagens/menu/safari.png" url="#" />  
+    <p:menuitem value="Consulta RN2" icon="/pages/imagens/menu/finder.png" url="#" />  
+</p:stack>  
+  
+
+</h:body>
+
+</html>

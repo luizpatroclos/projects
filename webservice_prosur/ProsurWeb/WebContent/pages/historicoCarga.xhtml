@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+	
+	        <ui:insert>
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+	
+		<h:form onkeypress="return event.keyCode != 13" id="formPrincipal">
+			<h:outputScript library="js" name="LocalPt_Br.js" />
+			<p:growl id="msg" showDetail="true" autoUpdate="true" life="10000"
+		  	 closable="true" style="width: 50%"/>
+			
+				  	<!-- HISTORICO -->
+		            <p:fieldset legend="Histórico de Cargas" styleClass="tabs">
+            	     <br/><br/>
+            	     
+            	     <div style="text-align: center; margin-left:9px; margin-right: 5px;">
+	            	     <p:dataTable id="dtHistoricoCarga" var="historico" value="#{historicoCargaMB.listaHistoricoCarga}"
+			              rows="6" paginator="true" border="1" styleClass="paginated" paginatorPosition="bottom" 
+			              emptyMessage="Nenhum histórico encontrado !" filteredValue="#{historicoCargaMB.filteredListaHistoricoCarga}" 
+			              autoUpdate="true">
+			            	      		<p:column width="5">				            	     		
+				            	     		<f:facet name="header">Carga</f:facet>
+											<h:outputText value="#{historico.noRpi eq null ? '-' : historico.noRpi}" />
+				            	     	</p:column>
+				            	     	<p:column width="30" sortBy="#{historico.dhProcesso}">				            	     		
+				            	     		<f:facet name="header">Agendamento</f:facet>
+											<h:outputText value="#{historico.dhProcesso}" >
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+				            	     	</p:column>
+				            	     	<p:column width="40" filterBy="#{historico.tpAgenda.toLowerCase()} || #{historico.tpAgenda}" filterMatchMode="contains">
+				            	     		<f:facet name="header">Tipo de Agendamento</f:facet>
+											<h:outputText value="#{historico.tpAgenda}" />
+				            	     	</p:column>
+				            	     	<p:column width="30">
+				            	     		<f:facet name="header">Tipo de Carga</f:facet>
+											<h:outputText value="#{historico.tpCarga}" />
+				            	     	</p:column>
+				            	     	<p:column width="30" sortBy="#{historico.dhInicioCarga}">				            	     		
+				            	     		<f:facet name="header">Início Execução</f:facet>
+											<h:outputText value="#{historico.dhInicioCarga}" >
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+				            	     	</p:column>
+				            	     	<p:column width="30">
+				            	     		<f:facet name="header">Fim execução</f:facet>
+											<h:outputText value="#{historico.dhFimCarga}" >
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+				            	     	</p:column>
+				            	     	<p:column width="30">
+				            	     		<f:facet name="header">Quantidades</f:facet>
+				            	     		<p:panelGrid styleClass="semBorda">
+				            	     			<p:row rendered="#{!(historico.qtMarcasProc eq null)}">
+				            	     				<p:column>
+					            	     				<h:outputText value="Marcas - " />
+														<h:outputText value="#{historico.qtMarcasProc}"/>
+				            	     				</p:column>
+												</p:row>
+												<p:row rendered="#{!(historico.qtDiProc eq null)}" >
+													<p:column>
+														<h:outputText value="Desenho - " />
+														<h:outputText value="#{historico.qtDiProc}" />
+													</p:column>
+												</p:row>
+												<p:row rendered="#{!(historico.qtPatentesProc eq null)}" >
+													<p:column>
+														<h:outputText value="Patente - " />
+														<h:outputText value="#{historico.qtPatentesProc} " />
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+				            	     	</p:column>
+				            	     	<p:column width="65">
+				            	     		<f:facet name="header">Resultado</f:facet>
+				            	     		<p:panelGrid styleClass="semBorda">
+				            	     			<p:row rendered="#{!(historico.qtMarcasOk eq null)}">
+				            	     				<p:column>
+														<h:outputText value="Marcas Sucesso - " />
+														<h:outputText value="#{historico.qtMarcasOk} " />
+														<h:outputText value="Marcas Erro - " rendered="#{!(historico.qtMarcasErro eq null)}"/>
+														<h:outputText value="#{historico.qtMarcasErro}" rendered="#{!(historico.qtMarcasErro eq null)}"/>
+													</p:column>
+												</p:row>
+												<p:row rendered="#{!(historico.qtDiOk eq null)}" >
+													<p:column>
+														<h:outputText value="Desenho Sucesso - " />
+														<h:outputText value="#{historico.qtDiOk} " />
+														<h:outputText value="Desenho Erro - " />
+														<h:outputText value="#{historico.qtDiErro} " />
+														<h:outputText value="Desenho Sigilo - " />
+														<h:outputText value="#{historico.qtDiSigiloProc}" />
+													</p:column>
+												</p:row>
+												<p:row rendered="#{!(historico.qtPatenteOk eq null)}" >
+													<p:column>
+														<h:outputText value="Patente Sucesso - " />
+														<h:outputText value="#{historico.qtPatenteOk} " />
+														<h:outputText value="Patente Erro - " />
+														<h:outputText value="#{historico.qtPatenteErro} " />
+														<h:outputText value="Patente Sigilo - " />
+														<h:outputText value="#{historico.qtPatentesSigiloProc} " />
+													</p:column>
+												</p:row>
+											</p:panelGrid>
+				            	     	</p:column>
+				            	     	<p:column width="10">
+				            	     		<f:facet name="header">Processos</f:facet>
+				            	     		
+				            	     		<p:dataTable  id="dtProcessos" rendered="false" var="processo"
+				            	     		 value="#{historicoCargaMB.listaHistoricoCargaProcesso}">
+				            	     		 	
+				            	     		 	<!-- EXPORTACAO CABECALHO -->
+<!-- 				            	     		 	<p:column> -->
+<!-- 				            	     		 		<f:facet name="header">Data de execução</f:facet> -->
+<!-- 													<h:outputText value="#{historico.dhInicioCarga}" /> -->
+<!-- 				            	     			</p:column> -->
+<!-- 				            	     		 	<p:column> -->
+<!-- 				            	     		 		<f:facet name="header">Tipo Agendamento</f:facet> -->
+<!-- 													<h:outputText value="#{historico.tpAgenda}" /> -->
+<!-- 				            	     			</p:column> -->
+<!-- 				            	     		 	<p:column> -->
+<!-- 				            	     		 		<f:facet name="header">Tipo Carga</f:facet> -->
+<!-- 													<h:outputText value="#{historico.tpCarga}" /> -->
+<!-- 				            	     			</p:column> -->
+				            	     		 	
+<!-- 				            	     		 	<p:column> -->
+<!-- 				            	     		 		<f:facet name="header">Data da Execução</f:facet> -->
+<!-- 													<h:outputText value="#{processo.numProcesso}" /> -->
+<!-- 				            	     			</p:column> -->
+				            	     		 	<!-- EXPORTACAO FIM CABECALHO -->
+				            	     		 	
+<!-- 				            	     		 	<p:column> -->
+<!-- 				            	     				<f:facet name="header">"#{historico.dhInicioCarga}"</f:facet> -->
+<!-- 													<h:outputText value="#{processo.cdSituacao eq 1 ? 'Sucesso' : 'Falha'}" /> -->
+<!-- 				            	     			</p:column> -->
+				            	     		 	
+				            	     		 	<!-- EXPORTACAO SEM CABECALHO -->				            	     		 	
+				            	     		 	<p:column>
+				            	     		 		<f:facet name="header">Nº Processo</f:facet>
+													<h:outputText value="#{processo.numProcesso}" />
+				            	     			</p:column>
+				            	     			<p:column>
+				            	     				<f:facet name="header">Situação</f:facet>
+													<h:outputText value="#{processo.cdSituacao eq 1 ? 'Sucesso' : 'Falha'}" />
+				            	     			</p:column>
+				            	     			<p:column>
+				            	     				<f:facet name="header">Tipo</f:facet>
+													<h:outputText value="#{processo.cdTipo eq 'C' ? 'Criação' : 'Alteração'}" />
+				            	     			</p:column>
+				            	     		</p:dataTable>
+				            	     		
+											<p:commandButton id="btnExport" icon="ui-icon-arrowreturnthick-1-e"
+											 style="border-width:0; background:none;" ajax="false">
+											 	<p:tooltip for="btnExport" value="Exportar Processos" showEffect="clip"/>										        
+										        <f:setPropertyActionListener target="#{historicoCargaMB.dtoHistoricoCarga}" value="#{historico}" />
+										        <p:dataExporter	postProcessor="#{historicoCargaMB.postProcessXLS}" type="xls" target="dtProcessos" fileName="lista_processos" />
+											</p:commandButton>
+				            	     	</p:column>
+			            	 </p:dataTable>
+            	     </div>
+            	    </p:fieldset>	            
+			        <!-- FIM HISTORICO -->
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
