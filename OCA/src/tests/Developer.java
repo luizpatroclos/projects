@@ -1,15 +1,13 @@
 package tests;
 
-import java.math.BigDecimal;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import ChapterOne.Vehicle;
 
@@ -19,7 +17,119 @@ public class Developer {
 	
 
 	public static void main(String... args) {
+		
+		//int y = 5;
+		
+		//int value = (y > 5) ? 21 : "Zebra");
+		//System.out.println((y > 5) ? 21 : "Zebra"); 
+		
 		// final float valor = 102.0f;
+		
+		/*int y = 1; 
+		int z = 1; 
+		final int x = y<10 ? y++ : z++; 
+		System.out.println(y+","+z); // Outputs 2,1 
+*/		
+		
+		/*int y = 1; int z = 1; 
+		final int x = y>=10 ? y++ : z++; 
+		System.out.println(y+","+z); // Outputs 1,2 
+*/	
+		
+		
+		/*int dayOfWeek = 5;
+		switch (dayOfWeek) {
+		default:
+			System.out.println("Weekday");
+			break;
+		case 0:
+			System.out.println("Sunday");
+			break;
+		case 6:
+			System.out.println("Saturday");
+			break;
+		} */
+		
+		
+		//With a value of dayOfWeek of 5, this code will output: Weekday  
+		
+		
+		
+		/*int dayOfWeek = 6;
+		switch (dayOfWeek) {
+		case 0:
+			System.out.println("Sunday");
+		default:
+			System.out.println("Weekday");
+		case 6:
+			System.out.println("Saturday");
+			break;
+		case 7:
+			System.out.println("Monday");
+		case 8:
+			System.out.println("Thursday");
+		case 9:
+			System.out.println("Friday");
+			break;
+		}
+
+		*/
+		
+		
+		/*int dayOfWeek = 0;
+		int dayOfWeekend = 6;
+		
+		if (dayOfWeek >= 0) {
+
+			do {
+				dayOfWeek++;
+				System.out.println("this is a day of Week:" + dayOfWeek);
+
+			} while (dayOfWeek <= dayOfWeekend);
+			System.out.println("This is a day of Weekend :" + dayOfWeekend);
+
+		} else {
+
+			System.out.println("this is a day of Week:" + dayOfWeek);
+
+		}*/
+		
+		
+		
+		List<String> myCarList = Arrays.asList("Renegade","Compass","Camaro","F150","HRV","Outback","Accord","Civic");
+		
+		Vehicle myTestAux = new Vehicle();
+		
+		List<Vehicle> myObjectAux = myTestAux.getAllVehicle();
+		
+		Collections.sort(myCarList);
+		
+		
+		
+		for(int i = 0; i < 10; i++){
+			
+			Collections.rotate(myCarList, i);
+		
+		
+		//Return year of existence models
+		int x = 0;
+		for (int y = 0, z = 0; x < myCarList.size() && y < myObjectAux.size(); x++, y++) {
+			
+			String car = myCarList.get(x);
+			
+			Vehicle veh = myObjectAux.get(y);
+			
+			if (car.equals(veh.getModel())) {
+				
+				System.out.println("Vehicle : " +car+ " -- " +"Year : "+veh.getYear());
+				
+			}
+		
+		}
+		 
+	}	
+		
+		
 		
 		
 		List<String> myList = Arrays.asList("claudio","roberto","fabricio","ronaldo","paulo");
@@ -33,7 +143,7 @@ public class Developer {
 		Vehicle myTest = new Vehicle();
 		Vehicle myBean = new Vehicle();
 		
-		myBean.setModel("Compass");
+		myBean.setModel("Civic");
 		
 		
 		
@@ -200,9 +310,9 @@ class Lambda {
     }
 	
 	
-public void listagemLambdaString(List<String> mainList, Predicate<String> cursor){
+	public void listagemLambdaString(List<String> mainList, Predicate<String> cursor){
 		
-	mainList.forEach(n -> {
+	    mainList.forEach(n -> {
          if(cursor.test(n)) {
                System.out.println(n + " ");
            }
@@ -211,42 +321,42 @@ public void listagemLambdaString(List<String> mainList, Predicate<String> cursor
     }
 
 
-public Vehicle listagemLambdaObject(List<Vehicle> list, Vehicle cursor){
-	
-	Vehicle objReturn = new Vehicle();
-	
-	 list.forEach(n -> {
-         if(n.getModel().equals(cursor.getModel())) {
-               System.out.println(n.getBrand() + "--" +n.getColor() + "--"+n.getFuel()+ "--"+n.getModel()+"--"+n.getYear());
-               
-           }
-       });
-	 
-	/* list.stream().filter(n -> {
-			if(n.equals(cursor)) {
-				System.out.println(n + " ");
-			}}).collect(Collectors.toList());*/
-	 
-	 
-	 
-	 return objReturn;
-	 
-	 /*this.listaEmpregadoDebitoRescisorio = listaEmpregado.stream().filter(emp -> emp.getDtAfastamento() != null)
-				.collect(Collectors.toList());*/
-	 
-/*	 view.getListaConfissao().forEach(c -> {
-			if (c.getTipoOperacao() != null) {
-				listaAgrupada.addAll(c.getListaDebito());
+	public Vehicle listagemLambdaObject(List<Vehicle> list, Vehicle cursor) {
+
+		Vehicle objReturn = new Vehicle();
+
+		list.forEach(n -> {
+			if (n.getModel().equals(cursor.getModel())) {
+				System.out.println(n.getBrand() + "--" + n.getColor() + "--" + n.getFuel() + "--" + n.getModel() + "--"
+						+ n.getYear());
+
 			}
 		});
-	 
-	 
-	 list.stream().filter(n -> predicate).collect(Collectors.toList());
-	 
-	 
-	*/ 
-	
-    }
+
+		/*
+		 * list.stream().filter(n -> { if(n.equals(cursor)) {
+		 * System.out.println(n + " "); }}).collect(Collectors.toList());
+		 */
+
+		return objReturn;
+
+		/*
+		 * this.listaEmpregadoDebitoRescisorio =
+		 * listaEmpregado.stream().filter(emp -> emp.getDtAfastamento() != null)
+		 * .collect(Collectors.toList());
+		 */
+
+		/*
+		 * view.getListaConfissao().forEach(c -> { if (c.getTipoOperacao() !=
+		 * null) { listaAgrupada.addAll(c.getListaDebito()); } });
+		 * 
+		 * 
+		 * list.stream().filter(n -> predicate).collect(Collectors.toList());
+		 * 
+		 * 
+		 */
+
+	}
 	
 	 public void avaliaExpressao(List<Integer> list, Predicate<Integer> predicate) {
 	
