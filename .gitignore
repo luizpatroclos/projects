@@ -3,6 +3,8 @@
 #.target/
 #.classpath
 #.project
+.build/
+.bin/
 Servers
 .metadata/
 .recommenders/
