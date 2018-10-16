@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbPatenteEcMB.buscarPedido}">
+					<h:outputText value="#{msg.labelPedido}" styleClass="titulo" />
+				</h:commandLink>
+
+
+			</div>
+
+			<br />
+			<h:panelGrid columns="4" columnClasses="logo,detail">
+
+				<p:commandButton class="botaoPesquisa" value="#{msg.labelLogPedido}"
+					actionListener="#{menuView.logPedido}">
+				</p:commandButton>
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelVisualizarDadosFamilia}"
+					actionListener="#{tbFamiliaECMB.obterDadosCompletoFamilia()}">
+				</p:commandButton>
+
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelDiagramaFamilia}"
+					actionListener="#{tbPatenteEcMB.prepararRelatorio}" />
+			</h:panelGrid>
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+			<br />
+
+			<br />
+			<br />
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelEditarPedido}" />
+			<p:separator />
+			<br />
+			<br />
+
+			<p:dataScroller value="#{tbPatenteEcMB.patenteSelecionada}"
+				var="pedidos" chunkSize="10" id="teste">
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelPedido}" />
+				</f:facet>
+
+				<h:panelGrid columns="2" style="width:100%"
+					columnClasses="logo,detail">
+
+					<p:outputPanel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="#{msg.labelPedido}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.numeroPedido}" />
+
+							<h:outputText value="#{msg.labelNumeroPedidoDOCDB}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.numeroPedidoDOCDB}" />
+
+							<h:outputText value="#{msg.labelNumeroPedidoEPODOC}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.strPedNumEpodoc}" />
+
+							<h:outputText value="#{msg.labelNumeroPedidoORIGINAL}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.strPedNumOriginal}" />
+
+							<h:outputText value="#{msg.labelNumeroPublicacaoDOCDB}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.numeroPublicacaoDOCDB}" />
+
+
+							<h:outputText value="#{msg.labelNumeroPublicacaoEPODOC}"
+								style="font-weight: bold" />
+							<h:outputText value="#{pedidos.numeroPublicacaEPODOC}" />
+
+							<h:outputText value="#{msg.labelInsercao}"
+								style="font-weight: bold" rendered="#{pedidos.automatico}" />
+							<h:outputText value="Automático" rendered="#{pedidos.automatico}" />
+
+
+							<h:outputText value="#{msg.labelInsercao}"
+								style="font-weight: bold" rendered="#{!(pedidos.automatico)}" />
+							<h:outputText value="Manual" rendered="#{!(pedidos.automatico)}" />
+
+							<h:outputText value="#{msg.labelTitulo} *"
+								style="font-weight: bold" />
+							<p:inputTextarea value="#{pedidos.txTitulo}" cols="100" rows="1" />
+
+
+							<h:outputText value="#{msg.labelDataDeposito} *"
+								style="font-weight: bold" />
+							<p:calendar id="dataDeposito" value="#{pedidos.dtDeposito}"
+								locale="de" navigator="true" pattern="yyyy-MM-dd" />
+
+							<h:outputText value="#{msg.labelDataPublicacao} *"
+								style="font-weight: bold" />
+							<p:calendar id="datPublicacao" value="#{pedidos.dtPublicacao}"
+								locale="de" navigator="true" pattern="yyyy-MM-dd" />
+
+
+							<h:outputText value="#{msg.labelNumeroReivindicacao}"
+								style="font-weight: bold" />
+							<p:inputText value="#{pedidos.strReivindicacao}" />
+
+
+							<h:outputText value="#{msg.labelProcurador}"
+								style="font-weight: bold" />
+							<p:inputTextarea value="#{pedidos.txProcurador}" cols="100"
+								rows="1" />
+
+							<h:outputText value="#{msg.labelResumo}"
+								style="font-weight: bold" />
+
+							<pe:ckEditor id="relacao" value="#{pedidos.txResumo}" rows="10"
+								cols="120" width="730" height="409" queryDelay="750"
+								minQueryLength="4"
+								customConfig="#{request.contextPath}/resources/js/ckeditor.js" />
+
+
+							<p:commandButton id="salvarEditarInventor" class="botaoPesquisa"
+								icon="ui-icon-extlink" value="#{msg.labelInventor}"
+								onclick="PF('dialogEditarInventor').show()" />
+
+							<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+								id="dataTableInventorVisualizar" autoUpdate="true"
+								var="inventor"
+								value="#{tbPatenteEcMB.patenteSelecionada.inventor}"
+								type="unordered" itemType="none"
+								style="vertical-align: center;width: 300px"
+								styleClass="paginated">
+
+								<p:column headerText="#{msg.labelInventor}">
+									<h:outputText value="#{inventor}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+
+							<p:commandButton id="salvarEditardepositante"
+								value="#{msg.labelDepositante}" icon="ui-icon-extlink"
+								class="botaoPesquisa"
+								onclick="PF('dialogEditarDepositante').show()" />
+
+
+							<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+								id="dataTableDepositanteVisualizar" autoUpdate="true"
+								var="depositante"
+								value="#{tbPatenteEcMB.patenteSelecionada.depositante}"
+								type="unordered" itemType="none"
+								style="vertical-align: center;width: 300px"
+								styleClass="paginated">
+
+								<p:column headerText="#{msg.labelDepositante}">
+									<h:outputText value="#{depositante}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+							<p:commandButton id="salvarEditarClassificacao"
+								icon="ui-icon-extlink" value="#{msg.labelClassificacao}"
+								class="botaoPesquisa"
+								onclick="PF('dialogEditarClassificacao').show()" />
+
+							<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+								id="dataTableClassificacaoVisualizar" autoUpdate="true"
+								var="classificao"
+								value="#{tbPatenteEcMB.packiClassificacao.target}"
+								type="unordered" itemType="none"
+								style="vertical-align: center;width: 300px"
+								styleClass="paginated">
+
+								<p:column headerText="#{msg.labelClassificacao}">
+									<h:outputText value="#{classificao}" />
+								</p:column>
+
+							</p:dataTable>
+
+
+
+						</h:panelGrid>
+
+
+					</p:outputPanel>
+				</h:panelGrid>
+
+
+
+			</p:dataScroller>
+
+			<br />
+			<br />
+
+			<h:panelGrid columns="2" cellpadding="5">
+
+
+				<p:commandButton id="salvarEditarPedido" value="#{msg.salvar}"
+					actionListener="#{tbPatenteEcMB.updatePedido}"
+					styleClass="botaoPesquisa" >
+					<p:confirm header="Confirmation"
+						message="#{msg.msgContinuar}" icon="ui-icon-alert" />
+					</p:commandButton>
+
+
+				<p:commandButton id="cancelarPedidoManuel" value="#{msg.cancelar}"
+					class="botaoPesquisa"
+					actionListener="#{tbPatenteEcMB.buscarPedido}" />
+
+			</h:panelGrid>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="#{msg.sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+			
+		</h:form>
+
+
+
+		<!-- editar inventor -->
+
+		<p:dialog header="#{msg.labelInventor}" widgetVar="dialogEditarInventor"
+			showEffect="blind" hideEffect="explode" resizable="false" id="inv">
+			<h:form id="inventor01">
+				<p:panelGrid var="lista2" id="panelInventor" columns="2">
+
+					<h:outputText value="#{msg.labelInventor}"
+						style="font-weight: bold" />
+					<p:selectManyMenu id="selectInventor"
+						value="#{tbPatenteEcMB.patenteSelecionada.inventor}"
+						br.gov.inpi.epec.filter="true" showCheckbox="true"
+						style="width: 300px" filter="true">
+						<f:selectItems value="#{tbFamiliaECMB.escolherInventor}"
+							var="TbInventor" itemLabel="#{TbInventor.txInventor}"
+							itemValue="#{TbInventor.txInventor}" />
+					</p:selectManyMenu>
+					<f:facet name="footer">
+					
+					<p:commandButton value="#{msg.adicionar}" oncomplete="PF('dialogEditarInventor').hide()"  update=":form" />
+							
+						<p:commandButton value="#{msg.labelBotaoInserir}" icon="ui-icon-extlink"
+							oncomplete="PF('dialogInventor').show()" />
+
+						<p:commandButton value="#{msg.fechar}"
+							onclick="PF('dialogEditarInventor').hide()" type="reset" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<!-- fim de editar inventor -->
+
+
+		<!-- adicionar inventor -->
+
+		<p:dialog header="Incluir Inventor" widgetVar="dialogInventor"
+			showEffect="blind" hideEffect="explode" resizable="false" id="inv02">
+			<h:form id="inventor">
+				<p:panelGrid var="lista2" id="panelInventor" columns="2">
+
+
+					<h:outputText value="Inventor" />
+					<p:inputText value="#{tbFamiliaECMB.inventorCreate.txInventor}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}" update=":inventor01"
+							oncomplete="PF('dialogInventor').hide()"
+							actionListener="#{tbFamiliaECMB.salvarInventor}" />
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogInventor').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+			<p:ajax update=":form" />
+		</p:dialog>
+		<!-- fim adicionar inventor -->
+				
+				
+				
+				
+				<!-- editar Depositante -->
+		<p:dialog header="#{msg.labelDepositante}"
+			widgetVar="dialogEditarDepositante" showEffect="blind"
+			hideEffect="explode" resizable="false" id="dep02">
+			<h:form id="depositante02">
+				<p:panelGrid var="lista2" id="panelDepositante02" columns="2">
+					<h:outputText value="#{msg.labelDepositante}"
+						style="font-weight: bold" />
+					<p:selectManyMenu id="selectDepositante"
+						value="#{tbPatenteEcMB.patenteSelecionada.depositante}"
+						br.gov.inpi.epec.filter="true" showCheckbox="true"
+						style="width: 300px" filter="true">
+						<f:selectItems value="#{tbFamiliaECMB.escolherDepositante}"
+							var="TbDepositante" itemLabel="#{TbDepositante.txDepositante}"
+							itemValue="#{TbDepositante.txDepositante}" />
+					</p:selectManyMenu>
+
+
+					<f:facet name="footer">
+					
+					<p:commandButton value="#{msg.adicionar}" oncomplete="PF('dialogEditarDepositante').hide()"  update=":form" />
+
+						<p:commandButton value="#{msg.labelBotaoInserir}" icon="ui-icon-extlink"
+							oncomplete="PF('dialogDepositante').show()" />
+
+						<p:commandButton value="#{msg.fechar}"
+							onclick="PF('dialogEditarDepositante').hide()" type="reset" />
+
+					</f:facet>
+
+
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<!-- fim de depositante -->
+
+		<!-- adicionar depositante -->
+
+		<p:dialog header="Incluir Depositante" widgetVar="dialogDepositante"
+			showEffect="blind" hideEffect="explode" resizable="false" id="dep">
+			<h:form id="depositante">
+				<p:panelGrid var="lista2" id="panelDepositante" columns="2">
+
+					<h:outputText value="Depositante" />
+					<p:inputText
+						value="#{tbFamiliaECMB.depositanteCreate.txDepositante}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}" update=":depositante02"
+							oncomplete="PF('dialogDepositante').hide()"
+							actionListener="#{tbFamiliaECMB.salvarDepositante}" />
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogDepositante').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+			<p:ajax update=":form" />
+		</p:dialog>
+
+		<!-- fim de adicionar depositante -->
+		
+		
+		<!-- classificação -->
+		<p:dialog header="#{msg.labelSelecionarClassificacoes}" widgetVar="dialogEditarClassificacao"
+			showEffect="blind" hideEffect="explode" resizable="false" id="cla">
+			<h:form id="classificacao">
+				<p:panel header="#{msg.labelSelecionarClassificacoes}"
+				style="width:500px">
+				<p:pickList id="jogadores"
+					value="#{tbPatenteEcMB.packiClassificacao}" var="TbClassificacao"
+					iconOnly="true" itemLabel="#{TbClassificacao}"
+					itemValue="#{TbClassificacao}"
+					showTargetControls="true" showSourceFilter="true">
+					<f:facet name="sourceCaption">
+						<h:outputText value="#{msg.labelListaGeral}" />
+					</f:facet>
+					<f:facet name="targetCaption">
+						<h:outputText value="#{msg.labelListaSelecionados}" />
+					</f:facet>				
+					
+				</p:pickList>
+				
+				<f:facet name="footer">
+				
+						<p:commandButton value="#{msg.adicionar}" 
+							oncomplete="PF('dialogEditarClassificacao').hide()"  update=":form" />
+							
+							<p:commandButton value="#{msg.labelBotaoInserir}" icon="ui-icon-extlink"
+							oncomplete="PF('dialogClassificao').show()" />
+
+						<p:commandButton value="#{msg.fechar}"
+							onclick="PF('dialogEditarClassificacao').hide()" type="reset" />
+					</f:facet>
+			</p:panel>
+		</h:form>
+		</p:dialog>		
+		
+		<!-- fim de classificação -->
+				
+				<!-- adicionar classificacao -->
+				<p:dialog header="Incluir Classificação" widgetVar="dialogClassificao"
+			showEffect="blind" hideEffect="explode" resizable="false" id="cla02">
+			<h:form id="classificacao02">
+				<p:panelGrid var="lista2" id="panelClassificacao" columns="2">
+
+					<h:outputText value="#{msg.labelClassificacao}" />
+					<p:inputText
+						value="#{tbPatenteEcMB.classificacaoCreate.txClassificacao}" maxlength="10"/>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}" update=":classificacao"
+							oncomplete="PF('dialogClassificao').hide()"
+							actionListener="#{tbPatenteEcMB.salvarClassificacao}" />
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogClassificao').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+				
+				<!-- fim de adicionar classificacao -->
+
+
+
+
+
+
+	</ui:define>
+</ui:composition>

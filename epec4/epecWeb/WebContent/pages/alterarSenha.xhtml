@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Usuários</ui:define>
+	<ui:define name="pageHeader">Alterar Senhas</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+		<h:form id="form">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+			<br />
+			<br />
+			<p:outputLabel value="#{msg.labeldadosPessoais}"
+				styleClass="textOut1" />
+			<p:separator />
+			<br />
+			<br />
+
+			<h:panelGrid columnClasses="logo,detail" var="lista2" id="panelAlterarSenha" columns="2">
+
+				<h:outputText for="txtSenhaAntiga"
+					value="#{msg.labelSenhaUsuario} *" />
+				<p:password id="txtSenhaAntiga" feedback="false" minLength="4"
+					value="#{usuarioMB.trocarSenhaAntiga}">
+					<p:message for="txtSenhaAntiga" showDetail="true" />
+				</p:password>
+
+				<h:outputText for="txtSenhaNova" value="#{msg.msgSenhaInforme} *" />
+				<p:password id="txtSenhaNova" feedback="true" minLength="4"
+					promptLabel="#{msg.msgSenhaInforme}" weakLabel="#{msg.labelRuim}"
+					goodLabel="#{msg.labelBoa}" strongLabel="#{msg.labelOtima}"
+					value="#{usuarioMB.trocarSenhaNova}">
+					<p:message for="txtSenhaNova" showDetail="true" />
+				</p:password>
+
+				<h:outputText for="txtSenhaConfirma"
+					value="#{msg.labelConfirmarSenha} *" />
+				<p:password id="txtSenhaConfirma" feedback="false" minLength="4"
+					value="${usuarioMB.confirmacaoSenha}" />
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" cellpadding="5">
+
+
+				<p:commandButton id="salvarSenmha" value="#{msg.salvar}"
+					actionListener="#{usuarioMB.salvarNovaSenha}"
+					styleClass="botaoPesquisa" >
+					<p:confirm header="Confirmation" message="#{msg.msgContinuar}"
+						icon="ui-icon-alert"/>
+				</p:commandButton>
+
+
+				<p:commandButton id="cancelarSenha" value="#{msg.cancelar}"
+					class="botaoPesquisa" actionListener="#{menuView.manterUsuario}" />
+
+			</h:panelGrid>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="#{msg.sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

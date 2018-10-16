@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+		<h:outputStylesheet library="css" name="ePec.css" />
+		<h:form id="form">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+
+			</div>
+					<br />
+							<br />
+
+	<h:outputText styleClass="textOut1" value="#{msg.copiarRelatorio}" />
+
+			<p:separator />
+			<br />
+
+			<br />
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<h:outputText value="#{msg.labelPedido}" style="font-weight: bold" />
+				<p:selectOneMenu id="selectCopiarRelatorio"
+					value="#{tbRelatorioEcMB.patenteRelatorioCopiar}"
+					style="width: 300px">
+					<f:selectItems value="#{tbRelatorioEcMB.copiarRelatorioPatenteTeste}"
+						var="TbPatente" itemLabel="#{TbPatente.numeroPedido}"
+						itemValue="#{TbPatente.idPatenteEc}" style="width: 300px" />
+				</p:selectOneMenu>
+
+
+				<h:outputText value="#{msg.labelColaboracao}" style="font-weight: bold" />
+				<p:selectManyMenu id="selectCopiarRelatorioColaboracao"
+					value="#{tbRelatorioEcMB.colaboracoesCopiarRelatorio}"
+					showCheckbox="true" filterMatchMode="contains" style="width: 300px"  filter="true">
+					<f:selectItems var="colaboracoes"
+						value="#{tbCadColaboracaoMB.colaboracaoListar}"
+						itemLabel="#{colaboracoes.strColaboracao}"
+						itemValue="#{colaboracoes.idColaboracao}" style="width: 300px" />
+				</p:selectManyMenu>
+
+			</h:panelGrid>
+			
+			
+			
+			<br />
+			<br />
+
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:commandButton id="abrirModalCopiarRelatorio" class="botaoPesquisa" value="#{msg.copiar}"
+				onclick="PF('dialogCopiarRelatorioPedido').show()" >
+				<f:param name="copiarRelatorio" value="1" />
+			</p:commandButton>
+
+				<p:commandButton value="#{msg.cancelar}" class="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}" id="botaoCancelarCopiarRelatorio">
+				</p:commandButton>
+
+			</h:panelGrid>
+			
+
+			
+
+		</h:form>
+
+
+		<p:confirmDialog global="true" severity="info"
+			message="#{msg.msgCopiarRelatorio}" showEffect="fade"
+			hideEffect="explode" header="#{msg.copiarRelatorio}"
+			widgetVar="dialogCopiarRelatorioPedido" id="copiarRelatorioPedido">
+			<h:form>
+				<p:commandButton id="confirm" value="#{msg.sim}"
+					oncomplete="PF('dialogCopiarRelatorioPedido').hide()"
+					update="@(.ui-datatable)" actionListener="#{tbRelatorioEcMB.copiarRelatorioRelacionarPatente}" >
+					<f:param name="copiarRelatorio" value="1" />
+					</p:commandButton>
+				<p:commandButton id="decline" value="#{msg.nao}"
+					onclick="PF('dialogCopiarRelatorioPedido').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>

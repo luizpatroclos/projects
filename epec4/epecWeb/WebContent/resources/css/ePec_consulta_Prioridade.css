@@ -1,0 +1,279 @@
+/* Início conf. Busca Publicação */
+
+iframe{
+	width:  1000px !important;
+	height: 610px !important; 
+	
+	
+}
+
+.textOut1{	
+	font-weight:bold;
+	padding   : 0 0 0 20px;
+	color: blue; 
+	font-size: 18px;
+}
+.panel.ui-panel, .panel.ui-panel-content{
+	
+	border: hidden !important; 
+	/* height: 130px !important; */
+	width:  910px !important;
+  /*   height    : 110px !important; */
+}
+
+.panel1.ui-panel, .panel.ui-panel-content{
+	
+	border: hidden !important; 
+	/* height: 130px !important; */
+	width:  910px !important;
+   /*  height    : 110px !important; */
+    margin-top: -5px;
+}
+
+.panel2.ui-panel, .panel.ui-panel-content{
+	
+	border: hidden !important; 
+	/* height: 130px !important; */
+	width:  910px !important;
+   /*  height    : 110px !important; */
+    margin-top: 10px;
+}
+.panelGridA {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width:  860px;
+    height    : 65px;
+    margin-left: 25px;
+    padding   : 0 0 0 20px;
+}
+
+.panelGridB {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 10px; 
+    width:  860px;
+    height    : 40px;
+    margin-left: 25px;
+    margin-top: -10px;
+    padding   : 0 0 0 20px;
+}
+
+.campoTextConsultA{
+	
+    font-family:Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: lighter !important;
+    width   : 166px; 
+    height  : 15px;
+    margin-left: 179px !important;
+
+}
+.textOutA{	
+	font-weight:bold;
+	color: black; 
+	font-size: 12px;
+	margin-left: -16px !important;
+}
+.textOutB{	
+	font-weight:normal;
+	color: black; 
+	font-size: 12px;
+}
+.botaoConsultaA{
+	
+	background-color: Silver !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;   
+    left: 12px !important;
+	
+}
+
+.botao{
+	
+	background-color: #054B75 !important;
+	color: #FFFFFF !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;   
+    left: 15px !important;
+    width: 100px;
+    height: 25px;
+	
+}
+.titulo{
+	font-size: 12px;
+	font-style: inherit;
+	color: #054B75 !important;
+}
+
+.panelGridC {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width:  860px;
+    height    : 60px;
+    margin-left: 25px;
+    padding   : 0 0 0 20px;
+}
+
+.panelGridD {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 10px; 
+    width:  860px;
+    height    : 60px !important;
+    margin-left: 25px;
+    margin-top: -10px;
+    padding   : 0 0 0 20px;
+}
+
+.campoTextConsultC{
+	
+   font-family:Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: lighter !important;
+    width   : 166px; 
+    height  : 15px;
+    margin-left: 250px !important;
+
+}
+.textOutC{	
+	font-weight:bold;
+	color: black; 
+	font-size: 12px;
+}
+.textOutD{	
+	font-weight:normal;
+	color: black; 
+	font-size: 12px;
+}
+.botaoConsultaC{
+	
+	background-color: Silver !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;   
+    left: 15px !important;
+	
+}
+
+.panelGridE {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width:  860px;
+    height    : 55px;
+    margin-left: 25px;
+     margin-top: -15px;
+    padding   : 0 0 0 10px;
+}
+
+.panelGridF {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 10px; 
+    width:  860px;
+    height    : 70px;
+    margin-left: 25px;
+    margin-top: -10px;
+    padding   : 0 0 0 20px;
+}
+
+.campoTextConsultE{
+	
+    font-family:Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: lighter !important;
+    width   : 166px; 
+    height  : 15px;
+    margin-left: 289px !important;
+
+}
+.textOutE{	
+	font-weight:bold;
+	color: black; 
+	font-size: 12px;
+}
+.textOutF{	
+	font-weight:normal;
+	color: black; 
+	font-size: 12px;
+}
+.botaoConsultaE{
+	
+	background-color: Silver !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;   
+    left: 15px !important;
+	
+}
+
+
+.panelGridResult {
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width:  856px;
+    height    : 65px;
+    margin-left: 20px;
+    padding   : 0 0 0 20px;
+}
+
+.dataTableResult.ui-datatable tr{
+border: #D3D3D3 !important;
+
+}
+
+.dataTableResult.ui-state-default th{
+	border: #D3D3D3 !important;
+	
+}
+
+.dataTableResult.ui-datatable th{
+background: #D3D3D3 !important;
+
+}
+
+.dataTableResult.ui-datatable td{
+text-align:center !important;
+
+}
+
+.dataTableResult.ui-datatable .ui-paginator {
+background: #8B8989 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-rpp-options {
+background: #D3D3D3 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-pages .ui-paginator-page{
+background: #D3D3D3 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-next{
+background: #D3D3D3 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-first{
+background: #D3D3D3 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-prev{
+background: #D3D3D3 !important;
+}
+
+.dataTableResult.ui-datatable .ui-paginator-last{
+background: #D3D3D3 !important;
+}
+
+.dataTableDivImage{
+	left: 22px !important;
+	position: relative !important;
+}
+
+.ui-datatable{
+    color: #D3D3D3 !important;
+} 
+
+
+/* Fim conf. Busca Publicação */

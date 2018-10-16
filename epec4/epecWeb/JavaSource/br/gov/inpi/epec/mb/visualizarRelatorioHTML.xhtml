@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
+	lang="#{internacionalizacaoMB.linguagem}">
+
+<f:view locale="#{internacionalizacaoMB.linguagem}" />
+<h:head>
+	<title>HTML</title>
+
+</h:head>
+
+<h:body>
+
+
+
+
+	<h:form id="form">
+
+
+		<br />
+		<br />
+		<h:outputText value="#{msg.resumo}" styleClass="tituloGrande" />
+		<br />
+
+		<h:outputText value="#{tbRelatorioEcMB.relatorioHTML.txResumo}" />
+		<br />
+		<br />
+
+		<h:outputText value="#{msg.antpatentaria}" styleClass="tituloGrande" />
+		<p:dataList
+			value="#{tbRelatorioEcMB.relatorioHTML.tbantpatentariarelecList}"
+			var="patentaria" emptyMessage="#{msg.labelNenhumaAntPatentaria}">
+			<h:outputText value="#{msg.antpatentaria}" style="font-weight: bold" />: #{patentaria.strAntpatentaria}
+        		<br />
+			<h:outputText value="#{msg.labelRelevancia}"
+				style="font-weight: bold" /> #{patentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+			<h:outputText value="#{msg.labelRelacao}" style="font-weight: bold" /> 	#{patentaria.txRelacao}
+        		<br />
+			<h:outputText value="#{msg.labelRelacaoReivindicacao}"
+				style="font-weight: bold" /> #{patentaria.txReivindicacao}
+        		
+    		</p:dataList>
+		<br />
+		<br />
+
+		<h:outputText value="#{msg.antNaoPatentaria}"
+			styleClass="tituloGrande" />
+		<p:dataList
+			value="#{tbRelatorioEcMB.relatorioHTML.tbantnaopatentariarelecList}"
+			var="naoPatentaria" emptyMessage="#{msg.labelNenhumaAntPatentaria}">
+			<h:outputText value="#{msg.antNaoPatentaria}"
+				style="font-weight: bold" /> : #{naoPatentaria.txTitulo}        		
+        		
+        		<br />
+			<h:outputText value="#{msg.labelRelevancia}"
+				style="font-weight: bold" /> #{naoPatentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+			<h:outputText value="#{msg.labelRelacao}" style="font-weight: bold" />#{naoPatentaria.txRelacao}
+        		<br />
+			<h:outputText value="#{msg.labelRelacaoReivindicacao}"
+				style="font-weight: bold" />#{naoPatentaria.txReivindicacao}
+    		</p:dataList>
+
+		<br />
+
+		<h:outputText value="#{msg.labelCategoriaReivindicacoes}"
+			styleClass="tituloGrande" />
+		<p:dataList
+			value="#{tbRelatorioEcMB.relatorioHTML.tbcatrelatorioecList}"
+			var="categoria" emptyMessage="#{msg.labelNenhumaCategoria}">
+			<h:outputText value="#{msg.labelCategoria}" style="font-weight: bold" /> : #{categoria.idCategoria.strPortugues}	
+        		
+        		<br />
+			<h:outputText value="#{msg.resumo}" style="font-weight: bold" /> : #{categoria.txResumo}
+        		<br />
+			<p:dataList value="#{categoria.tbantpatentariacatrelecList}"
+				var="patentaria" emptyMessage="#{msg.labelNenhumaAntPatentaria}">
+				<h:outputText value="#{msg.antpatentaria}" style="font-weight: bold" />: #{patentaria.strAntpatentaria}
+        		<br />
+				<h:outputText value="#{msg.labelRelevancia}"
+					style="font-weight: bold" /> #{patentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+				<h:outputText value="#{msg.labelRelacao}" style="font-weight: bold" />#{patentaria.txRelacao}
+        		<br />
+				<h:outputText value="#{msg.labelRelacaoReivindicacao} "
+					style="font-weight: bold" />#{patentaria.txReivindicacao}
+        		
+    		</p:dataList>
+			<br />
+			<br />
+			<p:dataList value="#{categoria.tbantnaopatentariacatrelecList}"
+				var="naoPatentaria" emptyMessage="#{msg.labelNenhumaAntPatentaria}">
+				<h:outputText value="#{msg.antNaoPatentaria}"
+					style="font-weight: bold" /> : #{naoPatentaria.txTitulo}        		
+        		
+        		<br />
+				<h:outputText value="#{msg.labelRelevancia}"
+					style="font-weight: bold" /> #{naoPatentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+				<h:outputText value="#{msg.labelRelacao} " style="font-weight: bold" />#{naoPatentaria.txRelacao}
+        		<br />
+				<h:outputText value="#{msg.labelRelacaoReivindicacao} "
+					style="font-weight: bold" />#{naoPatentaria.txReivindicacao}
+    		</p:dataList>
+
+
+			<br />
+			<br />
+			<p:dataList value="#{categoria.tbcaraccatrelatorioecList}"
+				var="caracteristica"
+				emptyMessage="#{msg.labelNenhumaCaracteristica}">
+				<h:outputText value="Caracteristica" style="font-weight: bold" /> : #{caracteristica.txCaracteristica}        		
+        		
+        		<br />
+				<p:dataList value="#{caracteristica.tbantpatentariaList}"
+					var="patentaria" emptyMessage="Nenhuma Anterioridade encontrada">
+					<h:outputText value="#{msg.antpatentaria}"
+						style="font-weight: bold" />: #{patentaria.strAntpatentaria}
+        		<br />
+					<h:outputText value="#{msg.labelRelevancia}"
+						style="font-weight: bold" />  #{patentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+					<h:outputText value="#{msg.labelRelacao}" style="font-weight: bold" />	#{patentaria.txRelacao}
+        		<br />
+					<h:outputText value="R#{msg.labelRelacaoReivindicacao}"
+						style="font-weight: bold" /> #{patentaria.txReivindicacao}
+        		
+    		</p:dataList>
+				<br />
+				<p:dataList value="#{caracteristica.tbantnaopatentariaList}"
+					var="naoPatentaria" emptyMessage="#{msg.labelNenhumaAntPatentaria}">
+					<h:outputText value="#{msg.antNaoPatentaria}"
+						style="font-weight: bold" /> : #{naoPatentaria.txTitulo}        		
+        		
+        		<br />
+					<h:outputText value="#{msg.labelRelevancia}"
+						style="font-weight: bold" /> #{naoPatentaria.idCadtipoanterioridade.strPortugues}
+        		<br />
+					<h:outputText value="#{msg.labelRelacao}" style="font-weight: bold" />#{naoPatentaria.txRelacao}
+        		<br />
+					<h:outputText value="#{msg.labelRelacaoReivindicacao} "
+						style="font-weight: bold" />#{naoPatentaria.txReivindicacao}
+    		</p:dataList>
+				<br />
+
+
+			</p:dataList>
+			<br />
+
+
+		</p:dataList>
+		<br />
+
+
+		<h:outputText value="#{msg.conclusao}" styleClass="tituloGrande" />
+		<br />
+		<h:outputText value="#{tbRelatorioEcMB.relatorioHTML.txConclusao}" />
+		<br />
+		<br />
+
+
+
+	</h:form>
+</h:body>
+</html>

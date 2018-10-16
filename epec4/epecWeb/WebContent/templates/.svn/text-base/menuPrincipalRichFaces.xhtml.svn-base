@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:view>
+		<h:body>
+			<div id="divScrollBar" style="background:transparent; padding:20px; overflow: auto; position: relative; height: 580px; width: 213px;">
+			<h:form id="formMenuPrincipal">
+				<h:outputScript library="js" name="LocalPt_Br.js" />
+				<h:panelGrid columns="1" styleClass="colunaBorder"
+					style=" width : 213px; height: 580px; ">
+
+					<rich:panelMenu style="width:200px; height : 580px; text-align: left "
+						itemMode="client" groupMode="client"
+						groupExpandedLeftIcon="triangleUp" expandSingle="true"
+						groupCollapsedLeftIcon="triangleDown"
+						topGroupExpandedRightIcon="triangleUp"
+						topGroupCollapsedRightIcon="triangleDown" itemLeftIcon="triangle">
+
+						<rich:panelMenuGroup label="Portabilidade">
+							<rich:panelMenuGroup id="subMenuTec" label="Receptora"
+								name="Item_0_1">
+								<rich:panelMenuItem label="Solicitação"
+									mode="server"
+									action="#{bean.inicializarSolicPortab}"
+									name="Item_0_1_1" />
+								<rich:panelMenuItem label="Cancelamento"
+									mode="server"
+									action="#{beanBuscarDadosCancPort.inicializar}"
+									name="Item_0_1_2" />
+								<rich:panelMenuItem label="Desconexão" mode="server"
+									action="/pages/gateway/desconexaoPortab?faces-redirect=true"
+									name="Item_0_1_3" />
+							</rich:panelMenuGroup>
+							
+							<rich:panelMenuGroup label="Doadora" >
+							
+							<rich:panelMenuItem label="Autenticação" mode="server" action="#{consultaSPBean.inicializarAutenticacao}" name="Item_0_2_1" />
+							
+							</rich:panelMenuGroup>
+							
+							<rich:panelMenuItem label="Modificar Solicitação" mode="server"
+									action="#{bean.inicializarModificacaoSolicPortab}"
+									name="Item_0_2_1" style="FONT-WEIGHT: bold;"/>
+								<rich:panelMenuItem label="Timestamp" mode="server"
+									action="#{consultaSimplificadaTimestampBean.inicializarEnvioTimestamp}"
+									name="Item_0_2_2" style="FONT-WEIGHT: bold;"/>
+							
+						</rich:panelMenuGroup>
+						
+						<rich:panelMenuGroup label="Consultas">
+							<rich:panelMenuItem label="Estado Número" mode="server"
+								action="#{consultaSimplificadaTimestampBean.inicializarConsultaEstadoNumero}"
+								name="Item_1_1" />
+							<rich:panelMenuItem label="Por Número de Terminal"
+								mode="server"
+								action="#{beanConsultaPorNum.inicializar}"
+								name="Item_1_2" />
+							<rich:panelMenuItem label="Portabilidades Realizadas"
+								mode="server"
+								action="/pages/gateway/consultaPortabilidadesRealizadas?faces-redirect=true"
+								name="Item_1_3" />
+							<rich:panelMenuItem label="Pendente de Autorização"
+								mode="server"
+								action="/pages/gateway/ConsultaPortabilidadePendente?faces-redirect=true"
+								name="Item_1_4" />	
+							<rich:panelMenuItem label="Monitorar Bilhetes" mode="server"
+								action="#{beanConsultaIntegrator.inicializar}"
+								name="Item_1_5" />	
+							<rich:panelMenuItem label="Detalhamento Portabilidade" mode="server"
+								action="#{consultaMonitorBean.inicializar}"
+								name="Item_1_6" />
+							<rich:panelMenuItem label="Terminal Portado" mode="server"
+								action="/pages/integrator/consultaTerminalPortado?faces-redirect=true"
+								name="Item_1_7" />
+							
+								<rich:panelMenuGroup label="Redes" name="Item_2_10">
+								<rich:panelMenuItem label="Terminal com Erro RN2" mode="server"
+									action="/pages/integrator/consultaTerminalErroRN2?faces-redirect=true"
+									name="Item_2_10_2" />
+								<rich:panelMenuItem label="Comando LSMS" mode="server"
+									action="/pages/integrator/consultaCMDLsms?faces-redirect=true"
+									name="Item_2_10_3" />
+								<rich:panelMenuItem label="Comando com Erro LSMS" mode="server"
+									action="#{consultaErroCMDLsmsBean.inicializar}"
+									name="Item_2_10_4" />
+								<rich:panelMenuItem label="Comando SixBell" mode="server"
+									action="#{consultaCMDSixBellBean.inicializarConsultaCMDSixBell}"
+									name="Item_2_10_5" />
+								<rich:panelMenuItem label="Comando com Erro SixBell" mode="server"
+									action="#{consultaCMDSixBellBean.inicializarConsultaErroCMDSixBell}"
+									name="Item_2_10_6" />
+								<rich:panelMenuItem label="Comando LSMS Area Local"
+									mode="server"
+									action="/pages/integrator/consultaCMDLsmsAreaLocal?faces-redirect=true"
+									name="Item_2_10_7" />
+								<rich:panelMenuItem label="Comando com Erro LSMS Area Local"
+									mode="server"
+									action="#{consultaErroCMDLsmsAreaLocalBean.inicializar}"
+									name="Item_2_10_8" />
+							</rich:panelMenuGroup>
+							<rich:panelMenuItem label="Envio de Comandos" mode="server"
+								action="/pages/integrator/consultaRelatorioComandos?faces-redirect=true"
+								name="Item_1_11" />
+							<rich:panelMenuItem label="Produtos Não Automatizados"
+								mode="server"
+								action="/pages/integrator/consultaProdutosNaoAutomatizados?faces-redirect=true"
+								name="Item_1_12" />
+							<rich:panelMenuItem label="Mensagem"
+								mode="server"
+								action="#{consultaMensagemBean.inicializar}"
+								name="Item_1_13" />
+						</rich:panelMenuGroup>
+
+						<rich:panelMenuGroup label="Manutenção">
+							<rich:panelMenuItem label="Extrações Manuais" mode="server"
+								action="#{extracaoManualCACSDWBean.inicializarExtracao}"
+								name="Item_2_1" />
+							<rich:panelMenuItem label="Contato X Mensagem de Email" mode="server"
+						        action="#{beanMensagemXContato.inicializarContatoXMensagem}"
+						        name="Item_2_2" />
+							<rich:panelMenuItem label="Mensagem de Email" mode="server"
+								action="#{beanMensagem.inicializar}"
+								name="Item_2_3" />
+							
+							<rich:panelMenuItem label="Carga de Tabelas" mode="server"
+								action="#{listarArquivosCargasBean.inicializarCargaArquivos}"
+								name="Item_2_4" />
+							<rich:panelMenuItem label="Extração BDOMED" mode="server"
+								action="#{extracaoManualBDOMedBean.inicializar}"
+								name="Item_2_5" />
+							<rich:panelMenuItem label="Migração de Central" mode="server"
+								action="#{beanMigracaoCentral.inicializar}"
+								name="Item_2_6" />
+							<rich:panelMenuItem label="Tabelas" mode="server"
+								action="#{consultaTabelasCargasBean.inicializar}"
+								name="Item_2_8" />
+								
+						</rich:panelMenuGroup>
+						<rich:panelMenuGroup label="Tratamento de Erro">
+							<rich:panelMenuItem label="Tratamento de Erro Rede" mode="server"
+								action="#{aprovisionamentoRedesBean.inicializar}"
+								name="Item_3_1" />
+							<rich:panelMenuItem label="Correção de RN2" mode="server"
+								action="/pages/integrator/correcaoRN2?faces-redirect=true"
+								name="Item_3_2" />
+							<rich:panelMenuItem label="Correção de Central" mode="server"
+								action="#{correcaoErroCentralBean.inicializar}"
+								name="Item_3_3" />
+						</rich:panelMenuGroup>
+						<rich:panelMenuGroup label="Contingência">
+							<rich:panelMenuItem label="Reenvio de Mensagem EA-BW" mode="server"
+								action="#{beanReenviarMsg.inicializar}"
+								name="Item_4_1" />
+							<rich:panelMenuItem label="Reprocessar Eventos 5 e 17" mode="server"
+								action="#{reprocessarEventos5E17Bean.inicializar}"
+								name="Item_4_2" />
+							<rich:panelMenuItem label="Timestamp em Lote" mode="server"
+								action="#{reenviarEvento12Bean.inicializar}"
+								name="Item_4_3" />
+							<rich:panelMenuItem label="Atualizar Produto" mode="server"
+								action="/pages/integrator/AtualizarProduto?faces-redirect=true"
+								name="Item_4_4" />
+							<rich:panelMenuItem label="Atualizar Origem BW" mode="server"
+								action="/pages/integrator/atualizarOrigemBW?faces-redirect=true"
+								name="Item_4_5" />
+							<rich:panelMenuItem label="Reenviar RN2/Sixbell" mode="server"
+								action="#{reprocessarBroadCastBean.inicializar}"
+								name="Item_4_6" />
+						</rich:panelMenuGroup>
+						<rich:panelMenuGroup label="Portabilidade Interna">
+							<rich:panelMenuItem label="Acesso MPI" mode="server"
+								action="#{acessoPortabilidadeInternaBean.acessarMPI}"
+								name="Item_5_1" />
+						</rich:panelMenuGroup>
+						<rich:panelMenuGroup label="Logout">
+							<rich:panelMenuItem label="Sair" mode="server"
+								action="#{logoutBean.retornarPaginaLogin}"
+								name="Item_6_1" />
+						</rich:panelMenuGroup>
+						
+					</rich:panelMenu>
+
+				</h:panelGrid>
+			</h:form>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Tabela Colaboração</ui:define>
+	<ui:define name="pageHeader">Manutenção Colaboração</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+
+			<br />
+			<br />
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+			<br />
+			<p:outputLabel value="#{msg.labelColaboracao}" styleClass="textOut1" />
+			<p:separator />
+			<br />
+			<br />
+
+			<p:dataTable id="dataTable3" autoUpdate="true" var="colaboracoes"
+				value="#{tbCadColaboracaoMB.colaboracaoTeste}" type="unordered"
+				itemType="none" style="vertical-align: center" paginator="true"
+				rows="10" styleClass="paginated">
+
+				<f:facet name="header">
+
+					<p:commandButton value="#{msg.labelBotaoInserir}"
+						oncomplete="PF('dialogCriar').show()" icon="ui-icon-star"
+						update=":newUserForm:panelCriar" title="#{msg.criarNovaColaboracao}" rendered="#{(isAdminstrador eq '1') || (tbCadColaboracaoMB.usuarioLogado.idEntidadeEc.oficina)}"/>
+
+				</f:facet>
+
+				<p:column headerText="#{msg.labelDescricaoColaboracao}">
+					<h:outputText value="#{colaboracoes.txDescricao}" />
+				</p:column>
+
+				<p:column headerText="#{msg.labelEntidades}">
+					<h:outputText value="#{colaboracoes.entidadesNome}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg.labelStatus}" style="width:62px">
+					<div align="center">
+						<p:graphicImage value="#{colaboracoes.imagemLogado}" />
+					</div>
+				</p:column>
+
+		
+				
+				
+				<p:column headerText="#{msg.labelAcoes}"
+					style="align: center;width:62px" rendered="#{(isAdminstrador eq '1') || (tbCadColaboracaoMB.usuarioLogado.idEntidadeEc.oficina)}">
+					<div align="center">
+						<p:menuButton value="#{msg.labelAcoes}">
+							<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+								onclick="PF('dialogAlterar').show()" update=":userDetailForm:panelAlterarColaboracao" rendered="#{(isAdminstrador eq '1') || (tbCadColaboracaoMB.usuarioLogado.idEntidadeEc.oficina)}">
+								<f:setPropertyActionListener value="#{colaboracoes}"
+								target="#{tbCadColaboracaoMB.colaboracaoSelected}" />
+							</p:menuitem>
+							<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+								onclick="PF('dialogExcluirColaboracao').show()"
+								rendered="#{(isAdminstrador eq '1') || (tbCadColaboracaoMB.usuarioLogado.idEntidadeEc.oficina)}" update=":form">
+								<f:setPropertyActionListener value="#{colaboracoes}"
+								target="#{tbCadColaboracaoMB.colaboracaoSelected}" />
+							</p:menuitem>
+
+						</p:menuButton>
+					</div>
+				</p:column>
+				
+
+
+			</p:dataTable>
+		</h:form>
+		
+		
+		
+		<p:dialog global="true" severity="info" showEffect="fade"
+			hideEffect="explode" header="#{msg.msgExcluir}"
+			widgetVar="dialogExcluirColaboracao" id="excluircolaboracao">
+			<h:form>
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmCalaboracao" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirColaboracao').hide()"
+					actionListener="#{tbCadColaboracaoMB.excluirColaboracao}" update=":form" />
+				<p:commandButton id="declineColaborcao" value="#{msg.nao}"
+					onclick="PF('dialogExcluirColaboracao').hide()" type="button" />
+			</h:form>
+		</p:dialog>
+		
+
+		<p:dialog header="#{msg.inserirColaboracao}" widgetVar="dialogCriar"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="newUserDlg">
+			<h:form id="newUserForm">
+				<p:panelGrid var="lista2" id="panelCriar" columns="2">
+					<f:facet name="header"><h:outputText value="#{msg.inserirColaboracao}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelNomeColaboracao}" />
+					<p:inputText
+						value="#{tbCadColaboracaoMB.colaboracao.strColaboracao}" />
+					<h:outputText value="#{msg.labelEntidade}" />
+					<p:selectManyMenu id="basic"
+						value="#{tbCadColaboracaoMB.colaboracao.entidades}"
+						showCheckbox="true" filterMatchMode="contains"  filter="true">
+						<f:selectItems value="#{tbCadColaboracaoMB.entidadesTeste}"
+							var="TbcadEntidade" itemLabel="#{TbcadEntidade.txOrganizacao}"
+							itemValue="#{TbcadEntidade.idEntidadeEc}" />
+					</p:selectManyMenu>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}" update=":form:dataTable3"
+							oncomplete="PF('dialogCriar').hide()"
+							actionListener="#{tbCadColaboracaoMB.createColaboracao}">
+						</p:commandButton>
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogCriar').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="#{msg.alterarColaboracao}" widgetVar="dialogAlterar"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="Alterar">
+			<h:form id="userDetailForm">
+				<p:panelGrid var="lista2" id="panelAlterarColaboracao" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{tbCadColaboracaoMB.colaboracaoSelected.strColaboracao}" />
+					</f:facet>
+					<h:outputText value="#{msg.labelNomeColaboracao}" />
+					<h:outputText
+						value="#{tbCadColaboracaoMB.colaboracaoSelected.strColaboracao}" />
+
+					<h:outputText value="#{msg.labelDescricaoColaboracao}" />
+					<p:inputText
+						value="#{tbCadColaboracaoMB.colaboracaoSelected.txDescricao}" />
+					<h:outputText value="#{msg.labelStatus}" />
+					<p:selectOneListbox
+						value="#{tbCadColaboracaoMB.colaboracaoSelected.textoAtivo}"
+						label="Cities" panelStyle="width:250px">
+						<f:selectItems value="#{tbCadEntidadeMB.escolherStatus}" />
+
+					</p:selectOneListbox>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.alterar}" update=":form:dataTable3"
+							oncomplete="PF('dialogAlterar').hide()"
+							actionListener="#{tbCadColaboracaoMB.updateColaboracao}" />
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterar').hide()"></p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
+
+
+
+	</ui:define>
+
+
+</ui:composition>

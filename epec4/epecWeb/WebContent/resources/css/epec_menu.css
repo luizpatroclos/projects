@@ -1,0 +1,40 @@
+.menuTabs {
+	width: 915px !important;
+	height: auto !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+	background-color: #054B75 !important;
+	font-weight: bold !important;
+	color: white !important;
+	font-size: 15px;
+	border: 0px solid #054B75 !important;
+}
+
+.megaMenu {
+	width: 917px !important;
+	background: #054B75 !important;
+	font-weight: bold;
+	color: white !important;
+}
+.megaMenuLabel{
+	width: auto !important;
+	background: #054B75 !important;
+	font-weight: bold;
+	color: white !important;
+}
+
+.megaMenu .ui-menuitem-text {
+	font-weight: bold;
+	color: white !important;
+	font-size: 12px !important;
+}
+
+.menuTeste {
+	color: white !important;
+	font-weight: bold !important;
+	font-size: 12px !important;
+}
+
+.ui-state-hover {
+	color: black !important;
+}

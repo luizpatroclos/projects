@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:outputStylesheet library="css" name="principal.css" />
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title><ui:insert name="title">SPN</ui:insert></title>
+</h:head>
+
+<h:body>
+	<div id="usuarioSessao">
+		<ui:insert name="sessaoUsuario">
+			<ui:include src="sessaoUsuario.xhtml"/>
+		</ui:insert>
+	</div>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</div>
+	<table width="100%"  style=" height : 600px;">
+		<tr>
+			<td width="15%">
+				<div class="myDiver">
+					<ui:insert name="menuPrincipal">
+						<ui:include src="menuPrincipalRichFaces.xhtml" />
+					</ui:insert>
+				</div>
+			</td>
+			<td class="areaPrincipal" width="85%">
+				<div>
+
+					<ui:insert name="content">Information....</ui:insert>
+
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<div id="footer" style="background-color: #FFFF; height : 30px;">
+		<ui:include src="footer.xhtml" />
+		<ui:insert name="footer">
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>

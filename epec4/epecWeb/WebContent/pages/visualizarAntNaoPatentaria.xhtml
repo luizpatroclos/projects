@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+		xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="pageTitle">Inserir Anterioridade Patentária</ui:define>
+	<ui:define name="pageHeader">Inserir Anterioridade Patentária</ui:define>
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form>
+			<p:menubar styleClass="menuBar">
+				<p:menuitem value="Família" class="menulayout"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+				</p:menuitem>
+				<p:menuitem value="#{msg.labelRelatorio}" class="menulayout"
+					actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}">
+				</p:menuitem>
+			</p:menubar>
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+
+
+			<h2>Inserir Anterioridade Não Patentária</h2>
+
+			<br />
+			<br />
+			<p:dataScroller value="#{tbCadCategoriaMB.relatorio}" var="relatorio"
+				chunkSize="10">
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelRelatorio}" styleClass="tituloGrande" />
+				</f:facet>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:column>
+						<h:outputText value="#{msg.labelRelatorio} " style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<div align="center">
+							<p:graphicImage value="#{relatorio.imagem}" />
+						</div>
+						<div align="center">
+							<h:outputText value="#{relatorio.strRelatorio}" />
+							<h:outputText value="#{relatorio.idRelatorioEc}" />
+						</div>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{msg.labelStatus}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{relatorio.idStatus.strStatus}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{msg.labelSituacao}" style="font-weight: bold" />
+					</h:column>
+					<p:column rendered="#{relatorio.bPublico}">
+						<h:outputText value="Público" />
+					</p:column>
+					
+					<p:column rendered="#{(!relatorio.bPublico)}">
+						<h:outputText value="Privado" />
+					</p:column>
+
+					<h:column>
+						<h:outputText value="#{msg.labelCategoria}" style="font-weight: bold" />
+						
+						
+					</h:column>
+					<h:column>
+						<h:outputText value="#{relatorio.tbcadcategoria.strPortugues}" />
+
+					</h:column>
+				</h:panelGrid>
+			</p:dataScroller>
+			<br />
+			<br />
+			
+			<br/>
+				<h:outputText value="#{msg.labelCaracteristica}" style="font-weight: bold" />
+				
+				<pe:ckEditor value="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect.txCaracteristica}" rows="10" cols="120" width="927" height="689"
+			 queryDelay="750" minQueryLength="4" disabled="true" customConfig="#{request.contextPath}/resources/js/ckeditor.js"/>
+			
+			<br/>
+			
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="Anterioridade Não Patentária: "
+					style="font-weight: bold" />
+				<h:outputText value="#{tbCatCaracteristicaMB.tbantnaopatentariaSelect.txTitulo}" maxlength="65534"/>
+
+
+			</h:panelGrid>
+
+			<br />
+
+			<h:outputText value="#{msg.labelRelacao}" styleClass="tituloGrande" />
+			<br />
+
+			<pe:ckEditor  value="#{tbCatCaracteristicaMB.tbantnaopatentariaSelect.txRelacao}" rows="10" cols="120" width="927" height="689"
+			 queryDelay="750" minQueryLength="4" disabled="true" customConfig="#{request.contextPath}/resources/js/ckeditor.js"/>
+
+			<br />
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="#{msg.labelRelevancia}" style="font-weight: bold" />
+
+		<h:outputText value="#{tbCatCaracteristicaMB.tbantnaopatentariaSelect.idCadtipoanterioridade.strPortugues}" />
+			</h:panelGrid>
+			<br />
+
+			<h:outputText value="#{msg.labelRelacaoReivindicacao}"
+				styleClass="tituloGrande" />
+			<br />
+	
+				<pe:ckEditor  value="#{tbCatCaracteristicaMB.tbantnaopatentariaSelect.txReivindicacao}" rows="10" cols="120" width="927" height="689"
+			 queryDelay="750" minQueryLength="4" disabled="true" customConfig="#{request.contextPath}/resources/js/ckeditor.js"/>
+
+
+			<br />
+			<br />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>

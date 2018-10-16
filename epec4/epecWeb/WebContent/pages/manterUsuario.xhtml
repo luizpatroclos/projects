@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Usuários</ui:define>
+	<ui:define name="pageHeader">Manutenção de Usuários</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+		<h:form id="form">
+
+			<p:remoteCommand name="nomeRemoteCommand2" id="idRemoteCommand2"
+				actionListener="#{usuarioMB.mensagemInserirUsuario}" autoRun="true"
+				update="messages" />
+			<br />
+			<br />
+			<p:outputLabel value="#{msg.labeldadosPessoais}"
+				styleClass="textOut1" />
+			<p:separator />
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+			<br />
+			<br />
+			<p:dataTable id="dataTable3" autoUpdate="true" var="usuario"
+				value="#{usuarioMB.usurario}" type="unordered" itemType="none"
+				style="vertical-align: center" paginator="true" rows="5"
+				styleClass="paginated">
+
+				<p:column headerText="#{msg.labelNome}">
+					<h:outputText value="#{usuario.txNome}" />
+				</p:column>
+
+				<p:column headerText="#{msg.labelMenuUsuario}">
+					<h:outputText value="#{usuario.strUsuario}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg.labelPais}">
+					<h:outputText value="#{usuario.idEntidadeEc.idPais.strNomePais}" />
+				</p:column>
+
+				<p:column headerText="#{msg.labelEntidade}">
+					<h:outputText value="#{usuario.idEntidadeEc.txOrganizacao}" />
+				</p:column>
+
+				<p:column headerText="#{msg.labelStatus}" style="width:62px">
+					<div align="center">
+						<h:graphicImage value="#{usuario.imagemAtivo}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelAcoes}">
+
+
+					<div align="center">
+						<p:menuButton value="#{msg.labelAcoes}">
+							<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+								onclick="PF('dialogAlterar').show()"
+								update=":userDetailForm:panelAlterarColaboracao"
+								oncomplete="PF('dialogAlterar').show()">
+								<f:setPropertyActionListener value="#{usuario}"
+									target="#{usuarioMB.usuarioSelecionado}" />
+							</p:menuitem>
+							<p:menuitem value="#{msg.labelAlterarSenha}" icon="ui-icon-key "
+							actionListener="#{usuarioMB.trocarSenhar()}">
+
+							</p:menuitem>
+
+						</p:menuButton>
+						</div>
+				</p:column>
+
+
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog header="#{msg.labelAlterarusuario}"
+			widgetVar="dialogAlterar" showEffect="blind" hideEffect="explode"
+			resizable="false" id="Alterar">
+			<h:form id="userDetailForm">
+				<p:panelGrid var="lista2" id="panelAlterarColaboracao" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labeldadosUsuario}" />  - <h:outputText
+							value="#{usuarioMB.usuarioSelecionado.txNome}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelNome}" />
+					<p:inputText value="#{usuarioMB.usuarioSelecionado.txNome}"
+						size="60" maxlength="59" requiredMessage="Informe um nome"
+						required="true" />
+
+					<h:outputText value="#{msg.labelMenuUsuario}" />
+					<p:inputText value="#{usuarioMB.usuarioSelecionado.strUsuario}"
+						disabled="true" />
+
+					<h:outputText value="#{msg.labelEntidade}" />
+					<p:inputText
+						value="#{usuarioMB.usuarioSelecionado.idEntidadeEc.txOrganizacao}"
+						disabled="true" />
+
+					<h:outputText value="#{msg.labelDesignacao}" />
+					<p:inputText size="60" maxlenght="59"
+						value="#{usuarioMB.usuarioSelecionado.txDesignacao}" />
+
+					<h:outputText value="#{msg.labelOrganizacao}" />
+					<p:inputText value="#{usuarioMB.usuarioSelecionado.txOrganizacao}" />
+
+
+					<h:outputText value="E-mail" required="true"
+						requiredMessage="Email Obrigatório" />
+					<p:inputText size="60" maxlenght="59"
+						value="#{usuarioMB.usuarioSelecionado.strEmail}" />
+
+					<h:outputText value="#{msg.labelTelefone}" />
+					<p:inputText size="60" maxlenght="59"
+						value="#{usuarioMB.usuarioSelecionado.strTelefone}" />
+
+					<h:outputText value="#{msg.labelPrivilegio}" />
+					<p:selectOneRadio id="privilegio"
+						value="#{usuarioMB.usuarioSelecionado.idPerfilusuario.idPerfilusuario}"
+						disabled="true">
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeSistemas}"
+							itemValue="3" />
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeEntidades}"
+							itemValue="2" />
+						<f:selectItem itemLabel="#{msg.labelExaminador}" itemValue="1" />
+					</p:selectOneRadio>
+
+					<h:outputText value="#{msg.labelSituacao}" />
+					<p:selectOneRadio id="situacao"
+						value="#{usuarioMB.usuarioSelecionado.publico}">
+						<f:selectItem itemLabel="#{msg.labelPublico}" itemValue="true" />
+						<f:selectItem itemLabel="#{msg.labelPrivado}" itemValue="false" />
+					</p:selectOneRadio>
+
+					<h:outputText value="#{msg.labelStatus}" />
+					<p:selectOneRadio id="status"
+						value="#{usuarioMB.usuarioSelecionado.idAtivo}" disabled="true">
+						<f:selectItem itemLabel="#{msg.labelAtivo}" itemValue="1" />
+						<f:selectItem itemLabel="#{msg.labelInativo}" itemValue="0" />
+					</p:selectOneRadio>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.alterar}" update=":form:dataTable3"
+							oncomplete="PF('dialogAlterar').hide()"
+							actionListener="#{usuarioMB.alterarDadosPessoais()}">
+
+							<f:setPropertyActionListener value="0"
+								target="#{usuarioMB.valorValido}" />
+						</p:commandButton>
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterar').hide()"></p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
+
+
+
+	</ui:define>
+
+
+</ui:composition>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Tabela Colaboração</ui:define>
+	<ui:define name="pageHeader">Manutenção Colaboração</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+		<h:form id="form">
+
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink
+					actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}">
+					<h:outputText value="#{msg.labelRelatorio}" styleClass="titulo" />
+				</h:commandLink>
+
+			</div>
+
+
+
+
+			<br />
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelLogRelatorio}" />
+			<p:separator />
+
+			<br />
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+			<br />
+
+
+			<p:dataTable id="dataTabLogRelatorio" autoUpdate="true"
+				var="logRelatorio" value="#{tbRelatorioEcMB.logRelatorio}"
+				type="unordered" itemType="none" style="vertical-align: center"
+				styleClass="paginated" paginator="true" rows="10">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelLogRelatorio}" />
+				</f:facet>
+
+				<p:column headerText="#{msg.labelAcao}">
+					<div align="center">
+						<h:outputText value="#{logRelatorio.strAcao}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelTipoAtivo}">
+					<div align="center">
+						<h:outputText value="#{logRelatorio.strAtivo}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelAtivo}">
+					<div align="center">
+						<h:outputText value="#{logRelatorio.txAtivo}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labeldataHora}">
+					<div align="center">
+						<h:outputText value="#{logRelatorio.datahora}" >
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelMenuUsuario}">
+					<div align="center">
+						<h:outputText value="#{logRelatorio.strUsuario}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelPais}">
+					<div align="center">
+						<p:graphicImage
+							value="#{logRelatorio.usuario.idEntidadeEc.idPais.imagem}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelLogado}">
+					<div align="center">
+						<p:graphicImage value="#{logRelatorio.usuario.imagemLogado}" />
+					</div>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

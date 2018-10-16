@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>epecWeb</display-name>
+
+	<context-param>
+	    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+	    <param-value>true</param-value>
+  	</context-param>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	
+	</servlet>
+	
+	
+	<servlet>
+		
+		<servlet-name>CKEditorUploadServlet</servlet-name>
+ 		<servlet-class>br.gov.inpi.epec.util.CKEditorUploadServlet</servlet-class>
+		
+	</servlet>
+	
+		<servlet-mapping>
+		 <servlet-name>CKEditorUploadServlet</servlet-name>
+		 <url-pattern>/ckeditor/uploadimage</url-pattern>
+		</servlet-mapping>
+		
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+
+        <context-param>
+         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+            <param-value>client</param-value>
+         </context-param> 
+        
+     
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bluesky</param-value>
+	</context-param>
+
+
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+<!-- Filtro Saucer Report-->
+
+<filter>
+		<filter-name>RendererFilter</filter-name>
+		<filter-class>br.gov.inpi.epec.filter.RendererFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>RendererFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+
+	
+</web-app>

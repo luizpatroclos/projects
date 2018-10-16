@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>
+		<ui:insert name="title">SPN</ui:insert>
+	</title>
+	
+</h:head>
+
+<h:body>
+           
+    <!-- Colocar id para nao gerar conflito com as outras paginas que utilizam o template - Debora -->   
+      
+  
+    <p:panelMenu id="menu1" style="font-size: 10pt">     
+        <p:submenu label="Processos - SPN" >  
+            <p:submenu label="Gateway" icon="ui-icon-extlink">  
+                <p:submenu label="Operador" icon="ui-icon-arrowthick-1-s">
+                 	<p:submenu label="Receptora" icon="ui-icon-arrowthick-1-s">  
+                    	<p:menuitem value="Solicitação de Portabilidade" url="/pages/gateway/solicitarPortabilidade.jsf" icon="ui-icon-home" />
+                    	<p:menuitem value="Cancelamento de Portabilidade" url="/pages/gateway/cancelarPortabilidade.jsf" icon="ui-icon-wrench" />
+                    	<p:menuitem value="Desconexão" url="/pages/gateway/desconexao.jsf" icon="ui-icon-document" />
+                    </p:submenu>
+                    <p:submenu label="Doadora" icon="ui-icon-arrowthick-1-s">  
+                    
+                    </p:submenu> 
+                    <p:submenu label="Modificar Solicitação" icon="ui-icon-arrowthick-1-s"> 
+                     
+                    </p:submenu>
+                    <p:submenu label="Outros/Auditoria" icon="ui-icon-arrowthick-1-s"> 
+                     
+                    </p:submenu>
+                    <p:submenu label="Envio Timestamp" icon="ui-icon-arrowthick-1-s"> 
+                     
+                    </p:submenu>                     
+                </p:submenu>
+                <p:submenu label="Consultas" icon="ui-icon-arrowthick-1-s">  
+                    <p:menuitem value="Consulta Estado Número" url="/pages/integrator/parametro.jsf" icon="ui-icon-home" />  
+                    <p:menuitem value="Consulta por Número de Telefone" url="/pages/gateway/consultaPorNumero.jsf" icon="ui-icon-document" />  
+                    <p:menuitem value="Consulta de Mensagens" url="/pages/gateway/ConsultaSP.jsf" icon="ui-icon-arrowthick-1-s" />  
+                    <p:menuitem value="Consulta Portabilidades Realizadas" url="/pages/gateway/consultaPortabilidadesRealizadas.jsf" icon="ui-icon-wrench" />
+                    <p:menuitem value="Consulta BDR" url="#" icon="ui-icon-wrench" />
+                    <p:menuitem value="Consulta Pendente de Autorização " url="#" icon="ui-icon-wrench" />  
+                </p:submenu>  
+                <p:submenu label="Manutenção" icon="ui-icon-arrowthick-1-s">
+                	<p:menuitem value="Parâmetros" url="#" icon="ui-icon-wrench" />
+                </p:submenu> 
+            </p:submenu>  
+            <p:submenu label="Integrator" icon="ui-icon-extlink">
+              <!-- 
+                <p:submenu label="Relatórios" icon="ui-icon-arrowthick-1-s">  
+                    <p:menuitem value="Rede" url="/pages/integrator/parametro.jsf" icon="ui-icon-home" />  
+                    <p:menuitem value="Parâmetros" url="/pages/integrator/parametro.jsf" icon="ui-icon-document" />  
+                    <p:menuitem value="Comandos LSMS" url="http://www.primefaces.org/downloads.html" icon="ui-icon-arrowthick-1-s" />  
+                    <p:menuitem value="Comandos SIXBELL" url="http://www.primefaces.org/support.html" icon="ui-icon-wrench" />  
+                </p:submenu>
+                <p:submenu label="Contingência" icon="ui-icon-arrowthick-1-s">  
+                    <p:menuitem value="Reenvio BroadCast" url="/pages/integrator/parametro.jsf" icon="ui-icon-home" />  
+                    <p:menuitem value="Reenvio Evento_5_17" url="http://www.primefaces.org/documentation.html" icon="ui-icon-document" />  
+                    <p:menuitem value="Reenvio MSG_Legados" url="http://www.primefaces.org/downloads.html" icon="ui-icon-arrowthick-1-s" />    
+                </p:submenu>   
+               -->   
+            </p:submenu> 
+           <!--  <p:menuitem value="Mobile" outcome="/mobile/index" icon="ui-icon-signal"/> -->  
+        </p:submenu>  
+    </p:panelMenu>  
+  
+
+</h:body>
+
+</html>

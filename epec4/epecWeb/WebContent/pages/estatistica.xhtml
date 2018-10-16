@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="pageTitle">Estatística</ui:define>
+	<ui:define name="pageHeader">Estatística</ui:define>
+
+	<ui:define name="content" id="conteudo1">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:outputStylesheet library="css" name="ePec_consulta_Pedido.css" />
+		<h:form>
+		</h:form>
+
+		<p:spacer />
+		<p:spacer />
+		<p:spacer />
+		<p:spacer />
+		<p:spacer />
+		<p:spacer />
+		<h:form id="mainForm" onkeypress="return event.keyCode != 13">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+
+
+
+			<p:outputLabel value="#{msg.labelEstatisticasGerais}"
+				styleClass="textOut1" />
+				<p:separator />
+				
+
+
+			<p:panelGrid columns="2" cellpadding="5" style="width:100%"
+				columnClasses="logo,detail">
+				<p:column width="95%">
+					<h:outputText value="#{msg.labelParametro}"
+						style="font-weight: bold" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelValor}" style="font-weight: bold" />
+				</p:column>
+				
+				<p:column>
+					<h:outputText value="#{msg.labelEntidade}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.entidadesTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelFamiliaPedido}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.familiaPedidoTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelUsuarios}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.usuariosTotais}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelPedidoPatente}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.pedidoPatenteTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelPrioridadesAssociadasPedidosPais}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.prioridadeTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelRelatoriosTecnicos}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.relatorioTecnicoTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText		value="#{msg.labelAnterioridadesPatentariasEstatistica}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.anterioridadesPatentariasTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText
+						value="#{msg.labelAnterioridadesNaoPatentariasEstatistica}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.anterioridadesNaoPatentariasTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelComentarios}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.comentariosTotal}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{msg.labelLogCadastrado}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{estatistica.logsTotal}" />
+				</p:column>
+
+			</p:panelGrid>
+
+<br />
+<br />
+
+			<p:outputLabel value="#{msg.labelEstatisticasPorEntidades}"
+				styleClass="textOut1" />
+				<p:separator />
+				
+			<p:dataTable var="estatistica"
+				value="#{estatistica.estatisticaEntidade}" border="1">
+				<p:column width="100">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelEntidade}" />
+
+					</f:facet>
+					<div align="center">
+						<p:graphicImage value="#{estatistica.logoEntidade}" />
+						<br />
+						<h:outputText value="#{estatistica.nomeEntidade}" />
+					</div>
+				</p:column>
+				<p:column width="40">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelUsuarios}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.usuarios}" />
+					</div>
+				</p:column>
+				<p:column width="60">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelPedidoPatente}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.patentes}" />
+					</div>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelPrioridadesAssociadasPedidosPais}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.prioridades}" />
+					</div>
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelRelatoriosTecnicos}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.relatorios}" />
+					</div>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg.labelAnterioridadesPatentariasEstatistica}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.anterioridadePatentarias}" />
+					</div>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg.labelAnterioridadesNaoPatentariasEstatistica}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.anterioridadeNaoPatentarias}" />
+					</div>
+				</p:column>
+				<p:column width="65">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelComentarios}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.comentarios}" />
+					</div>
+				</p:column>
+				<p:column width="40">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelLogCadastrado}" />
+					</f:facet>
+					<div align="center">
+						<h:outputText value="#{estatistica.logs}" />
+					</div>
+				</p:column>
+			</p:dataTable>
+			<p:separator />
+			
+			<p:commandButton id="VoltarEstatistica" value="#{msg.labelVoltar}" actionListener="#{menuView.homeTela}" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

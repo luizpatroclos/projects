@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="pageTitle">Categoria</ui:define>
+	<ui:define name="pageHeader">Categoria</ui:define>
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink
+					actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}">
+					<h:outputText value="#{msg.labelRelatorio}" styleClass="titulo" />
+				</h:commandLink>
+
+			</div>
+
+			<br />
+			<h:panelGrid columns="2" columnClasses="logo,detail">
+
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelLogRelatorio}"
+					actionListener="#{menuView.logRelatorio}">
+				</p:commandButton>
+
+
+			</h:panelGrid>
+			
+			
+			
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true"  life="150000"/>
+			
+			
+			<p:remoteCommand name="mensagemCaracteristica" id="mensagemCaracteristica"
+				actionListener="#{tbCatCaracteristicaMB.mensagemCaracteristica}"
+				autoRun="true" update="messages" />
+				
+			<p:remoteCommand name="nomeRemoteCommand" id="idRemoteCommand"
+				actionListener="#{tbCadCategoriaMB.mensagemInserirAntPatent}"
+				autoRun="true" update="messages" />
+
+			<br />
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelCategoria}" />
+			<p:separator />
+			<br />
+
+
+			<p:dataScroller value="#{tbCadCategoriaMB.relatorio}" var="relatorio"
+				chunkSize="10">
+				<f:facet name="header">
+					<div align="left">
+						<h:outputText value="#{msg.labelRelatorio}"
+							styleClass="tituloGrande" />
+					</div>
+				</f:facet>
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:column>
+						<h:outputText value="#{msg.labelRelatorio} "
+							style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<div align="center">
+							<p:graphicImage value="#{relatorio.imagem}" />
+						</div>
+						<div align="center">
+							<h:outputText value="#{relatorio.strRelatorio}" />
+							<h:outputText value="#{relatorio.idRelatorioEc}" />
+						</div>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{msg.labelStatus}" style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{relatorio.idStatus.strStatus}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{msg.labelSituacao}"
+							style="font-weight: bold" />
+					</h:column>
+					<p:column rendered="#{relatorio.bPublico}">
+						<h:outputText value="Público" />
+					</p:column>
+					
+					<p:column rendered="#{(!relatorio.bPublico)}">
+						<h:outputText value="Privado" />
+					</p:column>
+
+					<h:column>
+						<h:outputText value="#{msg.labelCategoria}"
+							style="font-weight: bold" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{relatorio.tbcadcategoria.strPortugues}" />
+
+					</h:column>
+				</h:panelGrid>
+			</p:dataScroller>
+			<br />
+			<br />
+
+			<p:dataTable emptyMessage="#{msg.labelNenhumPedido}"
+				id="dataTableRelatorioPedido" var="patentes"
+				value="#{tbRelatorioEcMB.patentes2}" type="unordered"
+				itemType="none" style="vertical-align: center;width: 910px"
+				styleClass="paginated">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelPedidoAssociado}"
+						styleClass="tituloGrande" />
+				</f:facet>
+
+				<p:column headerText="#{msg.labelPedido}" style="width:70px">
+					<h:commandLink actionListener="#{tbRelatorioEcMB.visualizarPedido}">
+						<div align="center">
+							<p:graphicImage value="#{patentes.images}" />
+						</div>
+						<div align="center">
+							<h:outputText value="#{patentes.numeroPedido}" />
+						</div>
+						<f:setPropertyActionListener value="#{patentes.idPatenteEc}"
+							target="#{tbPatenteEcMB.pedido}" />
+						<f:setPropertyActionListener value="#{patentes.idPatenteEc}"
+							target="#{tbPatenteEcMB.numeroPatente}" />
+					</h:commandLink>
+
+				</p:column>
+				<p:column headerText="#{msg.labelTitulo}">
+					<h:outputText value="#{patentes.txTitulo}" />
+				</p:column>
+
+			</p:dataTable>
+			<br />
+			<br />
+
+			<h:outputText value="#{msg.labelResumoCategoria}"
+				styleClass="tituloGrande" />
+
+			<pe:ckEditor id="resumo" value="#{tbCadCategoriaMB.resumoCat}"
+				rows="10" cols="120" width="927" height="689" queryDelay="750"
+				minQueryLength="4"
+				customConfig="#{request.contextPath}/resources/js/ckeditor.js" />
+			<br />
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton id="clausulaID" value="#{msg.labelClausulaTipo}"
+					styleClass="botaoPesquisa" type="button"
+					onclick="PF('dialogClausula').show()">
+				</p:commandButton>
+			</h:panelGrid>
+
+			<br />
+			<br />
+
+			<p:panel id="analiseSimplificada"
+				header="#{msg.labelAnaliseSimplicada}" toggleable="true"
+				toggleSpeed="500" closeSpeed="500" widgetVar="panel"
+				style="margin-bottom:20px" styleClass="tituloGrande">
+
+				<br />
+
+
+				<p:dataTable emptyMessage="#{msg.labelNenhumaAntPatentaria}"
+					id="dataTableAnterioridadePatentaria" var="antPatentaria"
+					value="#{tbCadCategoriaMB.antPatentariacat}" type="unordered"
+					itemType="none" style="vertical-align: center;width: 890px"
+					styleClass="paginated">
+
+					<f:facet name="header">
+						<div align="left">
+							<h:outputText value="#{msg.labelAnterioridadesPatentaria}" />
+						</div>
+
+					</f:facet>
+
+					<p:column headerText="#{msg.labelAnterioridades}"
+						style="align: center">
+						<div align="center">
+							<h:outputText value="#{antPatentaria.strAntpatentaria}" maxlength="44" />
+						</div>
+					</p:column>
+					<p:column headerText="#{msg.labelCategoriaDocumento}"
+						style="align: center;width:90px">
+						<div align="center">
+							<h:outputText
+								value="#{antPatentaria.idCadtipoanterioridade.strOmpi}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="#{msg.labelRelevancia}"
+						style="align: center;width:160px">
+						<div align="center">
+							<h:outputText
+								value="#{antPatentaria.idCadtipoanterioridade.strPortugues}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="#{msg.labelAcoes}"
+						style="align: center;width:62px">
+						<div align="center">
+							<p:menuButton value="#{msg.labelAcoes}">
+								<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+									actionListener="#{tbCadCategoriaMB.alterarAnterioridadePatentaria}">
+									<f:setPropertyActionListener value="#{antPatentaria}"
+										target="#{tbCadCategoriaMB.antpatentariacatrelecselect}" />
+								</p:menuitem>
+								<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+									onclick="PF('dialogExcluirPatanteria').show()">
+									<f:setPropertyActionListener value="#{antPatentaria}"
+										target="#{tbCadCategoriaMB.antpatentariacatrelecExcluir}" />
+
+
+								</p:menuitem>
+
+							</p:menuButton>
+						</div>
+					</p:column>
+
+				</p:dataTable>
+				<br />
+				<p:commandButton id="buttonInserir" value="#{msg.labelBotaoInserir}"
+					styleClass="botaoPesquisa"
+					actionListener="#{tbCadCategoriaMB.inserirAnterioridadePatentaria}" />
+
+				<br />
+				<br />
+
+				<br />
+
+
+
+				<p:dataTable emptyMessage="#{msg.labelNenhumaAntNaoPatentaria}"
+					id="dataTableAnterioridadeNaoPatentaria" var="antNaoPatentaria"
+					value="#{tbCadCategoriaMB.antnaoPatentariacat}" type="unordered"
+					itemType="none" style="vertical-align: center;width: 890px"
+					styleClass="paginated">
+
+					<f:facet name="header">
+						<div align="left">
+							<h:outputText value="#{msg.labelAnterioridadesNaoPatentaria}" />
+						</div>
+					</f:facet>
+
+					<p:column headerText="#{msg.labelAnterioridades}"
+						style="align: center">
+						<div align="center">
+							<h:outputText value="#{antNaoPatentaria.txTitulo}" maxlength="65534"/>
+						</div>
+					</p:column>
+					<p:column headerText="#{msg.labelCategoriaDocumento}"
+						style="align: center;width:90px">
+						<div align="center">
+							<h:outputText
+								value="#{antNaoPatentaria.idCadtipoanterioridade.strOmpi}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="#{msg.labelRelevancia}"
+						style="align: center;width:160px">
+						<div align="center">
+							<h:outputText
+								value="#{antNaoPatentaria.idCadtipoanterioridade.strPortugues}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="#{msg.labelAcoes}"
+						style="align: center;width:62px">
+						<div align="center">
+							<p:menuButton value="#{msg.labelAcoes}">
+								<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+									actionListener="#{tbCadCategoriaMB.alterarAnterioridadeNaoPatentaria}">
+									<f:setPropertyActionListener value="#{antNaoPatentaria}"
+										target="#{tbCadCategoriaMB.antnaopatentariacatrelecSelect}" />
+								</p:menuitem>
+								<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+									onclick="PF('dialogExcluirNaoPatanteria').show()">
+									<f:setPropertyActionListener value="#{antNaoPatentaria}"
+										target="#{tbCadCategoriaMB.antnaopatentariacatrelecaExcluir}" />
+
+
+								</p:menuitem>
+
+							</p:menuButton>
+						</div>
+					</p:column>
+
+				</p:dataTable>
+				<br />
+
+				<p:commandButton id="buttonNaoPatentariaCat"
+					value="#{msg.labelBotaoInserir}" styleClass="botaoPesquisa"
+					actionListener="#{tbCadCategoriaMB.inserirAnterioridadeNaoPatentaria}" />
+
+
+
+				<f:facet name="options">
+					<p:menu>
+						<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+							onclick="PF('panel').toggle()" />
+					</p:menu>
+				</f:facet>
+			</p:panel>
+
+			<br />
+			<br />
+
+			<p:panel id="analiseDetalhada" header="#{msg.labelAnaliseDetalhada}"
+				toggleable="true" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panel2" style="margin-bottom:20px"
+				styleClass="tituloGrande">
+
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:commandButton id="inserirCaracteristicaRelatorio"
+						value="#{msg.labelInserirCaracteristica}"
+						actionListener="#{tbCadCategoriaMB.inserirCaracteristica}"
+						styleClass="botaoPesquisa">
+						<f:setPropertyActionListener
+							value="#{tbCadCategoriaMB.tbcatrelatorioec}"
+							target="#{tbCatCaracteristicaMB.tbcatrelatorioec}" />
+							
+							<f:setPropertyActionListener
+							value="1" target="#{tbCatCaracteristicaMB.inserirCaracteristica}" />
+							
+							
+
+					</p:commandButton>
+
+				</h:panelGrid>
+
+
+
+
+				<p:dataTable emptyMessage="#{msg.labelNenhumaCaracteristica}"
+					id="dataTableCaracteristica" var="caracteristica"
+					value="#{tbCadCategoriaMB.caracteristicaRelacionada}"
+					type="unordered" itemType="none"
+					style="vertical-align: center;width: 890px" styleClass="paginated">
+
+					<f:facet name="header">
+						<div align="left">
+							<h:outputText
+								value="#{msg.labelNenhumaCaracteriticaAntPatentaria}" />
+						</div>
+					</f:facet>
+
+					<p:column headerText="#{msg.labelCaracteristica}"
+						style="align: center">
+						<div align="center" style="display:block;max-height:95px;">
+							<h:outputText value="#{caracteristica.txCaracteristica}" escape="false" />
+						</div>
+					</p:column>
+
+
+					<p:column headerText="#{msg.labelAcoes}"
+						style="align: center;width:62px">
+						<div align="center">
+							<p:menuButton value="#{msg.labelAcoes}">
+								<p:menuitem value="#{msg.labelAnterioridade}"
+									icon="ui-icon-plusthick"
+									actionListener="#{tbCatCaracteristicaMB.visualizarAnterioridades}">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect}" />
+
+								</p:menuitem>
+								<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+									actionListener="#{tbCatCaracteristicaMB.alterarCaracteristica}">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect}" />
+										<f:setPropertyActionListener
+							value="1" target="#{tbCatCaracteristicaMB.inserirCaracteristica}" />
+								</p:menuitem>
+								<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+									onclick="PF('dialogExcluirCaracteristica').show()">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecExcluir}" />
+								</p:menuitem>
+
+							</p:menuButton>
+						</div>
+					</p:column>
+				</p:dataTable>
+
+
+				<br />
+				<p:dataTable emptyMessage="#{msg.labelNenhumaCaracteristica}"
+					id="dataTableCaracteristicaNao" var="caracteristica"
+					value="#{tbCadCategoriaMB.caracteristcaNaoRelacionada}"
+					type="unordered" itemType="none"
+					style="vertical-align: center;width: 890px" styleClass="paginated">
+
+					<f:facet name="header">
+						<div align="left">
+							<h:outputText
+								value="#{msg.labelNenhumaCaracteriticaAntNaoPatentaria}"/>
+						</div>
+					</f:facet>
+
+					<p:column headerText="#{msg.labelCaracteristica}"
+						style="align: center">
+						<div align="center" style="display:block;max-height:95px;">
+							<h:outputText value="#{caracteristica.txCaracteristica}" escape="false"/>
+						</div>
+					</p:column>
+
+
+					<p:column headerText="#{msg.labelAcoes}"
+						style="align: center;width:62px">
+						<div align="center">
+							<p:menuButton value="#{msg.labelAcoes}">
+								<p:menuitem value="#{msg.labelInserirAnterioridade}"
+									icon="ui-icon-plusthick"
+									actionListener="#{tbCatCaracteristicaMB.visualizarAnterioridades}">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect}" />
+
+								</p:menuitem>
+								<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil"
+									actionListener="#{tbCatCaracteristicaMB.alterarCaracteristica}">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect}" />
+										<f:setPropertyActionListener
+							value="1" target="#{tbCatCaracteristicaMB.inserirCaracteristica}" />
+
+								</p:menuitem>
+								<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+									onclick="PF('dialogExcluirCaracteristica').show()">
+									<f:setPropertyActionListener value="#{caracteristica}"
+										target="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecExcluir}" />
+
+								</p:menuitem>
+
+							</p:menuButton>
+						</div>
+					</p:column>
+				</p:dataTable>
+
+
+
+
+				<f:facet name="options">
+					<p:menu>
+						<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+							onclick="PF('panel2').toggle()" />
+					</p:menu>
+				</f:facet>
+			</p:panel>
+
+			<br />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton id="salvarInserirCategoria" value="#{msg.salvar}"
+					styleClass="botaoPesquisa"
+					actionListener="#{tbCadCategoriaMB.salvarCategoria}" />
+				<p:commandButton id="cancelarInserirCategoria"
+					value="#{msg.cancelar}" styleClass="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}" />
+
+
+			</h:panelGrid>
+			<br />
+			<br />
+			<br />
+
+
+			<p:dialog global="true" severity="info" showEffect="fade"
+				hideEffect="explode" header="#{msg.msgExcluir}"
+				widgetVar="dialogExcluirNaoPatanteria" id="excluirNaoPatanteria">
+
+
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmNaoPatentaria" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirNaoPatanteria').hide()"
+					actionListener="#{tbCadCategoriaMB.removerAntNaoPatentaria}" />
+				<p:commandButton id="declineNaoPatentaria" value="#{msg.nao}"
+					onclick="PF('dialogExcluirNaoPatanteria').hide()" type="button" />
+
+			</p:dialog>
+
+			<p:dialog global="true" severity="info" showEffect="fade"
+				hideEffect="explode" header="#{msg.msgExcluir}"
+				widgetVar="dialogExcluirPatanteria" id="excluirPatentaria">
+
+
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmCategoria" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirPatanteria').hide()"
+					actionListener="#{tbCadCategoriaMB.removerAntPatentaria}" />
+				<p:commandButton id="declineCategoria" value="#{msg.nao}"
+					onclick="PF('dialogExcluirPatanteria').hide()" type="button" />
+
+			</p:dialog>
+
+
+			<p:dialog global="true" severity="info" showEffect="fade"
+				hideEffect="explode" header="#{msg.msgExcluir}"
+				widgetVar="dialogExcluirCaracteristica" id="excluirCaracteristica">
+
+				<p:commandButton id="confirmCaracteristica" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirCaracteristica').hide()"
+					actionListener="#{tbCatCaracteristicaMB.excluirCaracteristica}" />
+				<p:commandButton id="declineCaracteristica" value="#{msg.nao}"
+					onclick="PF('dialogExcluirCaracteristica').hide()" type="button" />
+
+			</p:dialog>
+
+			<p:dialog header="#{msg.labelClausulaTipo}"
+				widgetVar="dialogClausula" showEffect="blind" hideEffect="explode"
+				resizable="false" id="clausula">
+
+				<p:panelGrid var="lista2" id="panelClausula" columns="1">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelClausulaTipo}" />
+					</f:facet>
+
+					<p:tree id="treeSingle" value="#{tbCadCategoriaMB.root1}"
+						var="document" selectionMode="single"
+						selection="#{tbCadCategoriaMB.selectedNode1}">
+
+						<f:facet name="header">
+							<h:outputText value="#{msg.labelArquivosClausula}" />
+						</f:facet>
+						<p:treeNode>
+							<h:outputText value="#{document}" />
+						</p:treeNode>
+
+					</p:tree>
+
+					<f:facet name="footer">
+
+						<p:commandButton value="#{msg.copiar}"
+							onclick="PF('dialogClausula').hide()" update=":form:resumo"
+							actionListener="#{tbCadCategoriaMB.displaySelectedSingle}">
+							<f:ajax render=":form" />
+						</p:commandButton>
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogClausula').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

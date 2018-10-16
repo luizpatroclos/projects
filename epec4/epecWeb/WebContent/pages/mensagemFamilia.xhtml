@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+		<h:form id="form">
+
+
+<p:remoteCommand name="nomeRemoteCommand2" id="idRemoteCommand2"
+				actionListener="#{tbFamiliaECMB.mensagemSalvarPedidoManual}"
+				 update="messages" />
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+			</div>
+
+			<br />
+			<h:panelGrid columns="2" columnClasses="logo,detail">
+
+
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelLogFamilia}"
+					actionListener="#{menuView.logFamilia}">
+				</p:commandButton>
+
+			</h:panelGrid>
+			<br />
+<h:outputText styleClass="textOut1" value="#{msg.labelMensagem}" />
+			<p:separator />
+
+			<br />
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+			<br />
+
+
+
+			<p:panel id="pnl" header="#{msg.labelEnviarMensagem}">
+				<h:outputLabel styleClass="titulo" value="#{msg.LabelMsgEnviar}" />
+				<br />
+				<br />
+
+				<h:outputLabel styleClass="titulo" value="#{msg.labelAssunto}" />
+				<br />
+				<h:inputText value="#{tbFamiliaECMB.mensagem.titulo}" />
+				<br />
+				<br />
+				<h:outputLabel styleClass="titulo" value="#{msg.labelTextoMensagem}" />
+				<br />
+				<p:inputTextarea rows="10" cols="50" queryDelay="750"
+					minQueryLength="4" value="#{tbFamiliaECMB.mensagem.mensagem}" />
+				<br />
+			
+			</p:panel>
+			
+			<h:panelGrid columns="2" cellpadding="5">
+	<p:commandButton value="#{msg.LabelEnviar}" styleClass="botaoPesquisa"
+					actionListener="#{tbFamiliaECMB.enviarMensagemFamilia}" id="botaoEnviarMensagem" update=":form:pnl">
+					<p:confirm header="Confirmation" message="#{msg.msgContinuar}"
+						icon="ui-icon-alert"/>
+					</p:commandButton>
+			
+
+				<p:commandButton value="#{msg.cancelar}" class="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}" id="botaoEnviarMensagemCancelar">
+				</p:commandButton>
+
+			</h:panelGrid>	
+			
+
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="#{msg.sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

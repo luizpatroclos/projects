@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="epec">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="commons-epec-ejb.jar" deploy-path="/" handle="module:/resource/commons-epec-ejb/commons-epec-ejb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="epecWeb.war" deploy-path="/" handle="module:/resource/epecWeb/epecWeb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="serviceConsulta.jar" deploy-path="/lib" handle="module:/resource/serviceConsulta/serviceConsulta">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ePecWs.war" deploy-path="/" handle="module:/resource/ePecWs/ePecWs">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

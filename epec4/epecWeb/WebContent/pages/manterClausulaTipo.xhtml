@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Clausula Tipo</ui:define>
+	<ui:define name="pageHeader">Manutenção de Clausula Tipo</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+<br />
+
+		<h:form id="form">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+			<br />
+			
+			<p:remoteCommand name="nomeRemoteCommand2" id="idRemoteCommand2"
+				actionListener="#{clausulaTipoMB.mensagemClausula}"
+				autoRun="true" update="messages" />
+			
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelClausulaTipo}" />
+			<p:separator />
+<br /><br />
+
+			<p:dataTable id="mainDataTable" autoUpdate="true" var="nos"
+				value="#{clausulaTipoMB.nosList}"
+				filteredValue="#{clausulaTipoMB.filteredNosList}" type="unordered"
+				itemType="none" style="vertical-align: center" paginator="true"
+				rows="10" styleClass="paginated">
+
+				<f:facet name="header">
+					<p:commandButton value="#{msg.labelInserirFilho}"
+						icon="ui-icon-star" update=":newUserForm:panelCriar"
+						oncomplete="PF('dialogCriar').show()" />
+
+				</f:facet>
+
+				<p:column id="IdFilhos" headerText="id" style="width: 30px">
+					<div align="center">
+						<h:outputText value="#{nos.idNo}" />
+					</div>
+				</p:column>
+
+
+				<p:column id="IdPai" headerText="#{msg.labelidPai}"
+					style="width: 30px">
+					<div align="center">
+						<h:outputText value="#{nos.idTbnoPai.idNo}" />
+					</div>
+				</p:column>
+
+
+				<p:column id="txTituloPortugues"
+					filterBy="#{nos.txTituloPortugues}"
+					headerText="#{msg.labelTituloPortugues}" filterMatchMode="contains"
+					style="width:120px">
+					<h:outputText value="#{nos.txTituloPortugues.toUpperCase()}"
+						style="width: 150px" />
+				</p:column>
+
+
+				<p:column id="txTituloIngles" headerText="#{msg.labelTituloIngles}"
+					filterBy="#{nos.txTituloIngles.toUpperCase()}"
+					filterMatchMode="contains" style="width:120px">
+					<h:outputText value="#{nos.txTituloIngles.toUpperCase()}"
+						style="width: 150px" />
+				</p:column>
+
+				<p:column id="txTituloEspanhol"
+					headerText="#{msg.labelTituloEspanhol}"
+					filterBy="#{nos.txTituloEspanhol.toUpperCase()}"
+					filterMatchMode="contains" style="width:120px">
+					<h:outputText value="#{nos.txTituloEspanhol.toUpperCase()}"
+						style="width: 150px" />
+				</p:column>
+
+				<p:column headerText="#{msg.labelConteudo}">
+
+					<h:outputText value="#{nos.idClausulaTipo.name}" />
+
+				</p:column>
+
+
+				<p:column headerText="#{msg.labelAcoes}"
+					style="align:center;width:80px">
+					<div align="center">
+						<p:menuButton value="#{msg.labelAcoes}"
+							rendered="#{nos.idTbnoPai != null}">
+
+
+
+							<p:menuitem value="#{msg.labelAlterarTitulos}"
+								icon="ui-icon-pencil" update=":noForm:panelAlterarNo"
+								oncomplete="PF('dialogAlterarNo').show()">
+								<f:setPropertyActionListener value="#{nos}"
+									target="#{clausulaTipoMB.noSelected}" />
+							</p:menuitem>
+
+							<p:menuitem value="#{msg.labelAlterarPai}" icon="ui-icon-pencil"
+								update=":paiForm:panelAlterarPai"
+								oncomplete="PF('dialogAlterarPai').show()"
+								rendered="#{(nos.idTbnoPai.idTbnoPai != null)}">
+								<f:setPropertyActionListener value="#{nos}"
+									target="#{clausulaTipoMB.noSelected}" />
+							</p:menuitem>
+
+							<p:menuitem value="#{msg.labelAlterarClausulaTipo}"
+								icon="ui-icon-pencil"
+								update=":clausulaForm:panelAlterarClausula"
+								oncomplete="PF('dialogAlterarClausula').show()"
+								rendered="#{nos.idClausulaTipo != null}">
+								<f:setPropertyActionListener value="#{nos}"
+									target="#{clausulaTipoMB.noSelected}" />
+							</p:menuitem>
+
+							<p:menuitem value="#{msg.labelExcluirClausulaTipo}"
+								icon="ui-icon-close" update=":form"
+								onclick="PF('dialogExcluirClausula').show()"
+								rendered="#{nos.idClausulaTipo != null}">
+								<f:setPropertyActionListener value="#{nos}"
+									target="#{clausulaTipoMB.noSelected}" />
+							</p:menuitem>
+
+							<p:menuitem value="#{msg.labelExcluirNo}" icon="ui-icon-close"
+								onclick="PF('dialogExcluirNO').show()"
+								rendered="#{nos.idClausulaTipo == null}">
+								<f:setPropertyActionListener value="#{nos}"
+									target="#{clausulaTipoMB.noSelected}" />
+							</p:menuitem>
+
+
+						</p:menuButton>
+					</div>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+
+		<!-- Inserir Filho -->
+
+		<p:dialog header="#{msg.labelBotaoInserir}" widgetVar="dialogCriar"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="newUserDlg">
+			<h:form id="newUserForm">
+				<p:panelGrid var="lista2" id="panelCriar" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelIncluirFilho}" />
+					</f:facet>
+
+					<h:outputText id="titulo" value="#{msg.labelPortugues}" />
+					<p:inputText value="#{clausulaTipoMB.newNos.txTituloPortugues}"
+						requiredMessage="Informe um nome" required="true">
+						<f:ajax execute="titulo" render="clausula" />
+					</p:inputText>
+
+					<h:outputText value="#{msg.labelingles}" />
+					<p:inputText value="#{clausulaTipoMB.newNos.txTituloIngles}" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<p:inputText value="#{clausulaTipoMB.newNos.txTituloEspanhol}" />
+
+					<p:outputLabel for="dirAux" value="#{msg.labelPai}" />
+					<p:selectOneMenu id="dirAux" br.gov.inpi.epec.filter="true"
+						value="#{clausulaTipoMB.dirAux}" style="width:150px">
+						<f:selectItem itemLabel="Selecione o Pai" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{clausulaTipoMB.nosPaiList}" var="Tbnos"
+							itemLabel="#{Tbnos.idNo} - #{Tbnos.txTituloPortugues}"
+							itemValue="#{Tbnos.idNo}" />
+					</p:selectOneMenu>
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}"
+							actionListener="#{clausulaTipoMB.createClausulaTipo()}">
+						</p:commandButton>
+
+						<p:commandButton id="clausula" value="#{msg.labelClausulaTipo}"
+							ajax="true"
+							disabled="#{clausulaTipoMB.newNos.txTituloPortugues == null}"
+							oncomplete="PF('dialogCriarClausula').show()" icon="ui-icon-star"
+							update=":newUserForm2:panelCriar2"
+							title="#{msg.labelClausulaTipo}" />
+
+
+						<p:commandButton value="#{msg.cancelar}"
+							actionListener="#{clausulaTipoMB.flush()}"
+							onclick="PF('dialogCriar').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de Inserir filho -->
+
+
+		<!-- Inserir Clasula Tipo Pelo Inserir Filho -->
+
+		<p:dialog header="#{msg.labelClausulaTipo}"
+			widgetVar="dialogCriarClausula" showEffect="blind"
+			hideEffect="explode" resizable="false" id="newUserDlg2"
+			height="300px" width="800px">
+			<h:form id="newUserForm2">
+				<p:panelGrid var="lista2" id="panelCriar2" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelClausulaTipo}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelPai}" />
+					<p:outputLabel value="#{clausulaTipoMB.newNos.txTituloPortugues}" />
+
+					<h:outputText value="#{msg.labelPortugues}" />
+					<h:inputTextarea style="width: 650px" minQueryLength="4"
+						value="#{clausulaTipoMB.newClausula.txPortugues}"
+						requiredMessage="Informe um nome" />
+
+					<h:outputText value="#{msg.labelingles}" />
+					<h:inputTextarea style="width: 650px" minQueryLength="4"
+						value="#{clausulaTipoMB.newClausula.txIngles}" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<h:inputTextarea style="width: 650px" minQueryLength="4"
+						value="#{clausulaTipoMB.newClausula.txEspanhol}" />
+
+
+					<f:facet name="footer">
+
+						<p:commandButton value="#{msg.labelIncluir}" oncomplete="PF('dialogCriarClausula').hide()">
+						</p:commandButton>
+
+						<p:commandButton id="clausulaTres" value="#{msg.cancelar}"
+							update=":newUserForm2:panelCriar2"
+							actionListener="#{clausulaTipoMB.flush()}"
+							onclick="PF('dialogCriarClausula').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!--fim  Inserir Clasula Tipo Pelo Inserir Filho -->
+
+
+		<!-- Alterar titulo -->
+
+		<p:dialog header="#{msg.labelAlterarNo}" widgetVar="dialogAlterarNo"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="AlterarNo">
+			<h:form id="noForm">
+				<p:panelGrid var="lista2" id="panelAlterarNo" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelNoASerAlterado}" />
+						<h:outputText value="#{clausulaTipoMB.noSelected.idNo}" />
+					</f:facet>
+
+					<h:outputText id="main" value="#{msg.labelPortugues}" />
+					<p:inputText value="#{clausulaTipoMB.noSelected.txTituloPortugues}">
+					</p:inputText>
+
+					<h:outputText value="#{msg.labelingles}" />
+					<p:inputText value="#{clausulaTipoMB.noSelected.txTituloIngles}" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<p:inputText value="#{clausulaTipoMB.noSelected.txTituloEspanhol}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.alterar}"
+						
+							actionListener="#{clausulaTipoMB.updateClausulaTipo()}">
+
+							<f:param name="tipo" value="no" />
+
+						</p:commandButton>
+						<p:commandButton id="clausulaalterar"
+							value="#{msg.labelClausulaTipo}" ajax="true"
+							rendered="#{clausulaTipoMB.noSelected.idClausulaTipo == null}"
+							oncomplete="PF('dialogCriarClausula3').show()"
+							icon="ui-icon-star" update=":newUserForm2:panelCriar2"
+							title="#{msg.labelClausulaTipo}" />
+
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterarNo').hide()"></p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de alterar titulo -->
+
+
+		<!-- Inserir Clausula tipo de alterar titulo -->
+
+		<p:dialog header="#{msg.labelIncluirClausulaTipo}"
+			widgetVar="dialogCriarClausula3" showEffect="blind"
+			hideEffect="explode" resizable="false" id="newUserDlg4"
+			height="300px" width="800px">
+			<h:form id="newUserForm4">
+				<p:panelGrid var="lista2" id="panelCriar4" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelClausulaTipo}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelPai}" />
+					<p:outputLabel value="#{clausulaTipoMB.noSelected.idNo}" />
+
+					<h:outputText value="#{msg.labelPortugues}" />
+					<p:inputTextarea value="#{clausulaTipoMB.newClausula.txPortugues}"
+						requiredMessage="Informe um nome" style="width: 650px" />
+
+					<h:outputText value="#{msg.labelingles}" />
+					<p:inputTextarea value="#{clausulaTipoMB.newClausula.txIngles}"
+						style="width: 650px" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<p:inputTextarea value="#{clausulaTipoMB.newClausula.txEspanhol}"
+						style="width: 650px" />
+
+					<f:facet name="footer">
+
+						<p:commandButton value="#{msg.labelIncluir}"
+							actionListener="#{clausulaTipoMB.inserirClausulaTipoEmNoExistente()}">
+						</p:commandButton>
+
+						<p:commandButton id="clausula4" value="#{msg.cancelar}"
+							update=":newUserForm2:panelCriar2"
+							onclick="PF('dialogCriarClausula3').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de inserir clausula tipo de alterar titulo -->
+
+		<!-- Alterar Pai -->
+
+		<p:dialog header="#{msg.labelAlterarPai}" widgetVar="dialogAlterarPai"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="AlterarPai">
+			<h:form id="paiForm">
+				<p:panelGrid var="lista2" id="panelAlterarPai" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelNoASerAlterado}" />
+						<h:outputText value="#{clausulaTipoMB.noSelected.idTbnoPai.idNo}" />
+					</f:facet>
+
+					<h:outputText id="main" value="#{msg.labelPortugues}" />
+					<p:inputText
+						value="#{clausulaTipoMB.noSelected.idTbnoPai.txTituloPortugues}">
+					</p:inputText>
+
+					<h:outputText value="#{msg.labelingles}" />
+					<p:inputText
+						value="#{clausulaTipoMB.noSelected.idTbnoPai.txTituloIngles}" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<p:inputText
+						value="#{clausulaTipoMB.noSelected.idTbnoPai.txTituloEspanhol}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.alterar}"
+							actionListener="#{clausulaTipoMB.updateClausulaTipo()}">
+
+							<f:param name="tipo" value="pai" />
+
+						</p:commandButton>
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterarPai').hide()"></p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de Alterar Pai -->
+
+
+		<!-- Alterar Clausula tipo -->
+
+		<p:dialog header="#{msg.labelAlterarClausulaTipo}"
+			widgetVar="dialogAlterarClausula" showEffect="blind"
+			hideEffect="explode" resizable="false" id="AlterarClausula"
+			height="300px" width="800px">
+			<h:form id="clausulaForm">
+				<p:panelGrid var="lista2" id="panelAlterarClausula" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelClausulaTipo}" />: 
+						<h:outputText value="#{clausulaTipoMB.noSelected.idClausulaTipo.idClausulaTipo}" />
+					</f:facet>
+
+					<h:outputText id="main" value="#{msg.labelPortugues}" />
+					<h:inputTextarea style="width: 650px"
+						value="#{clausulaTipoMB.noSelected.idClausulaTipo.txPortugues}" />
+
+
+					<h:outputText value="#{msg.labelingles}" />
+					<h:inputTextarea style="width: 650px"
+						value="#{clausulaTipoMB.noSelected.idClausulaTipo.txIngles}" />
+
+					<h:outputText value="#{msg.labelEspanhol}" />
+					<h:inputTextarea style="width: 650px"
+						value="#{clausulaTipoMB.noSelected.idClausulaTipo.txEspanhol}" />
+
+					<f:facet name="footer">
+
+						<p:commandButton value="#{msg.alterar}"
+							actionListener="#{clausulaTipoMB.updateClausulaTipo()}">
+
+							<f:param name="tipo" value="clausula" />
+
+						</p:commandButton>
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterarClausula').hide()"></p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de alterar clausula tipo -->
+
+		<!-- Excluir Clausula tipo -->
+		<p:dialog global="true" severity="info" showEffect="fade"
+			hideEffect="explode" header="#{msg.excluir}"
+			widgetVar="dialogExcluirClausula" id="excluirclausula">
+			<h:form id="removeClausulaForm">
+
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmClausula" value="#{msg.sim}"
+					update=":form" oncomplete="PF('dialogExcluirClausula').hide()"
+					actionListener="#{clausulaTipoMB.removerClausulaTipo()}">
+
+					<f:ajax render=":form:mainDataTable" />
+
+				</p:commandButton>
+
+				<p:commandButton id="declineClausula" value="#{msg.nao}"
+					onclick="PF('dialogExcluirClausula').hide()" type="button" />
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de excluir clausula tipo -->
+
+
+		<!-- excluir nó -->
+
+		<p:dialog global="true" severity="info" showEffect="fade"
+			hideEffect="explode" header="#{msg.excluir}"
+			widgetVar="dialogExcluirNO" id="excluirNO">
+			<h:form id="removeClausulaForm2">
+
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmClausula" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirNO').hide()"
+					actionListener="#{clausulaTipoMB.removerNO()}">
+
+					<f:ajax render=":form:mainDataTable" />
+
+				</p:commandButton>
+
+				<p:commandButton id="declineClausula" value="#{msg.nao}"
+					onclick="PF('dialogExcluirNO').hide()" type="button" />
+			</h:form>
+		</p:dialog>
+
+		<!-- fim de excluir Nó -->
+
+
+	</ui:define>
+
+
+</ui:composition>

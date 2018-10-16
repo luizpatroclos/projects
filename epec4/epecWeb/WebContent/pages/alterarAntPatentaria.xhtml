@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+		xmlns:pe="http://primefaces.org/ui/extensions">
+
+		<ui:define name="pageTitle">Inserir Anterioridade Patentária</ui:define>
+		<ui:define name="pageHeader">Inserir Anterioridade Patentária</ui:define>
+
+		<ui:define name="content" id="conteudo1">
+				<ui:insert>
+						<ui:include src="/pages/menu.xhtml" />
+				</ui:insert>
+				<h:form id="form">
+
+						<div class="panelGridTeste">
+
+								<h:commandLink actionListener="#{menuView.homeTela}">
+										<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+										<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}">
+										<h:outputText value="#{msg.labelRelatorio}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbCadCategoriaMB.menuVoltarCategoria}">
+										<h:outputText value="#{msg.labelCategoria}" styleClass="titulo" />
+
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbCatCaracteristicaMB.visualizarAnterioridades}">
+										<h:outputText value="#{msg.labelCaracteristica}" styleClass="titulo" />
+								</h:commandLink>
+
+						</div>
+
+						<br />
+						<h:panelGrid columns="2" columnClasses="logo,detail">
+
+								<p:commandButton class="botaoPesquisa" value="#{msg.labelLogRelatorio}" actionListener="#{menuView.logRelatorio}">
+								</p:commandButton>
+
+
+						</h:panelGrid>
+						<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life="150000" />
+
+
+
+						<br />
+
+						<h:outputText styleClass="textOut1" value="#{msg.labelAnterioridadesPatentaria}" />
+						<p:separator />
+						<br />
+
+						<p:dataScroller value="#{tbCadCategoriaMB.relatorio}" var="relatorio" chunkSize="10">
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelRelatorio}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<h:panelGrid columns="2" cellpadding="5">
+										<h:column>
+												<h:outputText value="#{msg.labelRelatorio} " style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<div align="center">
+														<p:graphicImage value="#{relatorio.imagem}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{relatorio.strRelatorio}" />
+														<h:outputText value="#{relatorio.idRelatorioEc}" />
+												</div>
+										</h:column>
+										<h:column>
+												<h:outputText value="#{msg.labelStatus}" style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{relatorio.idStatus.strStatus}" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{msg.labelSituacao}" style="font-weight: bold" />
+										</h:column>
+										<p:column rendered="#{relatorio.bPublico}">
+												<h:outputText value="Público" />
+										</p:column>
+
+										<p:column rendered="#{(!relatorio.bPublico)}">
+												<h:outputText value="Privado" />
+										</p:column>
+
+										<h:column>
+												<h:outputText value="#{msg.labelCategoria}" style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{relatorio.tbcadcategoria.strPortugues}" />
+
+										</h:column>
+								</h:panelGrid>
+						</p:dataScroller>
+						<br />
+						<br />
+						<br />
+						<br />
+						<h:outputText value="#{msg.labelCaracteristica}" style="font-weight: bold" styleClass="tituloGrande" />
+						<p:panel style="overflow-y: auto;display:block;max-height:150px;">
+								<h:outputText value="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect.txCaracteristica}" escape="false" />
+						</p:panel>
+						<br />
+
+
+						<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="#{msg.antpatentaria}" style="font-weight: bold" styleClass="tituloGrande" />
+								<h:inputText value="#{tbCatCaracteristicaMB.tbantpatentariaSelect.strAntpatentaria}" maxlength="44" />
+
+
+						</h:panelGrid>
+
+						<br />
+
+						<h:outputText value="#{msg.labelRelacao}" styleClass="tituloGrande" />
+						<br />
+
+						<pe:ckEditor id="relacao" value="#{tbCatCaracteristicaMB.relacao}" rows="10" cols="120" width="927" height="689" queryDelay="750"
+								minQueryLength="4" customConfig="#{request.contextPath}/resources/js/ckeditor.js" />
+
+						<br />
+
+						<h:panelGrid columns="2" cellpadding="5">
+								<p:commandButton id="clausulaIDRelacao" value="#{msg.labelClausulaTipo}" styleClass="botaoPesquisa" type="button"
+										onclick="PF('dialogClausulaRelacao').show()">
+								</p:commandButton>
+
+						</h:panelGrid>
+
+						<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="#{msg.labelRelevancia}" style="font-weight: bold" />
+
+								<p:selectOneMenu id="basic" value="#{tbCatCaracteristicaMB.tbantpatentariaSelect.idCadtipoanterioridade.idCadtipoanterioridade}">
+										<f:selectItems value="#{tbRelatorioEcMB.escolherRelevancia}" var="Tbcadtipoanterioridade" itemLabel="#{Tbcadtipoanterioridade.strPortugues}"
+												itemValue="#{Tbcadtipoanterioridade.idCadtipoanterioridade}" />
+								</p:selectOneMenu>
+
+						</h:panelGrid>
+						<br />
+
+						<h:outputText value="#{msg.labelRelacaoReivindicacao}" styleClass="tituloGrande" />
+						<br />
+
+						<pe:ckEditor id="reivindica" value="#{tbCatCaracteristicaMB.reivindicacao}" rows="10" cols="120" width="927" height="689" queryDelay="750"
+								minQueryLength="4" customConfig="#{request.contextPath}/resources/js/ckeditor.js" />
+
+						<br />
+
+						<h:panelGrid columns="2" cellpadding="5">
+								<p:commandButton id="clausulaIDReinvidica" value="#{msg.labelClausulaTipo}" styleClass="botaoPesquisa" type="button"
+										onclick="PF('dialogClausulaReivindica').show()">
+								</p:commandButton>
+
+						</h:panelGrid>
+
+						<h:panelGrid columns="2" cellpadding="5">
+								<p:commandButton id="salvarInserirAnterioridadePatCar" value="#{msg.alterar}" styleClass="botaoPesquisa"
+										actionListener="#{tbCatCaracteristicaMB.updateAntPatentaria}" />
+
+								<p:commandButton id="cancelarInserirAnterioridade" value="#{msg.cancelar}" styleClass="botaoPesquisa"
+										actionListener="#{tbCatCaracteristicaMB.voltarAnterioridadeCaracteristica}" />
+
+						</h:panelGrid>
+
+						<p:dialog header="#{msg.labelClausulaTipo}" widgetVar="dialogClausulaRelacao" showEffect="blind" hideEffect="explode" resizable="false"
+								id="clausulaRelacao">
+
+								<p:panelGrid var="lista2" id="panelClausulaRelacao" columns="1">
+
+										<f:facet name="header">
+												<h:outputText value="#{msg.labelClausulaTipo}" />
+										</f:facet>
+
+										<p:tree id="treeSingle1" value="#{tbCatCaracteristicaMB.root2}" var="document" selectionMode="single"
+												selection="#{tbCatCaracteristicaMB.selectedNode2}">
+
+												<f:facet name="header">
+														<h:outputText value="#{msg.labelArquivosClausula}" />
+												</f:facet>
+												<p:treeNode>
+														<h:outputText value="#{document}" />
+												</p:treeNode>
+
+										</p:tree>
+
+										<f:facet name="footer">
+
+												<p:commandButton value="#{msg.copiar}" onclick="PF('dialogClausulaRelacao').hide()" update=":form:relacao"
+														actionListener="#{tbCatCaracteristicaMB.displaySelectedSingle}">
+														<f:ajax render=":form" />
+												</p:commandButton>
+
+												<p:commandButton type="reset" value="#{msg.cancelar}" onclick="PF('dialogClausulaRelacao').hide()"></p:commandButton>
+										</f:facet>
+
+								</p:panelGrid>
+
+						</p:dialog>
+
+
+						<p:dialog header="#{msg.labelClausulaTipo}" widgetVar="dialogClausulaReivindica" showEffect="blind" hideEffect="explode" resizable="false"
+								id="clausulaReivindica">
+
+								<p:panelGrid var="lista2" id="panelClausulaReivindica" columns="1">
+
+										<f:facet name="header">
+												<h:outputText value="#{msg.labelClausulaTipo}" />
+										</f:facet>
+
+										<p:tree id="treeSingle2" value="#{tbCatCaracteristicaMB.root2}" var="document" selectionMode="single"
+												selection="#{tbCatCaracteristicaMB.selectedNode3}">
+
+												<f:facet name="header">
+														<h:outputText value="#{msg.labelArquivosClausula}" />
+												</f:facet>
+												<p:treeNode>
+														<h:outputText value="#{document}" />
+												</p:treeNode>
+
+										</p:tree>
+
+										<f:facet name="footer">
+
+												<p:commandButton value="#{msg.copiar}" onclick="PF('dialogClausulaReivindica').hide()" update=":form:reivindica"
+														actionListener="#{tbCatCaracteristicaMB.displaySelectedSingle}">
+														<f:ajax render=":form" />
+												</p:commandButton>
+
+												<p:commandButton type="reset" value="#{msg.cancelar}" onclick="PF('dialogClausulaReivindica').hide()"></p:commandButton>
+										</f:facet>
+
+								</p:panelGrid>
+
+						</p:dialog>
+						<br />
+						<br />
+						<br />
+				</h:form>
+		</ui:define>
+</ui:composition>

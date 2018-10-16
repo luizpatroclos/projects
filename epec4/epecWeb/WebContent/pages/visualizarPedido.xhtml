@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+		<h:form id="form">
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+
+				<p:growl id="messages" showDetail="true" autoUpdate="true"
+					closable="true" life="150000" />
+
+			</div>
+
+			<br />
+			<h:panelGrid columns="5" columnClasses="logo,detail">
+
+				<p:commandButton id="logPedido" class="botaoPesquisa"
+					value="#{msg.labelLogPedido}"
+					actionListener="#{menuView.logPedido}" rendered="#{(isAdminstrador ne '4')}">
+				</p:commandButton>
+				<p:commandButton id="logVisualizarDados" class="botaoPesquisa"
+					value="#{msg.labelVisualizarDadosFamilia}"
+					actionListener="#{tbFamiliaECMB.obterDadosCompletoFamilia()}">
+				</p:commandButton>
+				<p:commandButton id="logDiagramaFamilia" class="botaoPesquisa"
+					value="#{msg.labelDiagramaFamilia}"
+					actionListener="#{tbPatenteEcMB.prepararRelatorio}">
+
+				</p:commandButton>
+
+				<p:commandButton id="recuperarPedido" class="botaoPesquisa"
+					value="#{msg.labelRecuperarDadosPedido}"
+					onclick="PF('dialogRecuperarPedido').show()" rendered="#{(isAdminstrador ne '4')}">
+				</p:commandButton>
+
+				<p:commandButton id="editarPedido"
+					value="#{msg.editar} #{msg.labelPedido}"
+					actionListener="#{tbPatenteEcMB.editarPedido}"
+					class="botaoPesquisa" rendered="#{(isAdminstrador ne '4')}">
+					<f:setPropertyActionListener value="#{pedidos}"
+						target="#{tbPatenteEcMB.patenteSelecionada}" />
+				</p:commandButton>
+
+
+			</h:panelGrid>
+
+
+			<p:remoteCommand name="nomeRemoteCommand2" id="idRemoteCommand2"
+				actionListener="#{tbPatenteEcMB.mensagemEditarPrioridade}"
+				autoRun="true" update="messages" />
+
+
+			<br />
+
+
+
+			<h:outputText styleClass="textOut1"
+				value="#{msg.labelDadosBibliograficos}" />
+			<p:separator />
+			<br />
+			<br />
+
+
+			<p:dataScroller value="#{tbPatenteEcMB.patente}" var="pedidos"
+				chunkSize="10">
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelPedido}" />
+
+				</f:facet>
+
+				<h:panelGrid columns="2" style="width:100%"
+					columnClasses="logo,detail">
+
+					<h:panelGrid id="pgPedido" columns="2" cellpadding="5">
+
+						<h:outputText value="#{msg.labelPedido}" style="font-weight: bold" />
+						<h:outputText value="#{pedidos.numeroPedido}" />
+
+						<h:outputText value="#{msg.labelNumeroPedidoDOCDB}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.numeroPedidoDOCDB}" />
+
+						<h:outputText value="#{msg.labelNumeroPedidoEPODOC}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.strPedNumEpodoc}" />
+
+						<h:outputText value="#{msg.labelNumeroPedidoORIGINAL}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.strPedNumOriginal}" />
+
+						<h:outputText value="#{msg.labelNumeroPublicacaoDOCDB}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.numeroPublicacaoDOCDB}" />
+
+
+						<h:outputText value="#{msg.labelNumeroPublicacaoEPODOC}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.numeroPublicacaEPODOC}" />
+
+						<h:outputText value="#{msg.labelInsercao}"
+							style="font-weight: bold" rendered="#{pedidos.automatico}" />
+						<h:outputText value="Automático" rendered="#{pedidos.automatico}" />
+
+
+						<h:outputText value="#{msg.labelInsercao}"
+							style="font-weight: bold" rendered="#{!(pedidos.automatico)}" />
+						<h:outputText value="Manual" rendered="#{!(pedidos.automatico)}" />
+
+						<h:outputText value="#{msg.labelTitulo}" style="font-weight: bold" />
+						<h:outputText value="#{pedidos.txTitulo}" />
+
+						<h:outputText value="#{msg.labelDataDeposito}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.dtDeposito}" />
+
+
+						<h:outputText value="#{msg.labelDataPublicacao}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.dtPublicacao}" />
+
+
+						<h:outputText value="#{msg.labelInventor}"
+							style="font-weight: bold" />
+						<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+							id="dataTableInventorVisualizar" autoUpdate="true" var="inventor"
+							value="#{tbPatenteEcMB.obterInventor}" type="unordered"
+							itemType="none" style="vertical-align: center;width: 300px"
+							styleClass="paginated">
+
+							<p:column headerText="#{msg.labelInventor}">
+								<h:outputText value="#{inventor.txInventor}" />
+							</p:column>
+
+						</p:dataTable>
+
+						<h:outputText value="#{msg.labelDepositante}"
+							style="font-weight: bold" />
+						<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+							id="dataTableDepositanteVisualizar" autoUpdate="true"
+							var="depositante" value="#{tbPatenteEcMB.obterDepositante}"
+							type="unordered" itemType="none"
+							style="vertical-align: center;width: 300px"
+							styleClass="paginated">
+
+							<p:column headerText="#{msg.labelDepositante}">
+								<h:outputText value="#{depositante.txDepositante}" />
+							</p:column>
+
+						</p:dataTable>
+
+						<h:outputText value="#{msg.labelNumeroReivindicacao}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.strReivindicacao}" />
+
+
+						<h:outputText value="#{msg.labelProcurador}"
+							style="font-weight: bold" />
+						<h:outputText value="#{pedidos.txProcurador}" />
+
+						<h:outputText value="#{msg.labelClassificacao}"
+							style="font-weight: bold" />
+						<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+							id="dataTableClassificacaoVisualizar" autoUpdate="true"
+							var="classificao" value="#{tbPatenteEcMB.obterClassificacao}"
+							type="unordered" itemType="none"
+							style="vertical-align: center;width: 300px"
+							styleClass="paginated">
+
+							<p:column headerText="#{msg.labelClassificacao}">
+								<h:outputText value="#{classificao.txClassificacao}" />
+							</p:column>
+
+						</p:dataTable>
+
+						<h:outputText value="#{msg.labelRelatorio}"
+							style="font-weight: bold" />
+
+
+						<h:commandLink
+							actionListener="#{tbRelatorioEcMB.visualizarRelatorio}">
+							<div align="center">
+								<p:graphicImage value="#{pedidos.tbrelatorioec.imagem}" />
+							</div>
+							<div align="center">
+								<h:outputText value="#{pedidos.tbrelatorioec.strRelatorio}" />
+								<h:outputText value="#{pedidos.tbrelatorioec.idRelatorioEc}" />
+							</div>
+							<f:setPropertyActionListener
+								value="#{pedidos.tbrelatorioec.idRelatorioEc}"
+								target="#{tbRelatorioEcMB.numeroRelatorio}" />
+
+							<f:param name="numeroRelatorio"
+								value="#{pedidos.tbrelatorioec.idRelatorioEc}" />
+							<f:param name="pedidoRelatorio" value="#{pedidos.idPatenteEc}" />
+
+						</h:commandLink>
+
+
+						<h:outputText value="#{msg.labelResumo}" style="font-weight: bold" />
+						<h:outputText value="#{pedidos.txResumo}" escape="false" />
+
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+			</p:dataScroller>
+			<h2>
+				<h:outputText value="#{msg.labelPrioridades}" />
+			</h2>
+			<p:dataTable id="dataTableprioridade" autoUpdate="true"
+				var="prioridades" value="#{tbPatenteEcMB.prioridades}"
+				type="unordered" itemType="none" style="vertical-align: center"
+				paginator="true" rows="5" styleClass="paginated"
+				emptyMessage="#{msg.labelNenhumRegistroEncontrado}">
+
+				<f:facet name="header">
+
+					<p:commandButton value="#{msg.labelBotaoInserir}"
+						actionListener="#{tbPatenteEcMB.redirecionarParaSalvarPrioridade}"
+						title="#{msg.CriarNovaPrioridade}" rendered="#{(isAdminstrador ne '4')}" />
+
+				</f:facet>
+
+				<p:column headerText="id" style="display:none">
+					<h:outputText value="#{prioridades.idPrioridadeEc}" />
+				</p:column>
+				<p:column headerText="#{msg.labelEntidade}">
+					<h:outputText value="#{prioridades.strPrioridade}" />
+				</p:column>
+				<p:column headerText="#{msg.labelDataDeposito}" style="width:100px">
+					<div align="center">
+						<h:outputText value="#{prioridades.dtDeposito}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</div>
+				</p:column>
+
+				<p:column style="align: center;width:62px">
+					<div align="center">
+						<p:menuButton value="#{msg.labelAcoes}" disabled="#{(isAdminstrador eq '4')}">
+							<p:menuitem value="#{msg.alterar}"
+								actionListener="#{tbPatenteEcMB.atualizarPrioridade}"
+								icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{prioridades}"
+									target="#{tbPatenteEcMB.prioridadeSelecionada}" />
+							</p:menuitem>
+
+							<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+								update="@(.ui-datatable)"
+								oncomplete="PF('dialogExcluir').show()">
+								<f:setPropertyActionListener value="#{prioridades}"
+									target="#{tbPatenteEcMB.prioridadeSelecionada}" />
+							</p:menuitem>
+
+						</p:menuButton>
+					</div>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+		<p:confirmDialog global="true" severity="info"
+			message="#{msg.msgExcluir}" showEffect="fade" hideEffect="explode"
+			header="Excluir" widgetVar="dialogExcluir" id="excluir">
+			<h:form>
+				<p:commandButton id="confirm" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluir').hide()"
+					actionListener="#{tbPatenteEcMB.deletePrioridade}"
+					update="@(.ui-datatable)" />
+				<p:commandButton id="decline" value="#{msg.nao}"
+					onclick="PF('dialogExcluir').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+
+		<p:confirmDialog global="true" severity="info"
+			message="#{msg.msgRecuperarDadosPedido}" showEffect="fade"
+			hideEffect="explode" header="Recuperar Dados do Pedido"
+			widgetVar="dialogRecuperarPedido" id="recuperar">
+			<h:form>
+				<p:commandButton id="confirm" value="#{msg.sim}"
+					oncomplete="PF('dialogRecuperarPedido').hide()"
+					actionListener="#{tbPatenteEcMB.recuperarPedido()}" update=":form" />
+				<p:commandButton id="decline" value="#{msg.nao}"
+					onclick="PF('dialogRecuperarPedido').hide()" type="button" />
+			</h:form>
+		</p:confirmDialog>
+
+
+	</ui:define>
+
+</ui:composition>

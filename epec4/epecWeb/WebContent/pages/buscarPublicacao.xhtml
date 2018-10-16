@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"	
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+			<ui:define name="pageTitle">Buscar Publicação</ui:define>
+			<ui:define name="pageHeader">Buscar Publicação</ui:define>
+			
+			<ui:define name="content" id="conteudo1">
+			<ui:insert>
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+			<h:outputStylesheet library="css" name="ePec_consulta_Publicacao2.css"/>
+			<h:form>
+
+			
+		</h:form>
+		
+		<p:spacer/>
+		<p:spacer/>
+		<p:spacer/>
+		<p:spacer/>
+		<p:spacer/>
+		<p:spacer/>
+		<h:form id="mainForm" onkeypress="return event.keyCode != 13">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life="150000" />
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelBuscarPublicacao}" />
+			<p:separator />
+
+			<p:panel styleClass="panel" id="panelRelatorioA">
+				<h:panelGrid styleClass="panelGridA">
+
+					<p:row>
+	
+											<h:outputText styleClass="textOutA" value="#{msg.labelValidarNumeroPublicacao}"/>
+					
+				
+						<p:inputText styleClass="campoTextConsultA" id="busca" value="#{consultaPedidoMB.valorPedido}" disabled="#{isAdminstrador eq '4'}" />
+
+
+
+
+
+			<p:commandButton value="#{msg.botaoValidar}"  ajax="true" oncomplete="PF('dialogOps').show()" update=":mainForm:panelRelatorioA, :mainForm:buscaOps:lighbox" 
+			actionListener="#{consultaPedidoMB.buscaOps()}" styleClass="botaoConsultaA" icon="ui-icon-search" disabled="#{isAdminstrador eq '4'}" >
+			
+					<f:param name="tipo" value="2" />
+					
+					</p:commandButton>
+					
+					<p:commandButton value="#{msg.botaoImportar}" ajax="true" update=":mainForm:panelRelatorioA" actionListener="#{consultaPedidoMB.inserirPedido()}"
+							styleClass="botaoConsultaE" icon="ui-icon-search" disabled="#{isAdminstrador eq '4'}" >
+							<f:param name="tipo" value="2" />
+							<f:param name="tipoConsulta" value="epodoc" />
+							</p:commandButton>
+
+
+					</p:row>
+
+				</h:panelGrid>
+				<h:panelGrid styleClass="panelGridB">
+
+					<h:outputText styleClass="textOutB"
+						value="#{msg.msgValidarNumeroPublicacao}" />
+
+				</h:panelGrid>
+
+			</p:panel>
+
+			<p:panel styleClass="panel2" id="panelRelatorioE">
+				<h:panelGrid styleClass="panelGridE">
+
+					<p:row>
+						<h:outputText styleClass="textOutE"
+							  value="#{msg.labelBuscarLocalmentePublicacao}" />
+
+						<p:inputText styleClass="campoTextConsultE" id="busca3"
+							value="#{consultaPedidoMB.valorPedido}"  />
+
+						<p:commandButton value="#{msg.buscar}" ajax="true"
+							update=":resultForm:panelResult"
+							actionListener="#{consultaPedidoMB.buscarPedido()}"
+							styleClass="botaoConsultaE" icon="ui-icon-search" >
+							<f:param name="tipo" value="2" />
+							<f:ajax render=":panelResult" />
+
+						</p:commandButton>
+
+
+					</p:row>
+
+				</h:panelGrid>
+				<h:panelGrid styleClass="panelGridF">
+
+					<h:outputText styleClass="textOutF"
+					value="#{msg.msgBuscarLocalmentePublicacao}" />
+
+				</h:panelGrid>
+
+			</p:panel>
+			
+			<p:dialog header="European Patent Office" widgetVar="dialogOps" showEffect="blind"
+				hideEffect="explode" resizable="false" id="ops">
+				<h:form id="buscaOps">
+				
+				<p:lightBox iframe="true" id="lighbox">
+						<iframe frameborder="0" align="left"
+							src="#{consultaPedidoMB.urlBuscaOps}" name="someName" id="urlOps"
+							scrolling="auto" width="800" height="600" marginheight="5"
+							marginwidth="10"> </iframe>
+						</p:lightBox>				
+				</h:form>
+				<p:ajax update=":mainForm:buscaOps:lighbox" />	
+			</p:dialog>
+
+		</h:form>
+
+		<h:form id="resultForm" onkeypress="return event.keyCode != 13">
+
+			<p:growl id="messages" for="growl" showDetail="true" life="1500" />
+			<p:message id="messageid" for="messages" />
+
+			<p:ajaxStatus rendered="true" style="margin-left:36px;margin-bottom:2em;width:30px;height:30px;">
+
+				<f:facet name="start">
+					<p:graphicImage value="/pages/imagens/botoes/ajax-loaderBarra.gif" />
+					<h:outputText value="Carregando..............." />
+				</f:facet>
+
+			</p:ajaxStatus>
+
+				<p:outputPanel id="panelResult" styleClass="panelGridResult">
+				<p:outputPanel  rendered="#{consultaPedidoMB.tabIndex == 1}">
+
+		<p:dataTable styleClass="dataTableResult"  var="familia" value="#{consultaPedidoMB.patentec}" emptyMessage="#{msg.labelNenhumRegistroEncontrado}"
+						 rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"> 
+       
+        <p:column headerText="#{msg.labelPedido}" style="width:80px;height:40px;">
+					<h:commandLink  actionListener="#{consultaPedidoMB.detalheFamilia()}">
+					<div>
+						<p:graphicImage value="#{familia.images}" />
+						</div>
+						<div>
+						<h:outputText value="#{familia.strPedPaisDocdb}#{familia.strPedNumDocdb}" />
+						  <f:setPropertyActionListener value="#{familia.idFamiliaEc.idFamiliaEc}" target="#{tbFamiliaECMB.numerofamilia}" />
+						  </div>
+						  
+						  <f:param name="tabIndex" value="2" /> 
+					</h:commandLink>
+        
+        </p:column>
+ 
+        <p:column headerText="#{msg.labelPedidoOriginal}" style="width:80px;height:40px;">
+            <h:outputText value="#{familia.strPedNumOriginal}" />
+        </p:column>
+ 
+        <p:column headerText="#{msg.labelPedidoEpodoc}" style="width:80px;height:40px;">
+            <h:outputText value="#{familia.numeroPublicacaEPODOC}" />
+        </p:column>
+ 
+        <p:column headerText="#{msg.labelTitulo}">
+            <h:outputText value="#{familia.txTitulo}" />
+        </p:column>
+    </p:dataTable>
+
+				</p:outputPanel>
+				<p:spacer/>
+				<p:spacer/>
+				<p:spacer/>
+				<p:spacer/>
+			</p:outputPanel>
+		<p:spacer/>
+		<p:spacer/>
+	
+		</h:form>
+		
+		
+	</ui:define>
+	</ui:composition>

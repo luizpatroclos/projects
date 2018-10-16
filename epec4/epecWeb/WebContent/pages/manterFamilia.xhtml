@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+		<ui:define name="content" id="conteudo1">
+				<ui:insert>
+						<ui:include src="/pages/menu.xhtml" />
+				</ui:insert>
+
+				<h:outputStylesheet library="css" name="ePec_frame.css" />
+
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+				<p:dialog widgetVar="statusDialog" showEffect="blind" hideEffect="explode" resizable="false">
+						<h:form id="buscaOps">
+								<p:graphicImage value="/pages/imagens/botoes/ajax-loaderBarra.gif" />
+								<h:outputText value="Carregando..............." />
+						</h:form>
+				</p:dialog>
+
+
+				<h:form id="form">
+						<f:param name="mostrarDiagramaFamilia" value="0" />
+
+
+						<div class="panelGridTeste">
+
+								<h:commandLink actionListener="#{menuView.homeTela}">
+										<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+								</h:commandLink>
+
+						</div>
+
+						<br />
+						<h:panelGrid columns="2" columnClasses="logo,detail">
+
+								<p:commandButton class="botaoPesquisa" value="#{msg.labelLogFamilia}" actionListener="#{menuView.logFamilia}"
+										rendered="#{(isAdminstrador ne '4')}">
+								</p:commandButton>
+								<p:commandButton class="botaoPesquisa" value="#{msg.labelMensagem}" actionListener="#{tbFamiliaECMB.mensagemFamilia}"
+										rendered="#{(isAdminstrador ne '4')}">
+								</p:commandButton>
+						</h:panelGrid>
+
+						<br />
+						<br />
+						<br />
+						<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" sticky="false" life="15000" />
+
+
+						<h:outputText styleClass="textOut1" value="#{msg.labelFamilia}" />
+						<p:separator />
+						<br />
+
+						<h:panelGrid columns="2" columnClasses="logo,detail" style="width: 350px">
+								<h:outputText value="#{msg.labelStatusFamilia}" style="font-weight: bold" rendered="#{tbFamiliaECMB.familia.publico}" />
+								<h:outputText value="Público" rendered="#{tbFamiliaECMB.familia.publico}" />
+
+								<h:outputText value="#{msg.labelStatusFamilia}" style="font-weight: bold" rendered="#{!(tbFamiliaECMB.familia.publico)}" />
+								<h:outputText value="Privado" rendered="#{!(tbFamiliaECMB.familia.publico)}" />
+						</h:panelGrid>
+
+						<p:remoteCommand name="nomeRemoteCommand2" id="idRemoteCommand2" actionListener="#{tbFamiliaECMB.mensagemSalvarPedidoManual}" update="messages"
+								autoRun="true" />
+
+						<br />
+						<br />
+						<br />
+						<div align="right" style="width: 910px">
+								<h:commandLink actionListener="#{tbFamiliaECMB.comentarioFamilia}" rendered="#{(isAdminstrador ne '4')}">
+										<h:outputText value="#{msg.labelComentarios}" styleClass="titulo" />
+								</h:commandLink>
+						</div>
+						<br />
+
+						<p:dataTable id="dataTablePedidos" autoUpdate="true" var="patentes" value="#{tbFamiliaECMB.patentes}" type="unordered" itemType="none"
+								style="vertical-align: center;width: 910px" styleClass="paginated">
+
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelListaPedidoFamilia}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<p:column headerText="#{msg.labelPedido}" style="width:100px">
+										<h:commandLink actionListener="#{tbPatenteEcMB.buscarPedido}">
+												<div align="center">
+														<p:graphicImage value="#{patentes.images}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{patentes.numeroPedido}" />
+												</div>
+												<f:setPropertyActionListener value="#{patentes.numeroPedido}" target="#{tbFamiliaECMB.numeroEpodoc}" />
+												<f:setPropertyActionListener value="#{patentes.numeroPedido}" target="#{tbPatenteEcMB.numeroEpodoc}" />
+												<f:setPropertyActionListener value="#{patentes.strPubKindDocdb}" target="#{tbFamiliaECMB.numeroPublicacaoKind}" />
+												<f:setPropertyActionListener value="#{patentes.idPatenteEc}" target="#{tbPatenteEcMB.pedido}" />
+												<f:setPropertyActionListener value="#{patentes.idPatenteEc}" target="#{tbPatenteEcMB.numeroPatente}" />
+
+										</h:commandLink>
+
+								</p:column>
+								<p:column headerText="#{msg.labelTitulo}">
+										<h:outputText value="#{patentes.txTitulo}" />
+								</p:column>
+								<p:column headerText="#{msg.labelDataDeposito}" style="width:70px">
+										<div align="center">
+												<h:outputText value="#{patentes.dtDeposito}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelDataPublicacao}" style="width:70px">
+										<div align="center">
+												<h:outputText value="#{patentes.dtPublicacao}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</div>
+
+								</p:column>
+								<p:column headerText="#{msg.labelEmColaboracao}" style="width:70px">
+										<div align="center">
+												<h:outputText value="#{patentes.emColaboracao}" />
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelRelatorioAtual}" style="width:100px">
+										<h:commandLink actionListener="#{tbRelatorioEcMB.visualizarRelatorio}">
+												<div align="center">
+														<p:graphicImage value="#{patentes.tbrelatorioec.imagem}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{patentes.tbrelatorioec.strRelatorio}" />
+														<h:outputText value="#{patentes.tbrelatorioec.idRelatorioEc}" />
+												</div>
+												<f:setPropertyActionListener value="#{patentes.tbrelatorioec.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+												<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+
+												<f:param name="numeroRelatorio" value="#{patentes.tbrelatorioec.idRelatorioEc}" />
+												<f:param name="pedidoRelatorio" value="#{patentes.idPatenteEc}" />
+
+
+										</h:commandLink>
+								</p:column>
+
+								<p:column style="width:78px">
+										<div align="center">
+												<p:menuButton value="#{msg.labelAcoes}"
+														disabled="#{(!(((patentes.idEntidadeEc eq tbRelatorioEcMB.usuarioLogado.idEntidadeEc)and((!patentes.tbrelatorioec.isNaoFinalizado()) or (patentes.numeroPedido ne patentes.tbrelatorioec.strRelatorio)))))and(!((!patentes.tbrelatorioec.relatorioEmConstrucao)  and (patentes.tbrelatorioec != null)))}">
+														<p:menuitem value="#{msg.inserirRelatorio}" icon="ui-icon-document" onclick="PF('dialogInserirRelatorio').show()"
+																rendered="#{((patentes.idEntidadeEc eq tbRelatorioEcMB.usuarioLogado.idEntidadeEc)and((!patentes.tbrelatorioec.isNaoFinalizado())or (patentes.numeroPedido ne patentes.tbrelatorioec.strRelatorio)))}">
+																<f:setPropertyActionListener value="#{patentes.tbrelatorioec.idRelatorioEc}" target="#{tbFamiliaECMB.numeroRelatorio}" />
+																<f:setPropertyActionListener value="#{patentes.tbrelatorioec.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+																<f:setPropertyActionListener value="#{patentes}" target="#{tbRelatorioEcMB.pedidoRelacionadoAoRelatorioNovo}" />
+																<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+														</p:menuitem>
+
+
+														<p:menuitem value="HTML" icon="ui-icon-script" actionListener="#{tbRelatorioEcMB.visualizarRelatorioHTML}"
+																rendered="#{(!patentes.tbrelatorioec.relatorioEmConstrucao)  and (patentes.tbrelatorioec != null) }">
+																<f:setPropertyActionListener value="#{patentes.tbrelatorioec.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+																<f:param name="numeroRelatorio" value="#{patentes.tbrelatorioec.idRelatorioEc}" />
+
+																<f:setPropertyActionListener value="#{patentes.numeroPedido}" target="#{relatorioTecnicoMB.numeroPedido}" />
+																<f:param name="pedidoRelatorio" value="0" />
+
+														</p:menuitem>
+
+
+												</p:menuButton>
+
+										</div>
+								</p:column>
+						</p:dataTable>
+						<br />
+						<br />
+						<div style="margin-left: 75%">
+
+								<p:commandButton class="botaoPesquisa" value="#{msg.labelPedidoManual}" onclick="PF('dialogInserirPedido').show()"
+										rendered="#{(isAdminstrador ne '4')}">
+								</p:commandButton>
+
+						</div>
+						<br />
+						<br />
+						<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}" id="dataTablePedidosVinculados" autoUpdate="true" var="patentesComRelatorio"
+								value="#{tbFamiliaECMB.patentesComRelatorio}" type="unordered" itemType="none" style="vertical-align: center;width: 910px"
+								styleClass="paginated">
+
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelRelatorioComPedidoVinculado}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<p:column headerText="#{msg.labelRelatorio}" style="width:100px">
+										<h:commandLink actionListener="#{tbRelatorioEcMB.visualizarRelatorio}">
+												<div align="center">
+														<p:graphicImage value="#{patentesComRelatorio.imagem}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{patentesComRelatorio.strRelatorio}" />
+														<h:outputText value="#{patentesComRelatorio.idRelatorioEc}" />
+												</div>
+												<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+												<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+												<f:param name="numeroRelatorio" value="#{patentesComRelatorio.idRelatorioEc}" />
+												<f:param name="pedidoRelatorio" value="0" />
+										</h:commandLink>
+								</p:column>
+
+								<p:column headerText="#{msg.labelResponsavel}">
+										<div align="center">
+												<h:outputText value="#{patentesComRelatorio.idUsuario.strUsuario}" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelSituacao}" rendered="#{patentesComRelatorio.bPublico}">
+										<div align="center">
+												<h:outputText value="Público" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelSituacao}" rendered="#{(!patentesComRelatorio.bPublico)}">
+										<div align="center">
+												<h:outputText value="Privado" />
+										</div>
+								</p:column>
+
+
+								<p:column headerText="#{msg.labelDataStatus}">
+										<div align="center">
+												<h:outputText value="#{patentesComRelatorio.dtStatus}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelStatus}">
+										<div align="center">
+												<h:outputText value="#{patentesComRelatorio.idStatus.strStatus}" />
+										</div>
+								</p:column>
+
+
+								<p:column headerText="#{msg.labelEmColaboracao}" style="width:70px">
+										<div align="center">
+												<h:outputText value="#{patentesComRelatorio.emColaboracao}" />
+										</div>
+								</p:column>
+
+								<p:column style="width:78px">
+										<div align="center">
+												<p:menuButton value="#{msg.labelAcoes}"
+														disabled="#{((patentesComRelatorio.relatorioEmConstrucao) and (patentesComRelatorio.idUsuario ne tbRelatorioEcMB.usuarioLogado) and (!((patentesComRelatorio.naoFinalizado) and (tbRelatorioEcMB.usuarioLogado.idPerfilusuario.isNaoEhExaminador() and ((patentesComRelatorio.idUsuario.idEntidadeEc eq tbRelatorioEcMB.usuarioLogado.idEntidadeEc) or (tbRelatorioEcMB.usuarioLogado.idPerfilusuario.idPerfilusuario eq '3'))))))}">
+														<p:menuitem value="#{msg.visualizar}" icon="ui-icon-document" actionListener="#{tbRelatorioEcMB.visualizarRelatorio}"
+																rendered="#{(patentesComRelatorio.relatorioEmConstrucao) and (patentesComRelatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado)}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+																<f:param name="numeroRelatorio" value="#{patentesComRelatorio.idRelatorioEc}" />
+																<f:param name="pedidoRelatorio" value="0" />
+														</p:menuitem>
+														<p:menuitem value="HTML" icon="ui-icon-script" actionListener="#{tbRelatorioEcMB.visualizarRelatorioHTML}"
+																rendered="#{(!patentesComRelatorio.relatorioEmConstrucao)}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+																<f:param name="numeroRelatorio" value="#{patentesComRelatorio.idRelatorioEc}" />
+																<f:setPropertyActionListener value="#{patentesComRelatorio.strRelatorio}" target="#{relatorioTecnicoMB.numeroPedido}" />
+																<f:param name="pedidoRelatorio" value="0" />
+														</p:menuitem>
+
+
+														<p:menuitem value="#{msg.construir}" icon="ui-icon-wrench" onclick="PF('dialogTrocarStatusConstrucao').show()"
+																rendered="#{(patentesComRelatorio.naoFinalizado) and (!patentesComRelatorio.relatorioEmConstrucao) and (patentesComRelatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado)}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.revisar}" icon="ui-icon-clipboard" onclick="PF('dialogTrocarStatusRevisao').show()"
+																rendered="#{(patentesComRelatorio.naoFinalizado) and (!patentesComRelatorio.relatorioEmRevisao) and (patentesComRelatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado)}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.finalizar}" icon="ui-icon-check" onclick="PF('dialogTrocarStatusFinalizado').show()"
+																rendered="#{(patentesComRelatorio.naoFinalizado) and (!patentesComRelatorio.relatorioEmConstrucao)and (patentesComRelatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado)}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.alterarResponsavel}" icon="ui-icon-person" onclick="PF('dialogAlterarResponsavel').show()"
+																update=":form:dataTablePedidosVinculados"
+																rendered="#{(patentesComRelatorio.naoFinalizado) and (tbRelatorioEcMB.usuarioLogado.idPerfilusuario.isNaoEhExaminador() and ((patentesComRelatorio.idUsuario.idEntidadeEc eq tbRelatorioEcMB.usuarioLogado.idEntidadeEc) or (tbRelatorioEcMB.usuarioLogado.idPerfilusuario.idPerfilusuario eq '3')))}">
+
+
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbFamiliaECMB.numeroRelatorio}" />
+
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.publicar}" icon="ui-icon-transferthick-e-w" onclick="PF('dialogPublicarRelatorio').show()"
+																update=":form:dataTablePedidosVinculados"
+																rendered="#{(patentesComRelatorio.bPrivado) and (!patentesComRelatorio.relatorioEmConstrucao) and (!patentesComRelatorio.relatorioEmRevisao) and (patentesComRelatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado)}">
+
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+																<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.copiarRelatorio}" icon="ui-icon-copy" onclick="PF('dialogCopiarRelatorio').show()"
+																rendered="#{(!(patentesComRelatorio.relatorioEmConstrucao)) and (isAdminstrador ne '4')}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.relatorioCopiar}" />
+																<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+																<f:param name="pedidoRelatorio" value="0" />
+														</p:menuitem>
+
+														<p:menuitem value="#{msg.vincularRelatorio}" icon="ui-icon-link" onclick="PF('dialogVincularRelatorio').show()"
+																rendered="#{(!(patentesComRelatorio.relatorioEmConstrucao)) and (isAdminstrador ne '4')}">
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbFamiliaECMB.relatorioCopiar}" />
+																<f:setPropertyActionListener value="#{patentesComRelatorio.idRelatorioEc}" target="#{tbFamiliaECMB.numeroRelatorio}" />
+																<f:param name="pedidoRelatorio" value="0" />
+
+
+																<f:param name="numeroRelatorio" value="#{patentesComRelatorio.idRelatorioEc}" />
+														</p:menuitem>
+
+												</p:menuButton>
+										</div>
+
+								</p:column>
+
+						</p:dataTable>
+						<br />
+						<br />
+
+						<p:dataTable emptyMessage="#{msg.labelNenhumRegistroEncontrado}" id="dataTablePedidosSemVinculados" autoUpdate="true" var="relatorio"
+								value="#{tbFamiliaECMB.relatorioSemVinculado}" type="unordered" itemType="none" style="vertical-align: center;width: 910px"
+								styleClass="paginated">
+
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelListaRelatorioNaoVinculado}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<p:column headerText="#{msg.labelRelatorio}" style="width:100px">
+										<h:commandLink actionListener="#{tbRelatorioEcMB.visualizarRelatorio}">
+												<div align="center">
+														<p:graphicImage value="#{relatorio.imagem}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{relatorio.strRelatorio}" />
+														<h:outputText value="#{relatorio.idRelatorioEc}" />
+												</div>
+												<f:setPropertyActionListener value="#{relatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.numeroRelatorio}" />
+												<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+												<f:param name="numeroRelatorio" value="#{relatorio.idRelatorioEc}" />
+												<f:param name="pedidoRelatorio" value="0" />
+										</h:commandLink>
+								</p:column>
+								<p:column headerText="#{msg.labelResponsavel}">
+										<div align="center">
+												<h:outputText value="#{relatorio.idUsuario.strUsuario}" />
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelSituacao}" rendered="#{relatorio.bPublico}">
+										<div align="center">
+												<h:outputText value="Público" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelSituacao}" rendered="#{!(relatorio.bPublico)}">
+										<div align="center">
+												<h:outputText value="Privado" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelDataStatus}">
+										<div align="center">
+												<h:outputText value="#{relatorio.dtStatus}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelStatus}">
+										<div align="center">
+												<h:outputText value="#{relatorio.idStatus.strStatus}" />
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelEmColaboracao}" style="width:70px">
+										<div align="center">
+												<h:outputText value="#{relatorio.emColaboracao}" />
+										</div>
+								</p:column>
+
+
+								<p:column style="width:78px">
+										<div align="center">
+												<p:menuButton value="#{msg.labelAcoes}"
+														disabled="#{(relatorio.relatorioEmConstrucao) and (relatorio.idUsuario ne tbRelatorioEcMB.usuarioLogado)}">
+														<p:menuitem value="#{msg.copiarRelatorio}" icon="ui-icon-copy" onclick="PF('dialogCopiarRelatorio').show()"
+																rendered="{(isAdminstrador ne '4')}">
+																<f:setPropertyActionListener value="#{relatorio.idRelatorioEc}" target="#{tbRelatorioEcMB.relatorioCopiar}" />
+
+																<f:setPropertyActionListener value="#{tbFamiliaECMB.familia}" target="#{tbRelatorioEcMB.tbfamiliaec}" />
+																<f:param name="pedidoRelatorio" value="0" />
+														</p:menuitem>
+														<p:menuitem value="#{msg.vincularRelatorio}" icon="ui-icon-link" onclick="PF('dialogVincularRelatorio').show()"
+																rendered="#{(relatorio.idUsuario eq tbRelatorioEcMB.usuarioLogado) and (relatorio.naoFinalizado) and (isAdminstrador ne '4')}">
+																<f:setPropertyActionListener value="#{relatorio.idRelatorioEc}" target="#{tbFamiliaECMB.relatorioCopiar}" />
+																<f:setPropertyActionListener value="#{relatorio.idRelatorioEc}" target="#{tbFamiliaECMB.numeroRelatorio}" />
+																<f:param name="pedidoRelatorio" value="0" />
+																<f:param name="numeroRelatorio" value="#{relatorio.idRelatorioEc}" />
+														</p:menuitem>
+												</p:menuButton>
+										</div>
+								</p:column>
+						</p:dataTable>
+						<br />
+						<br />
+
+
+				</h:form>
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgInserirPedidoManual}" showEffect="fade" hideEffect="explode"
+						header="#{msg.labelPedidoManual}" widgetVar="dialogInserirPedido" id="inserirPedido">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogInserirPedido').hide()"
+										actionListener="#{tbFamiliaECMB.inserirPedidoManualmente}" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogInserirPedido').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgCopiarRela}" showEffect="fade" hideEffect="explode"
+						header="#{msg.copiarRelatorio}" widgetVar="dialogCopiarRelatorio" id="copiarRelatorio">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogCopiarRelatorio').hide()"
+										actionListener="#{tbRelatorioEcMB.copiarRelatorioFuncao}" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogCopiarRelatorio').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgVincularRela}" showEffect="fade" hideEffect="explode"
+						header="#{msg.vincularRelatorio}" widgetVar="dialogVincularRelatorio" id="vincularRelatorio">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogVincularRelatorio').hide()"
+										actionListener="#{tbFamiliaECMB.vincularRelatorioPatente}" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogVincularRelatorio').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgInserirRelatorio}" showEffect="fade" hideEffect="explode"
+						header="Inserir relatório" widgetVar="dialogInserirRelatorio" id="inserirRelatorio">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogInserirRelatorio').hide()"
+										actionListener="#{tbRelatorioEcMB.inserirRelatorio}" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogInserirRelatorio').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgTrocarStatusConstrucao}" showEffect="fade" hideEffect="explode"
+						header="Inserir relatório" widgetVar="dialogTrocarStatusConstrucao" id="trocarStatusConstrucao">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogTrocarStatusConstrucao').hide()"
+										actionListener="#{tbRelatorioEcMB.trocarStatusConstrucao}" update=":form" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogTrocarStatusConstrucao').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgTrocarStatusRevisao}" showEffect="fade" hideEffect="explode"
+						header="Inserir relatório" widgetVar="dialogTrocarStatusRevisao" id="trocarStatusRevisao">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogTrocarStatusRevisao').hide()"
+										actionListener="#{tbRelatorioEcMB.trocarStatusRevisao}" update=":form" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogTrocarStatusRevisao').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgTrocarStatusFinalizado}" showEffect="fade" hideEffect="explode"
+						header="Inserir relatório" widgetVar="dialogTrocarStatusFinalizado" id="trocarStatusFinalizado">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogTrocarStatusFinalizado').hide()"
+										actionListener="#{tbRelatorioEcMB.trocarStatusFinalizado}" update=":form" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogTrocarStatusFinalizado').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgPublicarRelatorio}" showEffect="fade" hideEffect="explode"
+						header="#{msg.publicar}" widgetVar="dialogPublicarRelatorio" id="publicarRelatorio">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogPublicarRelatorio').hide()"
+										actionListener="#{tbRelatorioEcMB.publicarRelatorio}" update=":form" />
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogPublicarRelatorio').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+
+				<p:confirmDialog global="true" severity="info" message="#{msg.msgContinuar}" showEffect="fade" hideEffect="explode" header="#{msg.alterar}"
+						widgetVar="dialogAlterarResponsavel" id="alterarResponsavel">
+						<h:form>
+								<p:commandButton id="confirm" value="#{msg.sim}" oncomplete="PF('dialogAlterarResponsavel').hide()"
+										actionListener="#{tbFamiliaECMB.trocarRelatorio}">
+
+								</p:commandButton>
+								<p:commandButton id="decline" value="#{msg.nao}" onclick="PF('dialogAlterarResponsavel').hide()" type="button" />
+						</h:form>
+				</p:confirmDialog>
+
+
+		</ui:define>
+</ui:composition>

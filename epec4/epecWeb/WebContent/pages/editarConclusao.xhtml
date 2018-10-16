@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+
+
+			<p:menubar styleClass="menuBar">
+				<p:menuitem value="#{msg.labelLogFamilia}" class="menulayout"
+					actionListener="#{menuView.logFamilia}">
+				</p:menuitem>
+				<p:menuitem value="#{msg.labelMensagem}" class="menulayout"
+					actionListener="#{tbFamiliaECMB.mensagemFamilia}">
+				</p:menuitem>
+
+			</p:menubar>
+			<br />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>

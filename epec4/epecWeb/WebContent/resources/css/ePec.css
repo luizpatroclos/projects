@@ -1,0 +1,244 @@
+
+
+iframe{
+	width: 927px !important;
+	height: 689px !important;
+}
+
+.ui-tree-container{
+	height: 150px !important;
+}
+
+#paises {
+	margin-left : 10px;
+	margin-top: 8px;
+    float: left;
+}
+
+#imagemEpec{
+	margin-left: 10px;
+	margin-top: auto;
+
+}
+
+.textOut1{	
+	font-weight:bold !important;
+	padding   : 0 0 0 20px;
+	color: blue; 
+	font-size: 18px !important;
+}
+
+#barraCabecalho{
+	margin-top: 20px;
+	margin-left: 20px;
+	
+}
+
+#textoLogin{
+	text-align: justify;
+	width: 500px;	
+}
+
+#formColaboracao{
+	width:  500px;
+	font-size: 12px;
+	/* height    : 130px; */
+}
+
+#formLogin{
+	width: 320px;
+	margin-top: 70px;
+	margin-left: 50px;
+
+}
+
+#form{
+	border: -1 !important;
+	
+}
+
+
+#idioma{ /* utilizado por sessão usuário tb */
+	color: white;
+	width:  900px; 
+}
+
+.idioma{
+	color: white;
+}
+
+#rodape {
+	 width     : 100%;
+	 height    : 0px;
+	 text-align: center;
+	 float     : left;
+     left: 10px !important;
+     right: 10px !important;
+	 clear     : both;
+	 padding   : 16px 0;
+
+	
+}
+
+#container {
+    width: 925px;
+    height: auto;
+    min-height: 450px;
+}
+
+
+#cabecalho{
+    width: 925px;
+    height: 103px;
+    margin: 5px  0px 0px 0px;
+    border: 0px solid #044063;
+    padding-top: 3px;
+    background: none repeat scroll 0% 0% #054B75;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.ui-menuitem-link{
+	color:#000000 !important;
+}
+
+
+#menu {
+	width: 927px;
+	height: auto;
+	max-height: 750px !important;
+	right: 0px; 
+	border : none;
+	overflow-y: none;
+	overflow-x: none;
+	border: none;
+	
+}
+
+.menuBar {
+	width: 927px;
+	height: 30px !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+	background-color: #054B75 !important;
+	font-weight: normal !important;
+	color: white !important;
+	font-size: 15px;
+	border: 0px !important;
+}
+
+.divPrincipal {
+	border: 3px solid #044063 !important;
+	position: relative !important;
+	border-radius: 10px !important;
+	overflow-y: hidden !important;
+	overflow-x: hidden !important;
+	width: 952px !important;	
+	display:table-cell !important;
+	height: auto !important;
+	
+
+}
+
+
+.divPrincipal2 {
+	  border-radius: 10px;
+	
+}
+.ui-panelgrid-cell{
+	border: none !important;
+}
+.ui-panelgrid-even{
+	border: none !important;
+}
+.ui-panelgrid-odd{
+	border: none !important;
+}
+.ui-widget-header{
+	border: none !important;
+}
+
+.menulayout{
+	font-size:12px !important;
+	color:white !important;
+	font-weight:bold !important;
+	text-align: right !important;
+}
+
+
+.ui-menu > ul> li > a:hover {
+	color:black !important;
+}
+.estiloBotao{
+	background: none repeat scroll 0 0 #054b75 !important;
+    border: 3px solid #054b75 !important;
+    color: #FFFFFF !important;
+    cursor: default !important;
+    font-size: 13px !important;
+	
+}
+.paginated{
+	position: relative;
+}
+
+.titulo{
+	color: #054b75;
+	font-size : 14px;
+}
+.tituloGrande{
+	font-size : 18px !important;
+}
+
+.botaoPesquisa{
+	
+	background-color: #c6deff !important;
+	color: #000000 !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;   
+    left: 15px !important;
+    height: 28px;
+}
+
+.panelGridTeste {
+    background-color: #D3D3D3 !important;
+    bottom: 0px; left: 0px; right: 0px; top: 0px !important; 
+    width:  919px !important;
+    height : 22px !important;
+    margin-left: 0px !important;
+    padding   : 0 0 0 8px !important;
+}
+
+.ui-tree-container{
+	 width:  700px !important;
+	
+}
+
+.ui-tree{
+	width:  700px !important;
+}
+.linktext{
+	color: #054b75;
+	font-size : 14px;
+	text-decoration: underline;
+	font-weight: bold;
+	
+}
+
+.imgLink{
+position:relative !important; /* Forma de posicionamento - FIXA */
+top:50%; /* Distante 50% do topo da tela do usuário */
+left:50%; /* Distante 50% do lado esquerdo da tela do usuário */
+margin-top: 100px;
+margin-left:-125px; /* Margem negativa para a esquerda com a metade do valor da largura da imagem */
+}
+
+.divLink{
+left:50%;
+width:100px;
+height:100px;
+margin-left:-125px; /* Margem negativa para a esquerda com a metade do valor da largura da imagem */
+}
+

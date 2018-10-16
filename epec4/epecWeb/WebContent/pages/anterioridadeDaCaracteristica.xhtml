@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+		xmlns:pe="http://primefaces.org/ui/extensions">
+
+		<ui:define name="pageTitle">Categoria</ui:define>
+		<ui:define name="pageHeader">Categoria</ui:define>
+
+		<ui:define name="content" id="conteudo1">
+				<ui:insert>
+						<ui:include src="/pages/menu.xhtml" />
+				</ui:insert>
+
+				<h:form id="form">
+
+						<div class="panelGridTeste">
+
+								<h:commandLink actionListener="#{menuView.homeTela}">
+										<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+										<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarRelatorio}">
+										<h:outputText value="#{msg.labelRelatorio}" styleClass="titulo" />
+								</h:commandLink>
+								>
+								<h:commandLink actionListener="#{tbCadCategoriaMB.menuVoltarCategoria}">
+										<h:outputText value="#{msg.labelCategoria}" styleClass="titulo" />
+
+								</h:commandLink>
+
+						</div>
+
+						<br />
+						<h:panelGrid columns="2" columnClasses="logo,detail">
+
+								<p:commandButton class="botaoPesquisa" value="#{msg.labelLogRelatorio}" actionListener="#{menuView.logRelatorio}">
+								</p:commandButton>
+
+
+						</h:panelGrid>
+
+
+						<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life="150000" />
+
+						<p:remoteCommand name="mensagemCaracteristica" id="mensagemCaracteristica" actionListener="#{tbCatCaracteristicaMB.mensagemCaracteristica}"
+								autoRun="true" update="messages" />
+
+						<br />
+
+						<h:outputText styleClass="textOut1" value="#{msg.labelAnterioridadeDaCaracteristica}" />
+
+						<p:separator />
+						<br />
+
+						<p:dataScroller value="#{tbCadCategoriaMB.relatorio}" var="relatorio" chunkSize="10">
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelRelatorio}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<h:panelGrid columns="2" cellpadding="5">
+										<h:column>
+												<h:outputText value="#{msg.labelRelatorio} " style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<div align="center">
+														<p:graphicImage value="#{relatorio.imagem}" />
+												</div>
+												<div align="center">
+														<h:outputText value="#{relatorio.strRelatorio}" />
+														<h:outputText value="#{relatorio.idRelatorioEc}" />
+												</div>
+										</h:column>
+										<h:column>
+												<h:outputText value="#{msg.labelStatus}" style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{relatorio.idStatus.strStatus}" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{msg.labelSituacao}" style="font-weight: bold" />
+										</h:column>
+										<p:column rendered="#{relatorio.bPublico}">
+												<h:outputText value="Público" />
+										</p:column>
+
+										<p:column rendered="#{(!relatorio.bPublico)}">
+												<h:outputText value="Privado" />
+										</p:column>
+
+										<h:column>
+												<h:outputText value="#{msg.labelCategoria}" style="font-weight: bold" />
+										</h:column>
+										<h:column>
+												<h:outputText value="#{relatorio.tbcadcategoria.strPortugues}" />
+
+										</h:column>
+								</h:panelGrid>
+
+						</p:dataScroller>
+						<br />
+						<br />
+
+						<h:outputText value="#{msg.labelCaracteristica}" style="font-weight: bold" styleClass="tituloGrande" />
+						<br />
+						<br />
+						<p:panel style="overflow-y: auto;display:block;max-height:150px;">
+								<h:outputText value="#{tbCatCaracteristicaMB.tbcaraccatrelatorioecSelect.txCaracteristica}" escape="false" />
+						</p:panel>
+						<br />
+
+						<br />
+						<br />
+
+
+						<p:dataTable emptyMessage="#{msg.labelNenhumaAntPatentaria}" id="dataTableAnterioridadePatentaria" var="antPatentaria"
+								value="#{tbCatCaracteristicaMB.antPatentaria}" type="unordered" itemType="none" style="vertical-align: center;width: 910px"
+								styleClass="paginated">
+
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelAnterioridadesPatentaria}" styleClass="tituloGrande" />
+
+								</f:facet>
+
+								<p:column headerText="#{msg.labelAnterioridades}" style="align: center">
+										<div align="center">
+												<h:outputText value="#{antPatentaria.strAntpatentaria}" maxlength="44" />
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelCategoriaDocumento}" style="align: center;width:90px">
+										<div align="center">
+												<h:outputText value="#{antPatentaria.idCadtipoanterioridade.strOmpi}" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelRelevancia}" style="align: center;width:160px">
+										<div align="center">
+												<h:outputText value="#{antPatentaria.idCadtipoanterioridade.strPortugues}" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelAcoes}" style="align: center;width:62px">
+										<div align="center">
+												<p:menuButton value="#{msg.labelAcoes}">
+														<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil" actionListener="#{tbCatCaracteristicaMB.alterarAntPatentaria}">
+																<f:setPropertyActionListener value="#{antPatentaria}" target="#{tbCatCaracteristicaMB.tbantpatentariaSelect}" />
+														</p:menuitem>
+														<p:menuitem value="#{msg.excluir}" icon="ui-icon-close" onclick="PF('dialogExcluirPatanteria').show()">
+																<f:setPropertyActionListener value="#{antPatentaria}" target="#{tbCatCaracteristicaMB.tbantpatentariaExcluir}" />
+														</p:menuitem>
+
+												</p:menuButton>
+										</div>
+								</p:column>
+
+						</p:dataTable>
+						<br />
+
+						<p:commandButton id="buttonInserir" value="#{msg.labelBotaoInserir}" styleClass="botaoPesquisa"
+								actionListener="#{tbCatCaracteristicaMB.inserirAnterioridadePatentaria}" />
+
+						<br />
+						<br />
+
+						<br />
+
+
+
+						<p:dataTable emptyMessage="#{msg.labelNenhumaAntNaoPatentaria}" id="dataTableAnterioridadeNaoPatentaria" var="antNaoPatentaria"
+								value="#{tbCatCaracteristicaMB.antNaoPatentaria}" type="unordered" itemType="none" style="vertical-align: center;width: 910px"
+								styleClass="paginated">
+
+								<f:facet name="header">
+										<h:outputText value="#{msg.labelAnterioridadesNaoPatentaria}" styleClass="tituloGrande" />
+								</f:facet>
+
+								<p:column headerText="#{msg.labelAnterioridades}" style="align: center">
+										<div align="center">
+												<h:outputText value="#{antNaoPatentaria.txTitulo}" maxlength="65534" />
+										</div>
+								</p:column>
+								<p:column headerText="#{msg.labelCategoriaDocumento}" style="align: center;width:90px">
+										<div align="center">
+												<h:outputText value="#{antNaoPatentaria.idCadtipoanterioridade.strOmpi}" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelRelevancia}" style="align: center;width:160px">
+										<div align="center">
+												<h:outputText value="#{antNaoPatentaria.idCadtipoanterioridade.strPortugues}" />
+										</div>
+								</p:column>
+
+								<p:column headerText="#{msg.labelAcoes}" style="align: center;width:62px">
+										<div align="center">
+												<p:menuButton value="#{msg.labelAcoes}">
+														<p:menuitem value="#{msg.alterar}" icon="ui-icon-pencil" actionListener="#{tbCatCaracteristicaMB.alterarAntNaoPatentaria}">
+																<f:setPropertyActionListener value="#{antNaoPatentaria}" target="#{tbCatCaracteristicaMB.tbantnaopatentariaSelect}" />
+														</p:menuitem>
+														<p:menuitem value="#{msg.excluir}" icon="ui-icon-close" onclick="PF('dialogExcluirNaoPatanteria').show()">
+																<f:setPropertyActionListener value="#{antNaoPatentaria}" target="#{tbCatCaracteristicaMB.tbantnaopatentariaExcluir}" />
+
+														</p:menuitem>
+
+												</p:menuButton>
+										</div>
+								</p:column>
+
+						</p:dataTable>
+						<br />
+						<p:commandButton id="buttonNaoPatentariaCat" value="#{msg.labelBotaoInserir}" styleClass="botaoPesquisa"
+								actionListener="#{tbCatCaracteristicaMB.inserirAnterioridadeNaoPatentaria}" />
+
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<p:dialog global="true" severity="info" showEffect="fade" hideEffect="explode" header="Excluir" widgetVar="dialogExcluirNaoPatanteria"
+								id="excluirNaoPatanteria">
+
+								<p:commandButton id="confirmNaoPatentaria" value="#{msg.sim}" oncomplete="PF('dialogExcluirNaoPatanteria').hide()"
+										actionListener="#{tbCatCaracteristicaMB.excluirAntNaoPatentaria}" update=":form" />
+								<p:commandButton id="declineNaoPatentaria" value="#{msg.nao}" onclick="PF('dialogExcluirNaoPatanteria').hide()" type="button" />
+
+						</p:dialog>
+
+						<p:dialog global="true" severity="info" showEffect="fade" hideEffect="explode" header="Excluir" widgetVar="dialogExcluirPatanteria"
+								id="excluirPatentaria">
+
+								<p:commandButton id="confirmPatentaria" value="#{msg.sim}" oncomplete="PF('dialogExcluirPatanteria').hide()"
+										actionListener="#{tbCatCaracteristicaMB.excluirAntPatentaria}" update=":form" />
+								<p:commandButton id="declineCategoria" value="#{msg.nao}" onclick="PF('dialogExcluirPatanteria').hide()" type="button" />
+
+						</p:dialog>
+
+
+				</h:form>
+		</ui:define>
+</ui:composition>

@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF8" />
+<title>Relatório Técnico Completo</title>
+<f:loadBundle basename="mensagens" var="msg" />
+<style rel="stylesheet" type="text/css">
+@CHARSET "UTF-8";
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+	text-indent: 2px;
+	font-size: 12px;
+}
+
+.contador {
+	font-weight: bold;
+	vertical-align: top;
+	text-align: left;
+	width: 20px;
+}
+
+.labelEstiloCinza {
+	font-weight: bold;
+	color: #000000;
+	background-color: #e6e6e6;
+	font-size: 12px/1;
+	vertical-align: middle;
+	width: 180px;
+}
+
+.labelEstiloCinzaFamilia {
+	font-weight: bold;
+	color: #000000;
+	background-color: #e6e6e6;
+	font-size: 12px/1;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.labelEstiloNegrito {
+	font-weight: bold;
+	width: 105px;
+}
+
+.labelEstiloCinzaAnalise {
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #e6e6e6;
+	color: #000000;
+	text-align: center;
+	background-color: #e6e6e6;
+}
+
+.tabelaCabecalho {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	empty-cells: show;
+	border-left: 1px solid;
+	border-right: 1px solid;
+}
+
+.tabelaCorpo {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	empty-cells: show;
+	border: 1px solid;
+}
+
+.bordaTabelaTH {
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #cfe7f5;
+	color: #000000;
+	text-align: center;
+	border: 1px solid #000000;
+}
+
+.bordaTabelaTituloCabecalho {
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	background-color: #3465a4;
+}
+
+.tabelaCabecalho td {
+	overflow: hidden;
+	word-break: normal;
+	border: 1px solid #000000;
+}
+
+.tabelaCabecalho th {
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #3465a4;
+	color: #FFFFFF;
+	text-align: center;
+	border: 1px solid #000000;
+}
+
+.tabelaCorpo td {
+	overflow: hidden;
+	word-break: normal;
+	border: 1px solid #000000;
+}
+
+.tabelaCorpo th {
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #cfe7f5;
+	color: #000000;
+	text-align: center;
+	border: 1px solid #000000;
+}
+
+.larguraColunaFamilia {
+	width: 18%;
+	text-align: center;
+}
+
+.larguraColunaFamiliaTitulo {
+	width: 46%;
+	text-align: left;
+}
+
+.labelEstiloCinzaPedidoLinkExt {
+	font-weight: bold;
+	color: #000000;
+	background-color: #e6e6e6;
+	font-size: 12px/1;
+	width: 80px;
+	vsertical-align: middle;
+}
+
+.labelEstiloCinzaCabecalho {
+	font-weight: bold;
+	color: #000000;
+	background-color: #e6e6e6;
+	font-size: 12px/1;
+	vertical-align: middle;
+	width: 105px;
+}
+
+div.footer { "
+	display: block;
+	text-align: left;
+	position: running(footer);
+}
+
+@page { @bottom-center { content:element(footer)
+	
+}
+}
+</style>
+</head>
+<body>
+		<div align="right">
+				<c:if test="${param.RenderOutputType == null}">
+						<img alt="Exportar PDF" style="cursor: pointer;" src="/epecWeb/pages/imagens/botoes/pdf24.png" target="_blank"
+								onclick="window.open('?RenderOutputType=pdf')" />
+						<img alt="Exportar ODT" style="cursor: pointer;" src="/epecWeb/pages/imagens/botoes/odt.png" target="_blank"
+								onclick="window.open('?RenderOutputType=odt')" />
+
+				</c:if>
+		</div>
+
+		<table border="1" class="tabelaCabecalho" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.numeroPedidoEpoDoc}">
+						<tr>
+								<th class="bordaTabelaTituloCabecalho" colspan="4">
+										<h:outputText value="#{msg.tituloRelatorio}" />
+								</th>
+						</tr>
+						<tr>
+								<td class="labelEstiloCinzaCabecalho">
+										<h:outputText value="#{msg.labelNumerodoPedido}" />
+										:
+								</td>
+								<td>
+										<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.numeroPedidoEpoDoc}" />
+								</td>
+								<td class="labelEstiloCinzaCabecalho">
+										<h:outputText value="#{msg.labelNumerodaPublicacao}" />
+										:
+								</td>
+								<td>
+										<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.pais}#{relatorioTecnicoMB.obterRelatorioTecnico.numeroPublicacao}" />
+								</td>
+						</tr>
+						<tr>
+								<td class="labelEstiloCinzaCabecalho">
+										<h:outputText value="#{msg.labelDatadeDeposito}" />
+										:
+								</td>
+								<td>
+										<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.dataDeposito}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+								</td>
+								<td class="labelEstiloCinzaCabecalho">
+										<h:outputText value="#{msg.labelDatadePublicacao}" />
+										:
+								</td>
+								<td>
+										<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.dataPublicacao}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+								</td>
+						</tr>
+				</h:panelGroup>
+		</table>
+
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+
+				<tr>
+						<th class="bordaTabelaTH" colspan="2">
+								<h:outputText value="#{msg.tituloDetalhesdoPedido}" />
+						</th>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelTitulo}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.titulo}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelResumo}" />
+								:
+						</td>
+						<td>
+								<h:outputText escape="false" value="#{relatorioTecnicoMB.obterRelatorioTecnico.resumo}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelClassificacoes}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.nomeClafissificacoes}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelPrioridades}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.numerosPrioridades}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelDepositantes}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.nomesDepositantes}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelInventores}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.nomesInventores}" />
+						</td>
+				</tr>
+				<tr>
+						<td class="labelEstiloCinzaCabecalho">
+								<h:outputText value="#{msg.labelProcurador}" />
+								:
+						</td>
+						<td>
+								<h:outputText value="#{relatorioTecnicoMB.obterRelatorioTecnico.nomeProcurador}" />
+						</td>
+				</tr>
+		</table>
+
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.familias}">
+						<tr>
+								<th class="bordaTabelaTH" colspan="4">
+										<h:outputText value="#{msg.tituloFamilia}" />
+								</th>
+						</tr>
+						<tr>
+								<td class="labelEstiloCinzaFamilia">
+										<h:outputText value="#{msg.labelNumero}" />
+								</td>
+								<td class="labelEstiloCinzaFamilia">
+										<h:outputText value="#{msg.labelTitulo}" />
+								</td>
+								<td class="labelEstiloCinzaFamilia" width="150px">
+										<h:outputText value="#{msg.labelDatadeDeposito}" />
+								</td>
+								<td class="labelEstiloCinzaFamilia" width="150px">
+										<h:outputText value="#{msg.labelDatadePublicacao}" />
+								</td>
+						</tr>
+						<ui:repeat value="#{relatorioTecnicoMB.obterRelatorioTecnico.familias}" var="familia">
+								<tr>
+										<td class="larguraColunaFamilia">
+												<h:outputText value="#{familia.pais}" />
+												<h:outputText value="#{familia.numeroPublicacao}" />
+										</td>
+										<td class="larguraColunaFamiliaTitulo">
+												<h:outputText value="#{familia.titulo}" />
+										</td>
+										<td class="larguraColunaFamilia">
+												<h:outputText value="#{familia.dataDeposito}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</td>
+										<td class="larguraColunaFamilia">
+												<h:outputText value="#{familia.dataPublicacao}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+										</td>
+								</tr>
+						</ui:repeat>
+				</h:panelGroup>
+		</table>
+
+		<br />
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty tbRelatorioEcMB.link}">
+						<tr>
+								<th class="bordaTabelaTH" colspan="2">
+										<h:outputText value="#{msg.tituloReferenciaExterna}" />
+								</th>
+						</tr>
+						<tr>
+								<td class="labelEstiloCinzaPedidoLinkExt">
+										<h:outputText value="#{msg.labelLink}" />
+										:
+								</td>
+								<td>
+										<h:outputText value="#{tbRelatorioEcMB.link}" />
+								</td>
+						</tr>
+				</h:panelGroup>
+		</table>
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.resumoRelatorioTecnico}">
+						<tr>
+								<th class="bordaTabelaTH">
+										<h:outputText value="#{msg.tituloResumo}" />
+								</th>
+						</tr>
+						<tr>
+								<td>
+										<h:outputText escape="false" value="#{relatorioTecnicoMB.obterRelatorioTecnico.resumoRelatorioTecnico}" />
+								</td>
+						</tr>
+				</h:panelGroup>
+		</table>
+
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.anterioridades}">
+
+						<tr>
+								<th class="bordaTabelaTH" colspan="3">
+										<h:outputText value="#{msg.tituloAnaliseSimplificada}" />
+								</th>
+
+						</tr>
+
+						<tr>
+								<td class="labelEstiloCinzaAnalise" colspan="3">
+										<h:outputText value="#{msg.tituloAnterioridades}" />
+								</td>
+						</tr>
+
+						<ui:repeat value="#{relatorioTecnicoMB.obterRelatorioTecnico.anterioridades}" var="anterioridades" varStatus="index">
+								<tr>
+										<td class="contador" rowspan="5">
+												<h:outputText value="#{index.index + 1}" />
+										</td>
+										<td class="labelEstiloNegrito">
+												<h:outputText value="#{msg.labelTipo}" />
+										</td>
+										<td>
+												<h:outputText value="#{anterioridades.tipoAnterioridade}" />
+										</td>
+								</tr>
+								<tr>
+										<td class="labelEstiloNegrito">
+												<h:outputText value="#{msg.labelNumeroDesc}" />
+										</td>
+										<td>
+												<h:outputText value="#{anterioridades.namePrior}" />
+										</td>
+								</tr>
+								<tr>
+										<td class="labelEstiloNegrito">
+												<h:outputText value="#{msg.labelRelevancia}" />
+										</td>
+										<td>
+												<h:outputText value="#{anterioridades.relevance}" />
+										</td>
+								</tr>
+								<tr>
+										<td class="labelEstiloNegrito">
+												<h:outputText value="#{msg.labelRelacao}" />
+										</td>
+										<td>
+												<h:outputText escape="false" value="#{anterioridades.relations}" />
+										</td>
+								</tr>
+								<tr>
+										<td class="labelEstiloNegrito">
+												<h:outputText value="#{msg.labelRelacaoReivindicacoes}" />
+										</td>
+										<td>
+												<h:outputText escape="false" value="#{anterioridades.relationsClaims}" />
+										</td>
+								</tr>
+						</ui:repeat>
+				</h:panelGroup>
+		</table>
+
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.categoriasRelatorio}">
+						<tr>
+								<th class="bordaTabelaTH" colspan="3">
+										<h:outputText value="#{msg.tituloAnaliseDetalhada}" />
+								</th>
+						</tr>
+						<tr>&nbsp;
+						</tr>
+				</h:panelGroup>
+		</table>
+		<ui:repeat value="#{relatorioTecnicoMB.obterRelatorioTecnico.categoriasRelatorio}" var="categoriaList">
+				<table border="1" class="tabelaCorpo" width="100%">
+						<h:panelGroup rendered="#{not empty categoriaList.resumo}">
+								<tr>
+										<td class="labelEstiloCinzaAnalise" colspan="3">
+												<h:outputText value="#{msg.tituloCategoria}" />
+												&nbsp;
+												<h:outputText value="#{categoriaList.nome}" />
+												&nbsp;-&nbsp;
+												<h:outputText value="#{msg.tituloCategoriaResumo}" />
+										</td>
+								</tr>
+								<tr>
+										<td colspan="3">
+												<h:outputText escape="false" value="#{categoriaList.resumo}" />
+										</td>
+								</tr>
+						</h:panelGroup>
+
+						<h:panelGroup rendered="#{not empty categoriaList.anterioridades}">
+								<tr>
+										<td class="labelEstiloCinzaAnalise" colspan="3">
+												<h:outputText value="#{msg.tituloCategoria}" />
+												&nbsp;
+												<h:outputText value="#{categoriaList.nome}" />
+												&nbsp;-&nbsp;
+												<h:outputText value="#{msg.tituloCategoriaAnterioridades}" />
+										</td>
+								</tr>
+						</h:panelGroup>
+						<br />
+
+
+						<ui:repeat value="#{categoriaList.anterioridades}" var="anterioridadesCategoria" varStatus="index">
+								<h:panelGroup rendered="#{not empty categoriaList.anterioridades}">
+
+										<tr>
+												<td class="contador" rowspan="5">
+														<h:outputText value="#{index.index + 1}" />
+												</td>
+												<td class="labelEstiloNegrito">
+														<h:outputText value="#{msg.labelTipo}" />
+												</td>
+												<td>
+														<h:outputText value="#{anterioridadesCategoria.tipoAnterioridade}" />
+												</td>
+										</tr>
+										<tr>
+												<td class="labelEstiloNegrito">
+														<h:outputText value="#{msg.labelNumeroDesc}" />
+												</td>
+												<td>
+														<h:outputText value="#{anterioridadesCategoria.namePrior}" />
+												</td>
+										</tr>
+										<tr>
+												<td class="labelEstiloNegrito">
+														<h:outputText value="#{msg.labelRelevancia}" />
+												</td>
+												<td>
+														<h:outputText value="#{anterioridadesCategoria.relevance}" />
+												</td>
+										</tr>
+										<tr>
+												<td class="labelEstiloNegrito">
+														<h:outputText value="#{msg.labelRelacao}" />
+												</td>
+												<td>
+														<h:outputText escape="false" value="#{anterioridadesCategoria.relations}" />
+												</td>
+										</tr>
+										<tr>
+												<td class="labelEstiloNegrito">
+														<h:outputText value="#{msg.labelRelacaoReivindicacoes}" />
+												</td>
+												<td>
+														<h:outputText escape="false" value="#{anterioridadesCategoria.relationsClaims}" />
+												</td>
+										</tr>
+								</h:panelGroup>
+						</ui:repeat>
+				</table>
+				<br />
+
+
+				<table border="1" class="tabelaCorpo" width="100%">
+						<ui:repeat value="#{categoriaList.caracteristica}" var="caracteristica">
+								<h:panelGroup rendered="${caracteristica.temAnterioridades}">
+										<tr>
+												<td class="labelEstiloCinzaAnalise" colspan="4">
+														<h:outputText value="#{msg.tituloCategoria}" />
+														&nbsp;
+														<h:outputText value="#{categoriaList.nome}" />
+														&nbsp;-&nbsp;
+														<h:outputText value="#{msg.tituloCategoriaCaracteristicaRelacionada}" />
+												</td>
+										</tr>
+
+										<tr>
+												<td colspan="4">
+														<h:outputText escape="false" value="#{caracteristica.textoCaracteristica}" />
+												</td>
+										</tr>
+								</h:panelGroup>
+								<ui:repeat value="#{caracteristica.anterioridades}" var="anterioridadesCaracteristica" varStatus="index">
+										<h:panelGroup rendered="${caracteristica.temAnterioridades}">
+
+												<tr>
+														<td width="20px" rowspan="5">
+																<div
+																		style="text-align: center; -webkit-transform: rotate(270deg); -moz-transform: rotate(270deg); -o-transform: rotate(270deg); writing-mode: lr-tb; text-indent: none;"
+																		width="2px">
+																		<h:outputText value="#{categoriaList.nome}" />
+																</div>
+														</td>
+
+														<td class="contador" rowspan="5">
+																<h:outputText value="#{index.index + 1}" />
+														</td>
+														<td class="labelEstiloNegrito">
+																<h:outputText value="#{msg.labelTipo}" />
+														</td>
+														<td>
+																<h:outputText value="#{anterioridadesCaracteristica.tipoAnterioridade}" />
+														</td>
+												</tr>
+												<tr>
+														<td class="labelEstiloNegrito">
+																<h:outputText value="#{msg.labelNumeroDesc}" />
+														</td>
+														<td>
+																<h:outputText value="#{anterioridadesCaracteristica.namePrior}" />
+														</td>
+												</tr>
+												<tr>
+														<td class="labelEstiloNegrito">
+																<h:outputText value="#{msg.labelRelevancia}" />
+														</td>
+														<td>
+																<h:outputText value="#{anterioridadesCaracteristica.relevance}" />
+														</td>
+												</tr>
+												<tr>
+														<td class="labelEstiloNegrito">
+																<h:outputText value="#{msg.labelRelacao}" />
+														</td>
+														<td>
+																<h:outputText escape="false" value="#{anterioridadesCaracteristica.relations}" />
+														</td>
+												</tr>
+												<tr>
+														<td class="labelEstiloNegrito">
+																<h:outputText value="#{msg.labelRelacaoReivindicacoes}" />
+														</td>
+														<td>
+																<h:outputText escape="false" value="#{anterioridadesCaracteristica.relationsClaims}" />
+														</td>
+												</tr>
+										</h:panelGroup>
+								</ui:repeat>
+
+						</ui:repeat>
+
+						<h:panelGroup rendered="${!caracteristica.temAnterioridades}">
+								<ui:repeat value="#{categoriaList.caracteristica}" var="caracteristica" varStatus="index">
+
+										<h:panelGroup rendered="${!caracteristica.temAnterioridades}">
+												<tr>
+														<td class="labelEstiloCinzaAnalise" colspan="4">
+																<h:outputText value="#{msg.tituloCategoria}" />
+																&nbsp;
+																<h:outputText value="#{categoriaList.nome}" />
+																&nbsp;-&nbsp;
+																<h:outputText value="#{msg.tituloCategoriaCaracteristicaNaoRelacionada}" />
+														</td>
+												</tr>
+										</h:panelGroup>
+										<h:panelGroup rendered="${!caracteristica.temAnterioridades}">
+												<tr>
+														<td colspan="4">
+																<h:outputText escape="false" value="#{caracteristica.textoCaracteristica}" />
+														</td>
+												</tr>
+										</h:panelGroup>
+								</ui:repeat>
+						</h:panelGroup>
+				</table>
+
+		</ui:repeat>
+
+
+		<br />
+
+
+
+		<br />
+
+		<table border="1" class="tabelaCorpo" width="100%">
+				<h:panelGroup rendered="#{not empty relatorioTecnicoMB.obterRelatorioTecnico.conclusao}">
+						<tr>
+								<th class="bordaTabelaTH">
+										<h:outputText value="#{msg.tituloConclusao}" />
+								</th>
+						</tr>
+						<tr>
+								<td>
+										<h:outputText escape="false" value="#{relatorioTecnicoMB.obterRelatorioTecnico.conclusao}" />
+								</td>
+						</tr>
+				</h:panelGroup>
+		</table>
+
+
+		<div class='footer'>
+				<h:outputText escape="false"
+						value="Relatório gerado em #{relatorioTecnicoMB.obterRelatorioTecnico.dataAtual}. Autor: #{relatorioTecnicoMB.obterRelatorioTecnico.autor}" />
+		</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+		<h:form id="form">
+		
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbPatenteEcMB.buscarPedido}">
+					<h:outputText value="#{msg.labelPedido}" styleClass="titulo" />
+				</h:commandLink>
+
+
+			</div>
+			
+	
+			<br />
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelVisualizarDadosFamilia}" />
+			<p:separator />
+			<br />
+			<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life="150000" />
+			<br />
+		</h:form>
+		<h:form id="mainForm">
+			<p:panel>
+				<div align="center">
+					<p:commandLink oncomplete="PF('dialogOps').show()"><h:outputText class="linktext" value="#{msg.labelCliqueAquiINPADOC}" /></p:commandLink>
+							
+				
+				</div>
+			</p:panel>
+			<br />
+			<br />
+			<p:dataTable id="dataTabVisualizaDados" autoUpdate="true" value="#{tbFamiliaECMB.familias}"
+				var="familia" type="unordered" itemType="none" style="vertical-align: center" rows="10"
+				styleClass="paginated" paginator="true">
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelVisualizarDadosFamilia}" />
+				</f:facet>
+				<p:column headerText="#{msg.labelPais}" style="width:60px">
+					<div align="center">
+						<p:graphicImage value="#{familia.patente.imagem}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelPedido}" style="width:80px">
+				<div align="center">
+				<p:commandLink actionListener="#{tbFamiliaECMB.teste(familia.patente.UrlPedido())}"  oncomplete="PF('dialogOps02').show()" update=":mainForm:buscaOps02:lighbox02">
+				
+				
+				
+				<f:setPropertyActionListener value="#{familia.patente.UrlPedido()}"
+							target="#{tbFamiliaECMB.retornarLinkPedido}" />
+				
+					<h:outputText value="#{familia.patente.numeroPublicacaoEpodoc}" />
+				</p:commandLink>					
+				
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelCodigo}" style="width:40px">
+					<div align="center">
+						<h:outputText value="#{familia.patente.kindCodePublicacao}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelArquivoPDF}" style="width:50px">
+					<div align="center">
+					
+					<p:commandLink actionListener="#{tbFamiliaECMB.teste02(familia.patente.UrlArquivo())}"  oncomplete="PF('dialogOps03').show()" update=":mainForm:buscaOps03:lighbox03">
+				
+				
+				
+				<f:setPropertyActionListener value="#{familia.patente.UrlArquivo()}"
+							target="#{tbFamiliaECMB.retornarLinkPdf}" />
+				
+					<h:graphicImage value="#{familia.patente.imagemPdf}" />
+				</p:commandLink>	
+					
+	
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelDataPublicacao}" style="width:80px">
+					<div align="center">
+						<h:outputText value="#{familia.patente.dataPublicacao}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</div>
+				</p:column>
+				<p:column headerText="#{msg.labelReferenciaCitada}">
+				<div align="center">
+					<ui:repeat value="#{familia.patente.citacoes}" var="item">
+					
+					
+						<h:outputText value= " #{item.text} " >
+						</h:outputText>
+						
+						<h:outputText value= "#{item.pais}#{item.docNumber}  #{item.kind} " >
+						</h:outputText>								
+						
+						<h:outputText value= "[" rendered="#{(item.categoria != null)}" />
+						
+						<h:outputText value=" #{item.categoria} ">
+						</h:outputText>
+						
+						<h:outputText value= "]" rendered="#{(item.categoria != null)}" />
+						<h:outputText value= ";" rendered="#{(item.text != null || item.categoria != null || item.pais != null)}" />
+					</ui:repeat>
+									
+					</div>
+				</p:column>
+			</p:dataTable>
+			
+			
+			<!-- dialog -->
+			<p:dialog header="European Patent Office" widgetVar="dialogOps" showEffect="blind" hideEffect="explode" resizable="false" id="ops">
+				<h:form id="buscaOps">
+
+					<p:lightBox iframe="true" id="lighbox">
+						<iframe frameborder="0" align="left" src="#{tbFamiliaECMB.retornarEnderecoINPADOC()}" name="someName" id="urlOps" scrolling="auto" width="800" height="600"
+							marginheight="5" marginwidth="10">
+						</iframe>
+					</p:lightBox>
+				</h:form>
+				<p:ajax update=":mainForm:buscaOps:lighbox" />
+			</p:dialog>
+			
+			<!-- dialog -->
+			
+			<p:dialog header="European Patent Office" widgetVar="dialogOps02" showEffect="blind" hideEffect="explode" resizable="false" id="ops02">
+				<h:form id="buscaOps02">
+
+					<p:lightBox iframe="true" id="lighbox02">
+						<iframe frameborder="0" align="left" src="#{tbFamiliaECMB.retornarLinkPedido}" name="someName" id="urlOps02" scrolling="auto" width="800" height="600"
+							marginheight="5" marginwidth="10"> </iframe>
+					</p:lightBox>
+					
+					
+				</h:form>
+				
+				<p:ajax update=":mainForm" />
+			</p:dialog>
+			
+			
+			<!-- dialog -->
+			
+			<p:dialog  widgetVar="dialogOps03" showEffect="blind" hideEffect="explode" resizable="false" id="ops03">
+				<h:form id="buscaOps03">
+						<p:lightBox iframe="true"  id="lighbox03" >
+						
+						<iframe frameborder="0" align="left" src="#{tbFamiliaECMB.retornarLinkPdf}" name="someName" id="urlOps03" scrolling="auto" width="800" height="600"
+							marginheight="5" marginwidth="10"> </iframe>
+												
+	
+						</p:lightBox>			
+				</h:form>
+				
+				<p:ajax update=":mainForm" />
+			</p:dialog>
+			
+			
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

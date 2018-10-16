@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Usuários</ui:define>
+	<ui:define name="pageHeader">Manutenção de Usuários</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+			<br />
+		<h:form id="form">
+
+			
+			<p:remoteCommand name="nomeRemoteCommand" id="idRemoteCommand"
+					actionListener="#{usuarioMB.mensagemInserirUsuario}" autoRun="true"
+					update="messages" />
+			
+			
+			<br />
+			<p:outputLabel value="#{msg.labelManutencaoUsuario}" styleClass="textOut1" />
+			<p:separator />
+			<br />
+			<br />
+
+			<p:dataTable id="dataTable3" value="#{usuarioMB.usurarios}"
+				filteredValue="#{usuarioMB.usuarioFiltro}" var="usu" itemType="none"
+				style="vertical-align: center" paginator="true" rows="10"
+				styleClass="paginated">
+				<f:facet name="header">
+					<p:commandButton value="#{msg.labelBotaoInserir}"
+						oncomplete="PF('dialogCriar').show()" icon="ui-icon-star"
+						update=":newUserForm:panelCriar" title="#{msg.NovoUsuario}" />
+
+				</f:facet>
+				<f:facet name="header">
+					<p:commandButton value="#{msg.labelUsuarioOnline}" icon="ui-icon-person"
+						action="#{usuarioMB.obterUsuariosOnline()}"
+						oncomplete="PF('dialogVisualizarUsuarios').show()"
+						title="#{msg.labelUsuarioOnline}" />
+				</f:facet>
+				<p:column id="usuarioNome" filterBy="#{usu.txNome.toUpperCase()}"
+					filterMatchMode="contains" headerText="#{msg.labelNome}">
+					<div align="center">
+						<h:outputText value="#{usu.txNome.toUpperCase()}" />
+					</div>
+				</p:column>
+				<p:column id="usuarioLogin" filterBy="#{usu.strUsuario.toUpperCase()}"
+					filterMatchMode="contains" headerText="#{msg.labelMenuUsuario}">
+					<div align="center">
+						<h:outputText value="#{usu.strUsuario.toUpperCase()}" />
+					</div>
+				</p:column>
+				<p:column id="usuarioPais"
+					filterBy="#{usu.idEntidadeEc.idPais.strNomePais.toUpperCase()}"
+					filterMatchMode="contains" headerText="#{msg.labelPais}">
+					<div align="center">
+						<h:outputText value="#{usu.idEntidadeEc.idPais.strNomePais.toUpperCase()}" />
+					</div>
+				</p:column>
+				<p:column id="usuarioEntidade"
+					filterBy="#{usu.idEntidadeEc.txOrganizacao.toUpperCase()}"
+					filterMatchMode="contains" headerText="#{msg.labelEntidade}">
+					<div align="center">
+						<h:outputText value="#{usu.idEntidadeEc.txOrganizacao.toUpperCase()}" />
+					</div>
+				</p:column>
+				<p:column headerText="#{msg.labelStatus}" style="width:62px">
+					<div align="center">
+					<h:graphicImage value="#{usu.imagemAtivo}" />
+					</div>
+				</p:column>				
+				
+				<p:column headerText="#{msg.labelAcoes}" style="width:62px">
+					<div align="center">
+						<p:commandLink title="#{msg.alterar}"
+							action="#{usuarioMB.carregarUsuario()}"
+							update=":newUserForm2:panelCriar2"
+							oncomplete="PF('dialogAlterarUsuario').show()"
+							style="float:left;margin-right:10px">
+							<p:graphicImage value="./imagens/botoes/bt_editar.gif" />
+							<f:setPropertyActionListener value="#{usu}"
+								target="#{usuarioMB.usuarioSelecionado}" />
+						</p:commandLink>
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog header="#{msg.labelInserirNovoUsuario}" widgetVar="dialogCriar"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			sid="newUserDlg">
+			<h:form id="newUserForm" >
+				<p:panelGrid var="lista2" id="panelCriar" columns="2">
+					<f:facet name="header">
+					<h:outputText value="#{msg.labelInserirNovoUsuario}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelNome} *" />
+					<p:inputText value="#{usuarioMB.newUser.txNome}" />
+
+					<h:outputText value="#{msg.labelMenuUsuario} *" />
+					<p:inputText value="#{usuarioMB.newUser.strUsuario}" />
+
+					<h:outputText value="#{msg.labelEntidade} *" />
+					<p:selectOneListbox id="entidades"
+						value="#{usuarioMB.idOrganizacao}">
+						<f:selectItems value="#{tbCadColaboracaoMB.entidadesTeste}"
+							var="TbcadEntidade" itemLabel="#{TbcadEntidade.txOrganizacao}"
+							itemValue="#{TbcadEntidade.idEntidadeEc}" />
+					</p:selectOneListbox>
+
+					<h:outputText value="#{msg.labelDesignacao}" />
+					<p:inputText value="#{usuarioMB.newUser.txDesignacao}" />
+					
+					<h:outputText value="#{msg.labelOrganizacao}" />
+					<p:inputText value="#{usuarioMB.newUser.txOrganizacao}" />
+
+					<h:outputText value="E-mail *" required="true"
+						requiredMessage="Email Obrigatório" />
+					<p:inputText value="#{usuarioMB.newUser.strEmail}" />
+
+					<h:outputText for="txtSenha" value="#{msg.labelSenhaUsuario} *" />
+					<p:password id="txtSenha" feedback="true" minLength="4"
+						promptLabel="#{msg.msgSenhaInforme}" weakLabel="#{msg.labelRuim}"
+						goodLabel="#{msg.labelBoa}" strongLabel="#{msg.labelOtima}"
+						value="#{usuarioMB.newUser.strSenha}">
+						<p:message for="txtSenha" showDetail="true" />
+					</p:password>
+
+					<h:outputText for="txtSenhaConfirma"
+						value="#{msg.labelConfirmarSenha} *" />
+					<p:password id="txtSenhaConfirma" feedback="false" minLength="4"
+						value="${usuarioMB.confirmacaoSenha}" />
+
+					<h:outputText value="#{msg.labelTelefone}" />
+					<p:inputText value="#{usuarioMB.newUser.strTelefone}" />
+
+
+					<h:outputText value="#{msg.labelPrivilegio} *" />
+					<p:selectOneRadio id="privilegio1"
+						value="#{usuarioMB.idPerfilUsaurio}"  rendered="#{(usuarioMB.perfil eq '3')}">
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeSistemas}" itemValue="3"/>
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeEntidades}" itemValue="2"/>
+						<f:selectItem itemLabel="#{msg.labelExaminador}" itemValue="1" />
+					</p:selectOneRadio>
+					<p:selectOneRadio id="privilegio2"
+						value="#{usuarioMB.idPerfilUsaurio}"  rendered="#{(usuarioMB.perfil ne '3')}">
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeEntidades}" itemValue="2"/>
+						<f:selectItem itemLabel="#{msg.labelExaminador}" itemValue="1" />
+						
+					</p:selectOneRadio>
+					
+					
+
+					<h:outputText value="#{msg.labelSituacao} *" />
+					<p:selectOneRadio required="true" id="situacao"	value="#{usuarioMB.newUser.publico}">
+						<f:selectItem itemLabel="#{msg.labelPublico}" itemValue="true" />
+						<f:selectItem itemLabel="#{msg.labelPrivado}" itemValue="false" />
+					</p:selectOneRadio>
+					
+					
+					
+					
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}"
+							actionListener="#{usuarioMB.createUser}">
+						</p:commandButton>
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogCriar').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<!--  Alterar -->
+		<p:dialog header="#{msg.labelAlterarusuario}" widgetVar="dialogAlterarUsuario"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			width="480px" height="520px" id="newUserDlg2">
+			<h:form id="newUserForm2">
+				<p:panelGrid width="530px" var="lista2" id="panelCriar2" columns="1">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelAlterarusuario}" />
+					</f:facet>
+					<div>
+						<h:outputText value="#{msg.labelNome}" />
+						<p:inputText value="#{usuarioMB.usuarioSelecionado.txNome}"
+							size="60" maxlength="59" requiredMessage="Informe um nome"
+							required="true" />
+					</div>
+					
+					<div>
+					<h:outputText value="#{msg.labelMenuUsuario}" />
+					<p:inputText value="#{usuarioMB.usuarioSelecionado.strUsuario}" disabled="true" />
+
+</div>
+
+<div>
+					<h:outputText value="#{msg.labelEntidade}" />
+					<p:inputText id="entidades"
+						value="#{usuarioMB.usuarioSelecionado.idEntidadeEc.txOrganizacao}" disabled="true"/>
+					</div>
+					<div>
+						<h:outputText value="#{msg.labelDesignacao}" />
+						<p:inputText size="60" maxlenght="59"
+							value="#{usuarioMB.usuarioSelecionado.txDesignacao}" />
+					</div>
+					
+					
+					<div>
+					<h:outputText value="#{msg.labelOrganizacao}" />
+					<p:inputText  size="60" maxlenght="59" value="#{usuarioMB.usuarioSelecionado.txOrganizacao}" />
+					
+					</div>
+					<div>
+						<h:outputText value="E-mail" required="true"
+							requiredMessage="Email Obrigatório" />
+						<p:inputText size="60" maxlenght="59"
+							value="#{usuarioMB.usuarioSelecionado.strEmail}" />
+					</div>
+					<div>
+						<h:outputText value="#{msg.labelTelefone}" />
+						<p:inputText size="60" maxlenght="59"
+							value="#{usuarioMB.usuarioSelecionado.strTelefone}" />
+					</div>
+					<div>
+					<h:outputText value="#{msg.labelPrivilegio} *" />
+					<p:selectOneRadio id="privilegio1"
+						value="#{usuarioMB.usuarioSelecionado.idPerfilusuario.idPerfilusuario}"  rendered="#{(usuarioMB.perfil eq '3')}">
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeSistemas}" itemValue="3"/>
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeEntidades}" itemValue="2"/>
+						<f:selectItem itemLabel="#{msg.labelExaminador}" itemValue="1" />
+					</p:selectOneRadio>
+					<p:selectOneRadio id="privilegio2"
+						value="#{usuarioMB.usuarioSelecionado.idPerfilusuario.idPerfilusuario}"  rendered="#{(usuarioMB.perfil ne '3')}">
+						<f:selectItem itemLabel="#{msg.labelAdministradorDeEntidades}" itemValue="2"/>
+						<f:selectItem itemLabel="#{msg.labelExaminador}" itemValue="1" />
+						
+					</p:selectOneRadio>
+						
+							
+
+					</div>
+					<div>
+						<h:outputText value="#{msg.labelSituacao}" />
+						<p:selectOneRadio id="situacao"
+							value="#{usuarioMB.usuarioSelecionado.publico}">
+							<f:selectItem itemLabel="#{msg.labelPublico}" itemValue="true" />
+						<f:selectItem itemLabel="#{msg.labelPrivado}" itemValue="false" />
+						</p:selectOneRadio>
+					</div>
+					
+					
+					<div>
+						<h:outputText value="#{msg.labelStatus}" />
+						<p:selectOneRadio id="status"
+							value="#{usuarioMB.usuarioSelecionado.idAtivo}">
+							<f:selectItem itemLabel="#{msg.labelAtivo}" itemValue="1" />
+							<f:selectItem itemLabel="#{msg.labelInativo}" itemValue="0" />
+						</p:selectOneRadio>
+					</div>
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}" update=":form:dataTable3"
+							actionListener="#{usuarioMB.alterar()}">
+							
+							<f:setPropertyActionListener value="0"
+									target="#{usuarioMB.valorValido}" />
+						</p:commandButton>
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterarUsuario').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<!-- Fim Alterar  -->
+
+
+	</ui:define>
+
+
+</ui:composition>

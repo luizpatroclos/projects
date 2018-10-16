@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+		<h:outputStylesheet library="css" name="ePec.css" />
+
+
+		<h:form id="form">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+				
+				<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+
+			</div>
+					<br />
+							<br />
+			<br />
+
+			<h2 class="tituloGrande">
+				<h:outputText value="#{msg.vincularRelatorio}" />
+			</h2>
+			<br />
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<h:outputText value="#{msg.labelPedido}" style="font-weight: bold" />
+				<h:outputText value="#{tbFamiliaECMB.vincularRelatorio}" style="display:none" />
+				
+				
+				<p:selectOneMenu id="selectVincularRelatorio"
+					value="#{tbFamiliaECMB.vincularRelatorio}"
+					br.gov.inpi.epec.filter="true" style="width: 300px">
+					<f:selectItems value="#{tbFamiliaECMB.copiarRelatorioPatenteTeste}"
+						var="TbPatente" itemLabel="#{TbPatente.numeroPedido}"
+						itemValue="#{TbPatente.idPatenteEc}" style="width: 300px" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+<br/>
+<br/>
+<h:panelGrid columns="2" cellpadding="5">
+
+				<p:commandButton value="#{msg.vincularRelatorio}" class="botaoPesquisa"
+				actionListener="#{tbFamiliaECMB.salvarVinculoRelatorioPatente}" update=":form" id="botaoVincularRelatorioSalvar">
+				<p:confirm header="#{msg.vincularRelatorio}"
+					message="#{msg.msgVincularRelatorio}" icon="ui-icon-alert" />
+			</p:commandButton>
+
+				<p:commandButton value="#{msg.cancelar}" class="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}" id="botaoVincularRelatorioCancelar">
+				</p:commandButton>
+
+			</h:panelGrid>		
+
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode" id="teste002">
+				<p:commandButton value="#{msg.sim}" type="button" id="confirmaSim"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.nao}" type="button" id="confirmaNao"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

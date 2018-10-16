@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+			</div>
+
+			<br />
+			<h:panelGrid columns="2" columnClasses="logo,detail">
+
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelLogFamilia}"
+					actionListener="#{menuView.logFamilia}">
+				</p:commandButton>
+				<p:commandButton class="botaoPesquisa" value="#{msg.labelMensagem}"
+					actionListener="#{tbFamiliaECMB.mensagemFamilia}">
+				</p:commandButton>
+			</h:panelGrid>
+			<br />
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+
+			<br />
+			<h:outputText styleClass="textOut1"
+				value="#{msg.labelComentariosDaFamilia}" />
+			<p:separator />
+
+			<br />
+
+
+			<p:dataTable id="dataTabComentarioFamilia" autoUpdate="true"
+				var="comentario" value="#{tbFamiliaECMB.comentarios}"
+				type="unordered" itemType="none"
+				style="vertical-align: center; width: 910px" styleClass="paginated"
+				paginator="true" rows="10">
+
+				<p:column headerText="#{msg.labelMenuUsuario}" style="width: 80px">
+					<div align="center">
+
+						<p:commandLink
+							action="#{usuarioMB.exibirDadosUsuarioSelecionado()}"
+							update=":form" oncomplete="PF('dialogVisualizarUsuario').show()"
+							style="align:center" rendered="#{comentario.idUsuario.publico}">
+							<h:outputText value="#{comentario.idUsuario.strUsuario}" />
+							<f:setPropertyActionListener value="#{comentario.idUsuario}"
+								target="#{usuarioMB.usuarioSelecionado}" />
+							<f:setPropertyActionListener value="1"
+								target="#{usuarioMB.valorValido}" />
+							<f:setPropertyActionListener value="#{comentario.idUsuario}"
+								target="#{usuarioMB.usuarioOnline}" />
+
+						</p:commandLink>
+
+						<h:outputText value="#{comentario.idUsuario.strUsuario}"
+							rendered="#{!(comentario.idUsuario.publico)}" />
+
+
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelLogado}" style="width: 50px">
+					<div align="center">
+						<p:graphicImage value="#{comentario.idUsuario.imagemLogado}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelPais}" style="width: 80px">
+					<div align="center">
+						<p:graphicImage value="#{comentario.idUsuario.imagem}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labeldataHora}" style="width: 120px">
+					<div align="center">
+						<h:outputText value="#{comentario.dtRegistro}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelcomentario}">
+					<h:outputText value="#{comentario.txComentario}" />
+				</p:column>
+
+
+			</p:dataTable>
+
+			<br />
+			<br />
+
+			<p:panel id="pnl" header="#{msg.labelcomentario}"
+				style="width: 910px">
+
+				<p:inputTextarea rows="10" cols="50" queryDelay="750"
+					minQueryLength="4" value="#{tbFamiliaECMB.textoComentario}" />
+				<br />
+
+				<br />
+				<p:selectBooleanCheckbox value="#{tbFamiliaECMB.enviarMensagem}" />
+				<h:outputText value="  #{msg.labelEnviarMensagem}" />
+
+
+
+			</p:panel>
+
+				<br />
+				<br />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton value="#{msg.labelBotaoInserir}"  class="botaoPesquisa"
+					actionListener="#{tbFamiliaECMB.salvarComentario}" update=":form"
+					id="inserirComentario">
+					<p:confirm header="Confirmation" message="#{msg.msgContinuar}"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+
+				<p:commandButton value="#{msg.cancelar}" class="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}"
+					id="botaoInserirComentarioCancelar">
+				</p:commandButton>
+
+			</h:panelGrid>
+
+
+
+
+			<p:dialog header="#{msg.labelVisualizarUsuario}"
+				widgetVar="dialogVisualizarUsuario" showEffect="blind"
+				hideEffect="explode" resizable="false" id="visualizarUsuario">
+				<h:form id="userDetailForm2">
+
+					<p:panelGrid style="width:660px" id="panelCriar5">
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: left;font-weight: bold;"
+									value="#{msg.labeldadosUsuario}" />
+							</p:column>
+						</p:row>
+						<p></p>
+						<p:row>
+							<p:column>
+								<p:outputLabel style="text-align: right"
+									value="#{msg.labelNome}" />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" readonly="true"
+									value="#{usuarioMB.nomeSelecionado}" size="60" />
+
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: right"
+									value="#{msg.labelDesignacao}" />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" size="60" readonly="true"
+									value="#{usuarioMB.desiginacaoSelecionado}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: right" value="E-mail : " />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" size="60" readonly="true"
+									value="#{usuarioMB.emailSelecionado}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: right"
+									value="#{msg.labelTelefone}" />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" size="60" readonly="true"
+									value="#{usuarioMB.telefone}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: right"
+									value="#{msg.labelPrivilegio}" />
+							</p:column>
+							<p:column>
+								<p:inputText readonly="true" size="60"
+									value="#{usuarioMB.privilegio}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText style="text-align: right"
+									value="#{msg.labelSituacao}" />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" readonly="true" size="25"
+									value="#{usuarioMB.situacao}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{msg.labelStatus}" />
+							</p:column>
+							<p:column>
+								<p:inputText style="text-align: left" readonly="true" size="25"
+									value="#{usuarioMB.statusSelecionado}" />
+							</p:column>
+						</p:row>
+						<p></p>
+						<p:row>
+							<p:column>
+								<p:commandButton value="#{msg.fechar}"
+									onclick="PF('dialogVisualizarUsuario').hide()">
+								</p:commandButton>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="#{msg.sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

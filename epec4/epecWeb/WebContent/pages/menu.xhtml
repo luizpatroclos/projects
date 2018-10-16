@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	lang="#{internacionalizacaoMB.linguagem}">
+
+<f:view locale="#{internacionalizacaoMB.linguagem}" />
+
+<h:head>
+
+</h:head>
+<body>
+	<h:outputStylesheet library="css" name="epec_menu.css" />
+	<h:outputStylesheet library="css" name="ePec.css" />
+	<h:form id="menuTabs" ajax="update">
+
+		<p:megaMenu orientation="horizontal" styleClass="megaMenu">
+
+			<p:submenu label="#{msg.labelBusca}" styleClass="megaMenuLabel"
+				class="menuTeste">
+				<p:column styleClass="megaMenuLabel">
+					<p:submenu styleClass="megaMenuLabel">
+						<p:menuitem value="#{msg.labelPublicacao}" class="menuTeste"
+							actionListener="#{menuView.buscaPublicacao}">
+						</p:menuitem>
+						<p:menuitem value="#{msg.labelPrioridade}" class="menuTeste"
+							actionListener="#{menuView.buscaPrioridade}">
+						</p:menuitem>
+						<p:menuitem value="#{msg.labelDeposito}" class="menuTeste"
+							actionListener="#{menuView.buscaPedido}">
+						</p:menuitem>
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+
+			<p:submenu label="#{msg.labelGerenciamento}"
+				styleClass="megaMenuLabel"
+				rendered="#{(isAdminstrador eq '1') || (isAdminstrador eq '2')}">
+				<p:column styleClass="megaMenuLabel">
+					<p:submenu styleClass="megaMenuLabel">
+						<p:menuitem value="#{msg.labelColaboracao}" class="menuTeste"
+							actionListener="#{menuView.colaboracao}"
+							rendered="#{(isAdminstrador ne '3') and (isAdminstrador ne '4')}" />
+
+						<p:menuitem value="#{msg.labelEntidade}" class="menuTeste"
+							actionListener="#{menuView.manterEntidade}"
+							rendered="#{(isAdminstrador ne '3') and (isAdminstrador ne '4')}" />
+
+						<p:menuitem value="#{msg.labelPais}" class="menuTeste"
+							actionListener="#{menuView.manterPais}"
+							rendered="#{isAdminstrador eq '1'}" />
+
+
+						<p:menuitem value="#{msg.labelClausulaTipo}" class="menuTeste"
+							actionListener="#{menuView.manterClausulaTipo}"
+							rendered="#{((isAdminstrador eq '1') or (isAdminstrador eq '2')) }" />
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+
+			<p:submenu label="#{msg.labelMenuUsuario}" styleClass="megaMenuLabel" rendered="#{isAdminstrador ne '4'}">
+				<p:column styleClass="megaMenuLabel">
+					<p:submenu styleClass="megaMenuLabel">
+						<p:menuitem value="#{msg.labeldadosPessoais}"
+							actionListener="#{menuView.manterUsuario}"
+							rendered="#{isAdminstrador ne '4'}" />
+
+						<p:menuitem value="#{msg.labelManutencaoUsuario}"
+							actionListener="#{menuView.gerenciarUsuarios}"
+							rendered="#{(isAdminstrador eq '1') || (isAdminstrador eq '2')}" />
+
+						<p:menuitem value="#{msg.labelHistoricoAcesso}"
+							actionListener="#{menuView.acessarHistorico}"
+							rendered="#{isAdminstrador ne '4'}" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+			<p:menuitem value="#{msg.labelEstatistica}" class="menuTeste"
+				actionListener="#{menuView.estatistica}"
+				rendered="#{isAdminstrador ne '4'}" />
+		</p:megaMenu>
+
+
+
+	</h:form>
+</body>
+</html>

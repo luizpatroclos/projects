@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+		
+		<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+			</div>
+			
+			<br/>
+			<h:panelGrid columns="2" columnClasses="logo,detail">
+			
+			
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelMensagem}"
+					actionListener="#{tbFamiliaECMB.mensagemFamilia}">
+					</p:commandButton>
+			</h:panelGrid>
+			<br/>
+			<br/>
+
+			<h:outputText styleClass="textOut1" value="#{msg.labelLogFamilia}" />
+			<p:separator />
+			<br />
+			<br />
+		
+			<p:dataTable id="dataTabAcessarHistorico" autoUpdate="true" var="logFamilia" value="#{tbFamiliaECMB.logFamilia}" type="unordered" itemType="none"
+				style="vertical-align: center" rows="10" styleClass="paginated" paginator="true">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelLogFamilia}" />
+				</f:facet>
+
+				<p:column headerText="#{msg.labelAcao}">
+					<div align="center">
+						<h:outputText value="#{logFamilia.strAcao}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelTipoAtivo}">
+					<div align="center">
+						<h:outputText value="#{logFamilia.strAtivo}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelAtivo}">
+				<div align="center">
+				
+									<h:outputText value="#{logFamilia.txAtivo}" />
+									</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labeldataHora}">
+				<div align="center">
+					<h:outputText value="#{logFamilia.datahora}" >
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelMenuUsuario}">
+					<div align="center">
+						<h:outputText value="#{logFamilia.strUsuario}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelPais}">
+					<div align="center">
+						<p:graphicImage value="#{logFamilia.usuario.idEntidadeEc.idPais.imagem}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelLogado}">
+					<div align="center">
+						<p:graphicImage value="#{logFamilia.usuario.imagemLogado}" />
+					</div>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true"  life="150000" />
+			<br />
+
+<h:outputText styleClass="textOut1" value="#{msg.labelHistoricoAcesso}" />
+			<p:separator />
+						<br />
+									<br />
+			<p:dataTable id="dataTabHistoricoAcesso" autoUpdate="true" var="acesso"
+				value="#{loginEPECBean.acessos}" type="unordered" itemType="none" style="vertical-align: center"
+				rows="10" styleClass="paginated" paginator="true">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.labelHistoricoAcesso}" />
+				</f:facet>
+
+				<p:column headerText="#{msg.labelMenuUsuario}">
+				<div align="center">
+					<h:outputText value="#{acesso.strUsuario}" />
+					
+				</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelPais}">
+				<div align="center">
+					<h:outputText value="#{acesso.strNomePais}" />
+					</div>
+				</p:column>
+				<p:column headerText="#{msg.labelEntidade}">
+				<div align="center">
+					<h:outputText value="#{acesso.txOrganizacao}" />
+					</div>
+				</p:column>
+				<p:column headerText="#{msg.labelLogado}">
+					<div align="center">
+						<h:graphicImage value="#{acesso.imagemLogado}" />
+					</div>
+				</p:column>
+				<p:column headerText="#{msg.labeldataHora}">
+					<div align="center">
+						<h:outputText value="#{acesso.dtRegistro}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelEnderecoIP}">
+					<div align="center">
+						<h:outputText value="#{acesso.strIp}" />
+					</div>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

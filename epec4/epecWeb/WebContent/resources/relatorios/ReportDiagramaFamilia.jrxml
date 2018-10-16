@@ -1,0 +1,2600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportView" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ddccde6b-dddf-4d0f-8ee3-023bebae9d60">
+	<property name="ireport.zoom" value="1.2100000000000035"/>
+	<property name="ireport.x" value="21"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="listaDiagramaFamilia" class="java.util.List">
+		<fieldDescription><![CDATA[listaDiagramaFamilia]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="2" y="0" width="800" height="48" backcolor="#E5E5E5" uuid="fc782400-7391-44a0-be12-99f04bbeb91d"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="2" y="19" width="800" height="1" forecolor="#999999" backcolor="#E7E7E7" uuid="4b156114-03aa-4b44-95e0-3e03c07e8698"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="219" y="0" width="360" height="20" forecolor="#666666" uuid="17d8aa45-c56b-4fb0-910d-3f1d817490a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.get(1).toString() + " - Família do pedido"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="47" width="800" height="1" forecolor="#999999" backcolor="#E7E7E7" uuid="c794ea7b-61a9-4c31-9d2f-87e5bc3406d4"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="47" y="20" width="693" height="28" forecolor="#666666" uuid="ced6937e-dfad-4f8d-978b-fed50d4e6032"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[O diagrama de família tem como propósito apresentar o relacionamento entre os documentos que compõem a família INPADOC. Os nós em destaque são aqueles que têm relação direta com o pedido analisado. As elipses representam as prioridades e as caixas representam os pedidos.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="507" splitType="Stretch">
+			<line direction="BottomUp">
+				<reportElement key="" x="173" y="34" width="38" height="1" uuid="c1cb3dfb-9ead-4b5b-826a-de5650624373">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="303" y="34" width="85" height="1" uuid="a41da197-642f-42d4-b27c-35cdeca9cc14">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="187" y="79" width="38" height="1" uuid="e9ab343f-ce29-402e-9249-ce85577509c1">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="318" y="78" width="60" height="1" uuid="1159795f-141d-4a2f-bee7-1e8809795c4a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="193" y="122" width="38" height="1" uuid="b6f70331-51b7-4729-98e8-5ad35063f02e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="323" y="121" width="45" height="1" uuid="c06a5c59-472b-4d94-948a-f5b4fe00dfbc">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="197" y="170" width="38" height="1" uuid="63a34805-2638-4aba-a7b1-d85d1d8344e4">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="327" y="170" width="30" height="1" uuid="9dbffe02-9fbe-4148-bacc-055ccd1acabd">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="204" y="213" width="38" height="1" uuid="b7812334-2576-4ff5-89fa-f86d54c4cc72">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="203" y="298" width="38" height="1" uuid="9c7fe3cf-d036-45b1-bec5-74c9841888c6">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="333" y="298" width="15" height="1" uuid="c90a89e4-e577-4a68-b5d6-b965d839f817">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="333" y="213" width="15" height="1" uuid="1f4f9e29-fb5a-430e-ad01-bc5f304914d0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="198" y="341" width="38" height="1" uuid="4f5b2db4-6893-4fdf-967f-abf5d5a4d29b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="328" y="342" width="30" height="1" uuid="f2df5cd2-94e0-428b-8e97-3caad3f79653">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="194" y="389" width="38" height="1" uuid="948abdd2-8630-4b59-ae52-5d4fef96b6f8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="322" y="388" width="45" height="1" uuid="db9d1299-16a0-4839-809a-0264a1684d8a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="187" y="432" width="38" height="1" uuid="2dea1ef1-9e05-4d81-af86-81817c4d31e3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="318" y="433" width="60" height="1" uuid="09f29fdf-6a6f-432d-86db-f05c30393e7d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="176" y="477" width="38" height="1" uuid="715ca859-3100-41aa-916e-24dea3f3fbad">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="304" y="476" width="85" height="1" uuid="32dfeea4-b1dd-487a-944b-8dc11360015e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="418" y="34" width="85" height="1" uuid="f015dbfc-0e59-4c90-830b-dbc8292d3924">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="592" y="33" width="38" height="1" uuid="c1217b81-7b48-4338-8515-872c129c72bb">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="429" y="77" width="60" height="1" uuid="7c1945fb-a69f-421f-a26d-c0d613869ccc">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="577" y="77" width="38" height="1" uuid="127490bb-c577-4112-8617-2ed46fd0247e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="440" y="121" width="45" height="1" uuid="86794901-5d22-42c5-829a-7ac879e97a60">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="451" y="169" width="30" height="1" uuid="cedf09f9-82ab-4a3f-9451-e79c3a7d5b3f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="573" y="121" width="38" height="1" uuid="2281d67e-81f1-4cb4-b094-ced2c00b4eb0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="572" y="170" width="38" height="1" uuid="9caca5d8-fec0-4031-afba-ff4c02339b00">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="461" y="214" width="15" height="1" uuid="4dfaaf63-18eb-478f-b847-73ee4733c230">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="566" y="215" width="38" height="1" uuid="06f71881-ff79-4887-8816-b24f59f12317">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="461" y="297" width="15" height="1" uuid="0ebd7fb3-be96-42a5-8bde-97c53b7e15a7">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="566" y="298" width="38" height="1" uuid="c3fab104-392d-495b-acc2-c289fb16eda5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="451" y="342" width="30" height="1" uuid="39fa9c31-0a59-4bb4-b2fe-62f946542c79">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="573" y="341" width="38" height="1" uuid="3d4c0931-e070-4ce7-9785-0ecf1d4f030a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="430" y="434" width="60" height="1" uuid="654a1601-1510-49e0-aa57-cb22ca8454ef">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="441" y="388" width="45" height="1" uuid="034f0af6-c595-425a-9153-fefabccae98b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="576" y="389" width="38" height="1" uuid="da2a13a5-9796-4855-8919-de10727cd4f7">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="583" y="433" width="38" height="1" uuid="c70a49c3-14f4-4cc0-968c-1d7015c8c60a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="417" y="476" width="85" height="1" uuid="51aa5aa6-8ccc-4c9d-a3e6-35a64ca2f8ee">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="594" y="477" width="38" height="1" uuid="d5be4175-f01d-41c1-a2d3-aa10662924e4">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="87" y="14" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="4eb14910-f9a0-41fb-bef3-bf77e186ba8c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(115) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="109" y="369" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="b2603234-2f90-4a39-95f0-650b4d43fc79">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(85) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="631" y="457" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="8d840fa9-8915-4666-93f6-d6ee5c82808d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(61) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="504" y="457" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="6695062a-5f31-4ece-937a-4b6819c55338">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(61) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="630" y="12" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="e6afaad8-61c8-41e9-b738-54f74d32552f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(55) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="505" y="12" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="22ed903f-a65d-43c8-8e8b-e4566f3b3ae3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(55) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="623" y="412" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="fbfbd3e1-d1ab-4c7b-80dc-03e484734d31">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(49) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="492" y="412" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="3c41277b-c2c7-4344-b87c-3ce07ffb1a97">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(49) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="616" y="58" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="9b0bafd1-d775-443f-b2e4-3cb643dee6f5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(43) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="490" y="58" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="84e018ff-6c14-40e5-9011-a9cff863a99d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(43) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="603" y="278" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="639e0f43-2601-4efb-9172-34e671aaccb5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(37) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="478" y="277" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="fa7a30b3-667a-4e25-8d29-6420a823c7fc">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(37) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="604" y="194" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="413342a1-83c2-40c0-a1ed-fb386831cf98">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(31) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="478" y="194" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="dfc68f98-9349-4c5d-9e23-d6a9db8f9b72">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(31) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="616" y="367" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="3a937940-572c-45ca-b61d-bf135c9512c5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(25) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="488" y="367" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="40cd57e3-62eb-4556-a60d-1f9b2dbdc0e0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(25) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="613" y="102" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="beba5457-83e8-4306-a70f-3516146ca6fa">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(19) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="486" y="103" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="31d6ba24-b06c-436f-a683-64c702f5c093">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(19) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="612" y="322" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="1aa9174a-de8f-4915-b174-a9658ce98ce9">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(13) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="483" y="322" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="b7e5857e-8773-4662-bfa6-eb87094ca5f9">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(13) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="610" y="149" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="3a75965b-ec89-458b-b0bc-f1bbb2a37065">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(7) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="482" y="149" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="0203d1de-0b1b-40fe-88eb-69fc99edbf9f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(7) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<ellipse>
+				<reportElement positionType="Float" x="349" y="223" width="110" height="65" backcolor="#CCAC00" uuid="a1a43649-1d44-4f9d-a07b-814ae8d28706"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</ellipse>
+			<staticText>
+				<reportElement positionType="Float" x="385" y="232" width="41" height="12" uuid="f0812f1a-0f42-41fe-a3b0-c862eb5b10b4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Prioridade]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="482" y="149" width="89" height="37" forecolor="#CCCCCC" uuid="70fff408-6c85-4e67-aa11-ecef88df7af8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(7) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="508" y="153" width="37" height="12" uuid="fa3ce0c7-2a5c-461e-997f-b58d3a3ebeec">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="477" y="174" width="94" height="16" uuid="c7df80ec-ea69-45a8-80f8-d2b1e0228fe6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(4)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="476" y="163" width="95" height="20" uuid="1a57f6e8-dc29-476f-b192-b3478c8fa444"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(3)
+: ""]]></textFieldExpression>
+			</textField>
+			<line direction="BottomUp">
+				<reportElement key="" x="418" y="34" width="1" height="190" uuid="97bb9c04-d681-4775-87e2-08799231e32c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="355" y="247" width="95" height="20" uuid="b4980286-3c2f-4120-b823-b74a58c8e962"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.get(1).toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="264" width="94" height="16" uuid="e786a9da-20ec-441c-9704-e4c8753116c7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.get(2).toString()]]></textFieldExpression>
+			</textField>
+			<line direction="BottomUp">
+				<reportElement key="" x="429" y="77" width="1" height="150" uuid="1108d2f2-a613-4e63-aba7-2f3069dd51fd">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="440" y="121" width="1" height="110" uuid="35b82c66-e0ba-41b3-ae97-d9c9b3a1da86">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="451" y="169" width="1" height="70" uuid="c3c9d228-5c96-4562-9154-550d4c496c5c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="430" y="285" width="1" height="150" uuid="8f29c025-1529-410d-9eb1-3c019f6097f5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="441" y="279" width="1" height="110" uuid="abb418d3-49c4-4cea-a7b3-a7634509c45e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="451" y="273" width="1" height="70" uuid="97f7a22b-61ba-4467-b679-a2a6bef5ece5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="417" y="287" width="1" height="190" uuid="4a3215ee-32bd-4849-8e2f-dcd39a9e251b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="455" y="243" width="7" height="1" uuid="4c0acdac-4359-4a41-9161-a2656371bdf8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="461" y="214" width="1" height="30" uuid="1a182785-8f76-41db-ab30-5025541b5b2c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="455" y="268" width="7" height="1" uuid="335880aa-277e-4dcf-a9ec-95c84634962b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="461" y="268" width="1" height="30" uuid="ec6aae7c-0bba-4b51-980d-9c8430a0bbe0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="387" y="34" width="1" height="190" uuid="37f8b0fc-3c43-463f-ba82-daa4e8f02f82">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="377" y="78" width="1" height="150" uuid="eb4d36db-32d7-485d-9759-ef98d561b730">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="367" y="121" width="1" height="110" uuid="11792da9-7178-45b7-a9a4-8a52aa05fa3e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="356" y="170" width="1" height="70" uuid="5b97928a-9a76-4f87-b405-b97c2f8140b0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="347" y="213" width="1" height="30" uuid="cbedfbce-2cc9-42df-b221-7cc77f2524be">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="347" y="269" width="7" height="1" uuid="28e264ad-000a-448e-8924-22d612a8923d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="347" y="269" width="1" height="30" uuid="0e771cfd-1025-451e-a593-11236790dc69">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="357" y="273" width="1" height="70" uuid="8f013a10-aa1c-46d8-89cd-4d208a623d88">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="366" y="279" width="1" height="110" uuid="14265c92-77be-432c-8f92-7b1233cac37b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="377" y="284" width="1" height="150" uuid="2bdf1ce5-b66a-4156-84c5-f00ef9aa8841">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="388" y="287" width="1" height="190" uuid="fa5b8673-034b-4c7b-9aaf-296dbd16d171">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="610" y="149" width="85" height="37" forecolor="#CCCCCC" uuid="1556f9e1-2fff-41a8-9a30-29f848006d42">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(7) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="614" y="174" width="79" height="16" uuid="da7e1e58-d35c-49bc-bb31-ee932b0f7a8c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(6)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="633" y="153" width="47" height="12" uuid="f753aa8e-9773-4896-b4bb-2f5a4c5b6c16">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="613" y="163" width="80" height="20" uuid="bb6576a4-eceb-49d1-b1de-8dfda5b39d84"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(5)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="483" y="322" width="89" height="37" forecolor="#CCCCCC" uuid="49b5ca3a-ebb7-4392-9cfb-a84636556c9c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(13) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="478" y="347" width="94" height="16" uuid="e6b0e252-4628-4287-b234-21541574f3a6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(10)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="509" y="326" width="37" height="12" uuid="ec46e05a-ea18-41b9-9fd4-abbce1ec6e7e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="477" y="336" width="95" height="20" uuid="26365879-d93d-40fb-8758-2253f11e238d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(9)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="612" y="322" width="85" height="37" forecolor="#CCCCCC" uuid="a76e5599-e24e-49be-a6c9-8fd2d0ef1100">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(13) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="615" y="336" width="80" height="20" uuid="25399854-3ff1-474e-9399-ad822855a6dc"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(11)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="635" y="326" width="47" height="12" uuid="55ecf224-c538-4928-a888-c132ec253231">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="616" y="347" width="79" height="16" uuid="5342afb2-0e65-48c6-9554-029b83a025e1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(12)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="486" y="103" width="89" height="37" forecolor="#CCCCCC" uuid="b6668c76-c40f-4533-b617-78f3385c9531">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(19) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="481" y="126" width="94" height="16" uuid="05951993-eaf7-4eb3-bdba-25f28b93febe"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(16)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="512" y="105" width="37" height="12" uuid="cb8bf4b2-2e2a-4c54-b6a9-f58822f4d64e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="115" width="95" height="20" uuid="86a59c4c-4887-4d91-bf88-7dcc2c62e82b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(15)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="613" y="102" width="85" height="37" forecolor="#CCCCCC" uuid="8e3e0808-1ca8-4024-b14a-58e80e89f642">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(19) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="616" y="116" width="80" height="20" uuid="313dafda-3fb1-40c9-bb52-f1072b7b9106"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(17)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="636" y="106" width="47" height="12" uuid="3af939ab-41ea-4164-94f9-972f872d63ae">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="617" y="127" width="79" height="16" uuid="c827c5f0-b890-42b0-8176-33290097ec00"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(18)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="488" y="367" width="89" height="37" forecolor="#CCCCCC" uuid="e053a8c6-c982-4314-915e-207c4c7b389f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(25) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="514" y="371" width="37" height="12" uuid="30b87123-75b6-49ad-95de-f36934fdebdb">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="482" y="381" width="95" height="20" uuid="3af03a86-b33c-4834-ae37-5713681a54bf"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(21)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="483" y="392" width="94" height="16" uuid="f1a5803d-4ec2-4137-aac2-bbde766c39cd"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(22)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="616" y="367" width="85" height="37" forecolor="#CCCCCC" uuid="187d23cb-af0d-4440-a2c3-99ae70783cbe">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(25) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="639" y="371" width="47" height="12" uuid="1cdf05e1-184f-485f-883f-b8c2ebedaed8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="620" y="392" width="79" height="16" uuid="4fa21b5c-105f-4fbc-85dd-cdf0ade72c46"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(24)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="619" y="381" width="80" height="20" uuid="f6b170b6-e698-4882-a4d5-49f64e7cca24"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(23)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="478" y="194" width="89" height="37" forecolor="#CCCCCC" uuid="2c16842b-7790-4633-9aab-5d08fb8082d2">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(31) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="473" y="219" width="94" height="16" uuid="d3792764-8b5f-4afb-ae98-01e1b4c45dfc"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(28)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="504" y="198" width="37" height="12" uuid="6e77c794-f513-4324-ae91-b5ff1c960bfb">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="208" width="95" height="20" uuid="071bac1c-4995-464b-9be8-e35d60fb0475"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(27)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="604" y="194" width="85" height="37" forecolor="#CCCCCC" uuid="d242ca2d-d3e0-412c-a1fb-3808e669005e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(31) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="607" y="208" width="80" height="20" uuid="4208020a-4223-499f-aa4e-8b38ed6930e7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(29)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="627" y="198" width="47" height="12" uuid="47c00597-522f-4709-b170-8f79d16bc994">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 30]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="608" y="219" width="79" height="16" uuid="b67fcd17-a9a4-4fd0-9c23-550e5f66bdc7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(30)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="478" y="277" width="89" height="37" forecolor="#CCCCCC" uuid="59aadf78-6a68-427b-8b68-0f97e9aea595">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(37) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="291" width="95" height="20" uuid="811e200b-642f-4aef-8e76-d9b0cef6d808"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(33)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="504" y="281" width="37" height="12" uuid="8410235c-0e6f-49af-9a64-7013ce9f83f0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="473" y="302" width="94" height="16" uuid="f38ee9bb-7c9e-407e-a9b4-f052fe3bfba0"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(34)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="603" y="278" width="85" height="37" forecolor="#CCCCCC" uuid="5b22e196-f370-490d-8769-764fc64bc546">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(37) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="607" y="303" width="79" height="16" uuid="9e165b7e-ae4f-48b2-a461-5843765d6a7c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(36)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="606" y="292" width="80" height="20" uuid="f2545278-e3fb-4a90-8cb4-887a654faa25"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(35)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="626" y="282" width="47" height="12" uuid="09b04eb5-26f0-4881-b766-01a4ae519a33">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="490" y="58" width="89" height="37" forecolor="#CCCCCC" uuid="78cfb0e4-b948-4663-8d29-0a100fa021c4">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(43) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="516" y="62" width="37" height="12" uuid="4c3e01a5-35bf-4db2-bfae-ce2e8fbb626d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="485" y="83" width="94" height="16" uuid="44f38a5f-e7d4-44b5-a02e-7697bbda8ba4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(40)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="484" y="72" width="95" height="20" uuid="73057782-9e68-47d0-8255-68c915af60d8"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(39)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="616" y="58" width="85" height="37" forecolor="#CCCCCC" uuid="60485565-c2f6-4977-a33f-77eef3c38064">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(43) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="619" y="72" width="80" height="20" uuid="c93d99e8-c3ca-4119-901b-690edca2153a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(41)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="620" y="83" width="79" height="16" uuid="e7cecfe4-3e57-42db-8dee-a700cbe3306c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(42)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="639" y="62" width="47" height="12" uuid="b54325dc-7df8-4797-bc74-51631565ef5c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="492" y="412" width="89" height="37" forecolor="#CCCCCC" uuid="0d8cff37-199e-42b9-bba9-6639db2b81b0">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(49) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="486" y="426" width="95" height="20" uuid="654f3998-451c-4938-bf98-f096f4284f7c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(45)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="487" y="437" width="94" height="16" uuid="2d14c0af-ad24-4906-935e-77d764fd9106"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(46)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="518" y="416" width="37" height="12" uuid="a7e41f73-7762-40b8-99b9-b9d8f4fd4135">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="623" y="412" width="85" height="37" forecolor="#CCCCCC" uuid="7ba6f832-e5bf-4f6e-9bab-ea351d716c2e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(49) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="627" y="437" width="79" height="16" uuid="f5af8bb5-c3ff-487f-b11b-299e4765bce2"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(48)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="626" y="426" width="80" height="20" uuid="a40d86c4-2dd0-4c82-b314-15dc15050f6b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(47)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="646" y="416" width="47" height="12" uuid="2774a04e-a7a0-485b-a0e4-9a4e51cfde36">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="505" y="12" width="89" height="37" forecolor="#CCCCCC" uuid="0ec07cf1-4aa1-4c9a-b1ad-83aeaa30b04e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(55) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="531" y="16" width="37" height="12" uuid="f81df08d-6611-48ca-941c-9824401c7b57">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="500" y="37" width="94" height="16" uuid="2b050692-294d-414f-b7b3-b6c0b9c2ed9f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(52)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="499" y="26" width="95" height="20" uuid="bf493622-12ae-46e0-a93e-0b88e0db9ab1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(51)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="630" y="12" width="85" height="37" forecolor="#CCCCCC" uuid="0637b39d-0ede-44e7-882b-132f7eb53862">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(55) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="634" y="37" width="79" height="16" uuid="b1c6a44d-335e-483e-8bd2-8a85672aa275"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(54)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="633" y="26" width="80" height="20" uuid="4957a04f-badd-4208-a77d-04968bca1b89"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(53)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="653" y="16" width="47" height="12" uuid="01600fc3-fc35-400b-8056-42d4ce2e1cd5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="504" y="457" width="89" height="37" forecolor="#CCCCCC" uuid="881e3dcf-c929-4e63-a502-f27f528b7712">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(61) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="499" y="482" width="94" height="16" uuid="15994f0a-f035-4347-9a71-0ea3122aa672"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(58)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="530" y="461" width="37" height="12" uuid="3be1c677-61fe-4402-bd8c-d8b2bae3b2f7">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="498" y="471" width="95" height="20" uuid="fb51b1f5-efd8-4869-b7dd-85f70957e423"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(57)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="631" y="457" width="85" height="37" forecolor="#CCCCCC" uuid="dbd3ff54-5897-4c3a-95b3-363075cd7d1f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(61) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="634" y="471" width="80" height="20" uuid="82d2feb2-e00c-4e70-a566-ae70729478fd"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(59)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="635" y="482" width="79" height="16" uuid="7cd9f8a6-32dc-4a01-8301-c650f16d5989"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(60)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="654" y="461" width="47" height="12" uuid="3540c45d-5064-4f5e-a7fc-1b9f9df2c512">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement key="" x="347" y="242" width="7" height="1" uuid="ef621a45-19e9-40e7-8fe7-79f3529967c9">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="236" y="149" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="26b0de56-829c-4f07-987c-6f84d100234d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(67) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="236" y="149" width="89" height="37" forecolor="#CCCCCC" uuid="462d2f41-4cc9-4219-8809-77f9dff0e0dc">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(67) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="262" y="153" width="37" height="12" uuid="18ec372f-234b-43a2-95f8-fbc6a05e6c06">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="231" y="174" width="94" height="16" uuid="a2fed47b-12c0-47a4-bd7c-f7b3fd32397e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(64)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="230" y="163" width="95" height="20" uuid="9ff41e20-f6d7-473a-81e2-76c24d8eedab"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(63)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="113" y="149" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="95ec662b-2b7b-47f0-b72a-b867e788374b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(67) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="113" y="149" width="85" height="37" forecolor="#CCCCCC" uuid="08289df7-2d4f-47a8-bee9-acf428cf3789">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(67) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="116" y="163" width="80" height="20" uuid="4a2d639a-6efa-4a71-9699-5869d8e6243b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(65)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="174" width="79" height="16" uuid="5480d052-c800-4fe3-8199-684c104e9569"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(66)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="136" y="153" width="47" height="12" uuid="99a6f6c3-7ce1-445d-a7e1-55308b779de9">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="237" y="322" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="b761d52f-56fb-41a9-a27a-3383ae72fadc">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(73) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="237" y="322" width="89" height="37" forecolor="#CCCCCC" uuid="be2d9d2b-1048-4545-bbfa-9f55001e1057">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(73) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="232" y="347" width="94" height="16" uuid="c25855f9-8c22-4613-8e18-6dbe5a10e4e3"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() >= 73 ? $F{listaDiagramaFamilia}.get(70)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="231" y="336" width="95" height="20" uuid="fb8f8e73-5eed-492e-8f43-87f6343bf489"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() >= 73 ? $F{listaDiagramaFamilia}.get(69)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="263" y="326" width="37" height="12" uuid="7992da50-33ff-40df-aac0-3c56298af984">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="113" y="321" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="a0b19f2e-bd4e-447b-ad78-c2816afb5a3a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(73) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="113" y="321" width="85" height="37" forecolor="#CCCCCC" uuid="5fb1a118-5e0a-4112-b3ed-bf8232dc29fe">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(73) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="346" width="79" height="16" uuid="6503f7b0-6381-46d1-8b98-c8c35614af60"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() >= 73 ? $F{listaDiagramaFamilia}.get(72)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="136" y="325" width="47" height="12" uuid="00aa3cf0-c2f8-4fb5-8cb9-ee4ff7140cd6">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="116" y="335" width="80" height="20" uuid="cf1093b2-125d-41a7-a6ec-4b56fccc5c1b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() >= 73 ? $F{listaDiagramaFamilia}.get(71)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="232" y="102" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="7c8b4816-7736-4d2f-8d63-14e8c5179808">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(79) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="232" y="102" width="89" height="37" forecolor="#CCCCCC" uuid="c108ea7a-8cf7-4349-8b74-f51c592a39b1">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(79) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="227" y="127" width="94" height="16" uuid="79dbf62c-c532-4ced-a1d2-0b657bcd881d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(76)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="226" y="116" width="95" height="20" uuid="f573f991-8535-4cfb-801d-dc9823f89c4c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(75)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="258" y="106" width="37" height="12" uuid="90c51fa9-7364-4d98-b584-d32d8ba12761">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="109" y="102" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="9dc8376d-058e-490d-8939-3e2a82085615">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(79) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="109" y="102" width="85" height="37" forecolor="#CCCCCC" uuid="497e5b17-f3c7-4089-945a-2d2fe4bba564">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(79) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="127" width="79" height="16" uuid="8495b981-794d-4c0c-928b-85095ded6ef3"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(78)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="132" y="106" width="47" height="12" uuid="0f7bebaa-6a9d-4604-9a56-cf12c388dd7d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="112" y="116" width="80" height="20" uuid="f2ad0639-b10e-46b6-9572-0b06737b86fc"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(77)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="233" y="369" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="a2691838-cb80-44b1-8fd3-1c6cada63188">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(85) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="233" y="369" width="89" height="37" forecolor="#CCCCCC" uuid="210045c5-4c3b-403c-a1e1-0609a6c0e1e6">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(85) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="259" y="373" width="37" height="12" uuid="4c54cf3a-a5c9-42ba-ba56-b28914712179">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="227" y="383" width="95" height="20" uuid="19ead78d-5caf-41b3-8bbc-d52b714d9cd7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(81)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="228" y="394" width="94" height="16" uuid="4024819e-1725-4689-840c-5f957c40401f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(82)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="109" y="369" width="85" height="37" forecolor="#CCCCCC" uuid="b07eff17-255e-4b7d-8fb6-dc16471dbc55">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(85) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="114" y="383" width="80" height="20" uuid="4a1a27df-9358-4772-af6e-c33824c1d67e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(83)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="115" y="394" width="79" height="16" uuid="f20f5fa2-0807-44f6-a209-ae7712816018"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(84)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="132" y="373" width="47" height="12" uuid="4c51d9c7-04ec-4315-ab6d-de97ec457e07">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="242" y="194" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="d973826b-7602-4222-8b8e-f255374120ee">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(91) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="242" y="194" width="89" height="37" forecolor="#CCCCCC" uuid="e6978e46-9434-4199-8fd7-311bc50907c5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(91) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="237" y="219" width="94" height="16" uuid="65ceeb79-7706-4598-ab39-510ab5948c74"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(88)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="236" y="208" width="95" height="20" uuid="19096043-4c39-4ede-96a3-1d3cbecdbe3c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(87)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="268" y="198" width="37" height="12" uuid="1f4fb270-8b6d-48f0-9c31-7e9347aaa2e8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="117" y="194" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="258fd6ad-c4db-446b-8382-84f266abbb10">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(91) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="117" y="194" width="85" height="37" forecolor="#CCCCCC" uuid="154d275e-0482-4970-95e7-5f9ed78ba674">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(91) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="121" y="219" width="79" height="16" uuid="d823ba75-95ce-45d7-ab65-ab85dac8f4bd"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(90)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="140" y="198" width="47" height="12" uuid="e1dfde8e-ae78-4da1-9954-62997456cbfe">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="120" y="208" width="80" height="20" uuid="5c63b90f-497a-4d5f-92cc-9de3786061ed"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(89)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="242" y="277" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="5161cc66-ec5b-43ff-b879-cef581aff6a1">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(97) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="242" y="277" width="89" height="37" forecolor="#CCCCCC" uuid="25038a60-8289-42f2-bf74-649f3bec99c6">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(97) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="268" y="281" width="37" height="12" uuid="c95c55e2-0ff1-488d-8d51-0db3ceb9ca52">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="237" y="302" width="94" height="16" uuid="e32eed86-b6f0-4656-a21b-abfb6fb34e97"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(94)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="236" y="291" width="95" height="20" uuid="c045beeb-3b79-45eb-92f4-6cf7db502c54"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(93)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="118" y="277" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="e3395d13-5c97-4f22-8dbf-5e4f229286b3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(97) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="118" y="277" width="85" height="37" forecolor="#CCCCCC" uuid="6da7d195-3a1e-486a-a369-4809d3cb82dd">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(97) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="141" y="281" width="47" height="12" uuid="057949d1-3faf-47dd-bcdc-8eaed8d4fb5e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="122" y="302" width="79" height="16" uuid="6cfd92fd-1e80-442d-868e-74250859e3ce"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(96)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="121" y="291" width="80" height="20" uuid="ae31d764-235e-4a63-85ec-a095ba863909"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(95)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="227" y="59" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="62e6e838-d823-497f-ad4d-38ee4c5afb66">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(103) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="227" y="59" width="89" height="37" forecolor="#CCCCCC" uuid="b1459a6a-7652-480e-9ed8-a45da7742101">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(103) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="222" y="84" width="94" height="16" uuid="5c721236-627d-41c9-818e-fb7788f837f1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(100)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="253" y="63" width="37" height="12" uuid="c8d059bf-bf20-4e96-952a-1ea6e529822a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="221" y="73" width="95" height="20" uuid="1469b1c1-e19a-46c1-9077-baa69b641815"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(99)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="103" y="59" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="ed14d663-aef6-453d-8983-28a7561ec0ed">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(103) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="103" y="59" width="85" height="37" forecolor="#CCCCCC" uuid="749ada00-3181-4e80-b322-a7339372f8d6">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(103) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="84" width="79" height="16" uuid="22f06c11-3756-409c-860c-02f28af6623d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(102)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="126" y="63" width="47" height="12" uuid="407b0cce-3f72-42ca-8ee4-64f87dca0f5a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="106" y="73" width="80" height="20" uuid="d27ba2da-13db-4ffa-b5bc-56cb892cef32"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(101)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="227" y="413" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="214b3d2a-5734-4daf-9f31-dd89daa561ca">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(109) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="227" y="413" width="89" height="37" forecolor="#CCCCCC" uuid="9b5245ea-8f7a-4ca8-85b2-2c631d57aec4">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(109) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="222" y="438" width="94" height="16" uuid="c14c8a2b-9ca8-4caa-aa7c-f53269d09bc2"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(106)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="253" y="417" width="37" height="12" uuid="f3c61f94-9944-42da-9690-f97af4caec1d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="221" y="427" width="95" height="20" uuid="fdb519e7-855e-4aeb-9145-43a8b275d46b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(105)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="100" y="414" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="e80f88b3-8828-4f70-a984-ec32e3d47db8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(109) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="100" y="414" width="85" height="37" forecolor="#CCCCCC" uuid="f33911be-023f-46fc-90b9-3237f7cd4db3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(109) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="123" y="418" width="47" height="12" uuid="5ba45ecb-6940-42e2-835e-b15169911a55">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="106" y="439" width="79" height="16" uuid="44dab519-ea68-4764-8c56-5b37e56e73b7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(108)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="428" width="80" height="20" uuid="d7f0292d-8575-4a63-9214-ffb01298dc33"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(107)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="213" y="14" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="c2cfcc74-2e28-4aab-86a8-7128ea1717bd">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(115) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="213" y="14" width="89" height="37" forecolor="#CCCCCC" uuid="ad2f674a-0696-4d65-afeb-3a3c82179d1e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(115) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="239" y="18" width="37" height="12" uuid="39280f86-24e2-4f9f-8835-93cdaee85a3e">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="208" y="39" width="94" height="16" uuid="cab4b076-78c8-4378-990a-09517667ddb9"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(112)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="207" y="28" width="95" height="20" uuid="7360ca69-53b0-46f9-8971-c5c74a232f45"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(111)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="87" y="14" width="85" height="37" forecolor="#CCCCCC" uuid="f03e575d-82fc-4d7c-a3c0-b6c14f2b8670">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(115) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="110" y="18" width="47" height="12" uuid="df709aa5-9236-4671-93c3-7b7c566e5f6d">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="91" y="39" width="79" height="16" uuid="7f792ad2-8331-4923-a890-0512384132e6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(114)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="28" width="80" height="20" uuid="d33fff94-d643-4e68-97e9-9f7e7277a9cf"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(113)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="216" y="457" width="89" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="16f99204-595e-477b-8b15-3cdc4553ac9b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(121) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="216" y="457" width="89" height="37" forecolor="#CCCCCC" uuid="9b0751f1-f121-486c-aa2a-5807dac66fc3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(121) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="471" width="95" height="20" uuid="c9e33f0c-af63-4fdd-8d7c-052c061906cb"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(117)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="242" y="461" width="37" height="12" uuid="35088f28-1dfe-4a2f-b55c-8def54ab2a43">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Depósito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="211" y="482" width="94" height="16" uuid="2df6595a-b096-4b03-9aa2-504b31770f49"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(118)
+: ""]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="90" y="458" width="85" height="37" forecolor="#CCCCCC" backcolor="#CCAC00" uuid="aedb8a7b-6053-4a79-aa34-96a2e606462c">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(121) == "sim"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="90" y="458" width="85" height="37" forecolor="#CCCCCC" uuid="32900902-99ec-4077-9421-ff7706002d03">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(121) == "nao"
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="483" width="79" height="16" uuid="503cfa8a-b530-43ae-ad90-a81e358abce2"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(120)
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="472" width="80" height="20" uuid="2ea1c9a9-19dc-4276-b5e3-003f8ce5563c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(119)
+: ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="113" y="462" width="47" height="12" uuid="c3e52143-edff-44a6-99da-1d12cb250eff">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Publicação]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement x="755" y="23" width="30" height="18" uuid="d1b53e4b-3e93-44c3-9559-71a33cdfcf9e"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(56)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement x="17" y="25" width="30" height="18" uuid="38280804-cedd-4da6-b06f-91d415197146"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(116)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="716" y="32" width="38" height="1" uuid="61c48c76-e322-477d-b6b1-87b8aff1d17a">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 55 ? $F{listaDiagramaFamilia}.get(56).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="48" y="34" width="38" height="1" uuid="8877d491-305d-4467-9c7b-61e8479da6ef">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 115 ? $F{listaDiagramaFamilia}.get(116).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="703" y="77" width="38" height="1" uuid="a94e6100-bafd-4685-9fe2-743e2c52d999">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(44).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="742" y="68" width="30" height="18" uuid="2a68bbe5-3eba-4842-b4fb-1b90ec1889f3"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 43 ? $F{listaDiagramaFamilia}.get(44)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="63" y="79" width="38" height="1" uuid="f5d31bb5-813b-417b-b99a-d7a613418ebe">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(104).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="32" y="70" width="30" height="18" uuid="fefe0a84-d784-4586-9e94-cae99b9b9d0e"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 103 ? $F{listaDiagramaFamilia}.get(104)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="69" y="121" width="38" height="1" uuid="81e47651-fe95-4ccd-85d1-ace0f43526a3">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(80).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="38" y="112" width="30" height="18" uuid="f35f24b2-90aa-463e-9175-4e0c1427bb10"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 79 ? $F{listaDiagramaFamilia}.get(80)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement key="imagem1" x="738" y="112" width="30" height="18" uuid="c280b162-c74a-428f-833b-a8affe842952"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(20)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement x="43" y="162" width="30" height="18" uuid="dbbcf72f-0818-4034-b1b8-662317fde08f"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(68)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="74" y="171" width="38" height="1" uuid="d513af0a-ebfd-47f3-8275-5cd14b1a788f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 67 ? $F{listaDiagramaFamilia}.get(68).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="735" y="162" width="32" height="17" uuid="f6fe1280-e3b0-44cc-ae2e-a1917d1ca104"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(8)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement x="46" y="205" width="30" height="18" uuid="12e8137f-8b0e-4daf-b9a1-94515f788b06"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(92)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="77" y="214" width="38" height="1" uuid="1a5c0cbb-d289-4f88-811d-9acee633cb66">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 91 ? $F{listaDiagramaFamilia}.get(92).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="729" y="206" width="30" height="18" uuid="cb5414c7-e03d-4c61-9a7e-c63b03ee37fd"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(32)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="690" y="215" width="38" height="1" uuid="cb38c046-27f1-44e3-a32e-b7c01eeb0a84">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 31 ? $F{listaDiagramaFamilia}.get(32).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="78" y="299" width="38" height="1" uuid="e43b3b61-7607-47a0-97c4-8c49a5db7741">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(98).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="47" y="290" width="30" height="18" uuid="82353694-8884-4066-bd23-29f6cacc9ae3"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 97 ? $F{listaDiagramaFamilia}.get(98)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="689" y="299" width="38" height="1" uuid="df512d23-007a-4ee4-a0db-ed214de62b05">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(38).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="728" y="290" width="30" height="18" uuid="3b945cc9-87fb-4149-8646-2fa4ddfc82cc"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 37 ? $F{listaDiagramaFamilia}.get(38)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement x="42" y="333" width="30" height="18" uuid="4111b0ae-4f76-40f1-a9cd-d0f21c0803a8"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(74)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="73" y="342" width="38" height="1" uuid="f00781e9-8cf3-4ac3-ba14-bb7ee0669acf">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 73 ? $F{listaDiagramaFamilia}.get(74).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="737" y="333" width="30" height="18" uuid="09c67d36-97a1-409d-821c-ef29d2a22efa"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(14)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="69" y="389" width="38" height="1" uuid="40f04338-104a-4ca9-9e0f-16b670274d99">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(86).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="38" y="380" width="30" height="18" uuid="f91e1af0-81ef-406e-a874-3cd693ce3872"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 85 ? $F{listaDiagramaFamilia}.get(86)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<image isLazy="true">
+				<reportElement x="742" y="381" width="30" height="18" uuid="b6896a73-d0d8-40c8-8fa9-8534c550a375"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(26)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="703" y="390" width="38" height="1" uuid="84098b72-2f40-4fba-9763-0b9fa2e3930f">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 25 ? $F{listaDiagramaFamilia}.get(26).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="30" y="424" width="30" height="18" uuid="b8ce785b-5051-4361-9e37-6e460ba72ea4"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(110)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="61" y="433" width="38" height="1" uuid="f7bf6ed1-5191-4b4e-bb50-2445a77ee731">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 109 ? $F{listaDiagramaFamilia}.get(110).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="748" y="425" width="30" height="18" uuid="d96b9878-6fb8-4549-a2e0-2e69127a26b2"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(50)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="709" y="434" width="38" height="1" uuid="373c151c-fc4f-4adb-81ac-fc8f1a0773e4">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 49 ? $F{listaDiagramaFamilia}.get(50).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="20" y="469" width="30" height="18" uuid="c09e0709-26f5-465f-8966-128076425919"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(122)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="51" y="478" width="38" height="1" uuid="308b75a4-ed45-4d71-b0c0-a491da165e44">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 121 ? $F{listaDiagramaFamilia}.get(122).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image isLazy="true">
+				<reportElement x="757" y="468" width="30" height="18" uuid="8408614a-517f-4cbc-8d7b-c165522aee9f"/>
+				<imageExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(62)
+: $F{listaDiagramaFamilia}.get(0)]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement key="" x="718" y="477" width="38" height="1" uuid="714298d0-41db-45a8-834d-d42a3ad72fc8">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 61 ? $F{listaDiagramaFamilia}.get(62).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="696" y="171" width="38" height="1" uuid="ec02e3ea-e136-4459-996a-7e05a024587b">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 7 ? $F{listaDiagramaFamilia}.get(8).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="699" y="121" width="38" height="1" uuid="025ce204-5e56-4e7a-9e4c-53cee7363885">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 19 ? $F{listaDiagramaFamilia}.get(20).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="" x="698" y="342" width="38" height="1" uuid="a3676938-a768-443c-a527-3ca34de7caf5">
+					<printWhenExpression><![CDATA[$F{listaDiagramaFamilia}.size() > 13 ? $F{listaDiagramaFamilia}.get(14).toString().contains("_bandeirasP")
+: $F{listaDiagramaFamilia}.size() > 8000]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

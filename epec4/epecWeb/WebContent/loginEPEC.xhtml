@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content">
+		<p:messages id="mensagemLogin" showDetail="true" autoUpdate="true"
+			closable="true" />
+
+		<table>
+			<tr>
+				<td><h:form id="formColaboracao">
+			 
+						<h:body>
+							<br />
+							<br />
+							
+							<br />
+							<br />
+							<br />
+							<div>
+							
+								 <h2> <h:outputText value="#{msg.tituloLogin}" /></h2>
+							</div>
+							<br />
+							<br />
+							
+							
+							<div id="textoLogin">
+							<h:outputText value="#{msg.textoLogin}" /></div>
+							<br />
+							<br />
+
+						</h:body>
+					</h:form></td>
+				<td><h:form id="formLogin">
+						<p:panel style="border:none;">
+
+							<!-- Evento que validará os dados da tela da consulta monitor -->
+							<f:event listener="#{loginEPECBean.validarLogin}"
+								type="postValidate" />
+
+
+							<p:panelGrid style="vertical-align: left;">
+
+
+
+
+								<f:facet name="header">
+									<p:row>
+										<h:outputText value="Autentificação" />
+
+									</p:row>
+								</f:facet>
+								<p:row>
+									<p:column style="text-align: right">
+										<h:outputText value="#{msg.labelLogin}" />
+									</p:column>
+
+									<p:column style="text-align: left">
+										<p:inputText id="usuario"
+											value="#{loginEPECBean.usuarioEPEC.usuario}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="text-align: right">
+										<h:outputText value="#{msg.labelSenha}" />
+									</p:column>
+
+									<p:column style="text-align: left">
+										<p:password id="password"
+											value="#{loginEPECBean.usuarioEPEC.psw}" />
+									</p:column>
+								</p:row>
+
+
+								<p:row>
+
+									<p:column colspan="2" style="display:block; text-align:center">
+										<p:commandButton value="Login" update=":formLogin"
+											actionListener="#{loginEPECBean.efetuarAutenficicacao}">
+											
+											<f:param name="isAdminstrador" value="0" />
+											
+											</p:commandButton>
+									</p:column>
+									</p:row>
+									
+									
+							
+							</p:panelGrid>
+							
+							<p:panelGrid style="vertical-align: left;">
+							
+							<p:row>
+									<p:column colspan="2" style="display:block; text-align:center">
+									
+										<p:commandLink id="ajax"  title="Recuperar Senha" 
+	                                     action="#{loginEPECBean.sendRecuperarsenha}"  
+					                     style="float:left;margin-right:10px">
+					                     
+					                     <h:outputText value="#{msg.labelRecuperarSenha}" />
+					                    
+					    				</p:commandLink>
+					    				
+					    				<p:commandLink id="ajax_"  title="Recuperar Senha" 
+	                                     action="#{loginEPECBean.acessoVisitante}"  
+					                     style="float:left;margin-right:10px">
+					                     <h:outputText value="#{msg.labelAcessarComoVisitante}" />
+					                    
+					    				</p:commandLink>
+					    				
+									</p:column>
+								</p:row>
+							
+							
+							</p:panelGrid>
+							
+							
+							
+						</p:panel>
+						
+						
+		</h:form></td>
+			</tr>
+		</table>
+
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>

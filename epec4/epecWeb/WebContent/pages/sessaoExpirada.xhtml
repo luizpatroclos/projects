@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content">
+		<p:messages id="mensagemLogin" showDetail="true" autoUpdate="true"
+			closable="true" />
+		<h:outputStylesheet library="css" name="ePec_consulta_Pedido.css" />
+		<h:form id="formRecuperaSenha">
+
+			<p:panel styleClass="panel" id="panelRelatorioA">
+				<h:panelGrid styleClass="panelRecuperaSenha">
+
+
+					<p:separator />
+					<h:outputText styleClass="textOut1"
+						value="#{msg.labelSessaoExpirada}" />
+					<p:separator />
+
+
+
+					<p:separator />
+					<br />
+					<br />
+					<h:outputText styleClass="textOutA"
+						value="#{msg.labelMensagemSessao}" />
+
+					<p:commandButton styleClass="botaoRecupera" icon="icon-share-alt"
+						id="ajax" title="#{msg.IrPaginaLogin}"
+						value="#{msg.labelRetornarLogin}"
+						action="#{loginEPECBean.sendLogin}">
+					</p:commandButton>
+
+
+				</h:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

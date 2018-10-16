@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Tabela de Entidade</ui:define>
+	<ui:define name="pageHeader">Manutenção de Entidade</ui:define>
+
+	<ui:define name="content" id="conteudo1">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+		<h:form id="form">
+			<br />
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+			<br />
+			<p:outputLabel value="#{msg.labelEntidade}" styleClass="textOut1" />
+			<p:separator />
+
+			<br />
+			<br />
+			<p:dataTable id="dataTableEntidade" autoUpdate="true" var="entidades"
+				value="#{tbCadEntidadeMB.entidadeListar}" type="unordered"
+				itemType="none" style="vertical-align: center" paginator="true"
+				rows="10" styleClass="paginated">
+
+				<f:facet name="header">
+
+					<p:commandButton value="#{msg.labelBotaoInserir}"
+						onclick="PF('dialogCriar').show()" icon="ui-icon-star"
+						update=":novaEntidade:panelCriar" title="#{msg.CriarNovaEntidade}"  rendered="#{(tbCadEntidadeMB.usuarioLogado.idEntidadeEc.oficina) or (tbCadEntidadeMB.usuarioLogado.idPerfilusuario.ehAdmSistema)}"/>
+
+				</f:facet>
+
+				<p:column headerText="id" style="display:none">
+					<h:outputText value="#{entidades.idEntidadeEc}" />
+				</p:column>
+				<p:column headerText="#{msg.labelDescricaoEntidade}">
+					<h:outputText value="#{entidades.txDescricao}" />
+				</p:column>
+				<p:column headerText="#{msg.labelPais}">
+					<h:outputText value="#{entidades.idPais.strNomePais}" />
+				</p:column>
+				<p:column headerText="#{msg.escritorioPatente}" style="width:82px" rendered="#{entidades.oficina}">
+					<div align="center">
+						<h:outputText value="Sim" rendered="#{entidades.oficina}"/>
+					</div>
+				</p:column>
+				
+				<p:column headerText="#{msg.escritorioPatente}" style="width:82px" rendered="#{!(entidades.oficina)}">
+					<div align="center">
+						<h:outputText value="Não" rendered="#{!(entidades.oficina)}"/>
+					</div>
+				</p:column>
+				
+
+				<p:column headerText="#{msg.labelStatus}" style="width:62px">
+					<div align="center">
+						<p:graphicImage value="#{entidades.imagemLogado}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{msg.labelAcoes}"
+					style="align: center;width:62px">
+					<div align="center">
+						<p:menuButton value="#{msg.labelAcoes}">
+							<p:menuitem action="#{tbCadEntidadeMB.carregarEntidade()}" value="#{msg.alterar}" icon="ui-icon-pencil"
+								oncomplete="PF('dialogAlterar').show()" update=":form, :userDetailForm">
+								<f:setPropertyActionListener value="#{entidades}"
+									target="#{tbCadEntidadeMB.entidadeSelected}" />
+							</p:menuitem>
+							<p:menuitem value="#{msg.excluir}" icon="ui-icon-close"
+								oncomplete="PF('dialogExcluirEntidade').show()"
+								rendered="#{isAdminstrador eq '1'}" update=":form">
+								<f:setPropertyActionListener value="#{entidades}"
+									target="#{tbCadEntidadeMB.entidadeSelected}" />
+							</p:menuitem>
+
+						</p:menuButton>
+					</div>
+				</p:column>
+
+
+
+
+			</p:dataTable>
+</h:form>
+
+
+
+		<p:dialog global="true" severity="info" showEffect="fade"
+			hideEffect="explode" header="#{msg.msgExcluir}"
+			widgetVar="dialogExcluirEntidade" id="excluirCaracteristicaentidade">
+			<h:form>
+				<h:outputText value="#{msg.msgExcluir}" />
+				<p:commandButton id="confirmEntidade" value="#{msg.sim}"
+					oncomplete="PF('dialogExcluirEntidade').hide()"
+					actionListener="#{tbCadEntidadeMB.excluirEntidade}" update=":form" />
+				<p:commandButton id="declineEntidade" value="#{msg.nao}"
+					onclick="PF('dialogExcluirEntidade').hide()" type="button" />
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgUsuario" id="idDlgUsuario">
+			<h:form>
+				<h:outputText value=" selecionado!" />
+			</h:form>
+		</p:dialog>
+
+
+		<p:dialog header="#{msg.CriarNovaEntidade}" widgetVar="dialogCriar"
+			showEffect="blind" hideEffect="explode" resizable="false"
+			id="newUserDlg">
+			<h:form id="novaEntidade">
+				<p:panelGrid var="lista2" id="panelCriar" columns="2">
+					<f:facet name="header">
+						<h:outputText value="#{msg.labelIncluirEntidade}" />
+					</f:facet>
+					<h:outputText value="#{msg.labelNomeEntidade}" />
+					<p:inputText value="#{tbCadEntidadeMB.entidade.txOrganizacao}" />
+					
+					<h:outputText value="#{msg.labelPais}" />
+
+					<p:selectOneListbox value="#{tbCadEntidadeMB.entidade.nomePais}"
+						label="Cities" panelStyle="width:250px" filter="true"
+						filterMatchMode="contains">
+						<f:selectItems value="#{tbCadEntidadeMB.paises}" var="Tbcadpais"
+							itemLabel="#{Tbcadpais.strNomePais}"
+							itemValue="#{Tbcadpais.strNomePais}" />
+					</p:selectOneListbox>
+
+					<p:outputLabel for="console" value="#{msg.escritorioPatente}"  />
+					<p:selectOneRadio id="console" value="#{tbCadEntidadeMB.console}">
+						<f:selectItem itemLabel="#{msg.sim}" itemValue="1" />
+						<f:selectItem itemLabel="#{msg.nao}" itemValue="0" />
+					</p:selectOneRadio>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.salvar}"
+							update=":form:dataTableEntidade"
+							oncomplete="PF('dialogCriar').hide()"
+							action="#{tbCadEntidadeMB.createEntidade}">
+						</p:commandButton>
+						<p:commandButton value="#{msg.cancelar}"
+							onclick="PF('dialogCriar').hide()"></p:commandButton>
+					</f:facet>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="#{msg.labelAlterarEntidade}"
+			widgetVar="dialogAlterar" showEffect="blind" hideEffect="explode"
+			resizable="false" id="alterar">
+			<h:form id="userDetailForm">
+				<p:panelGrid var="lista2" id="panelAlterarEntidade" columns="2">
+					<f:facet name="header">
+						<h:outputText
+							value="#{tbCadEntidadeMB.entidadeSelected.txOrganizacao}" />
+					</f:facet>
+
+					<h:outputText value="#{msg.labelNomeEntidade}" />
+					<h:outputText value="#{tbCadEntidadeMB.entidadeSelected.txOrganizacao}" />
+					<h:outputText value="#{msg.labelDescricaoEntidade}" />
+					<p:inputText value="#{tbCadEntidadeMB.entidadeSelected.txDescricao}" />
+					<h:outputText value="#{msg.labelStatus}" />
+					<p:selectOneListbox
+						value="#{tbCadEntidadeMB.entidadeSelected.textoAtivo}"
+						label="Cities" panelStyle="width:250px">
+						<f:selectItems value="#{tbCadEntidadeMB.escolherStatus}" />
+					</p:selectOneListbox>
+					<p:outputLabel for="console" value="#{msg.escritorioPatente}" rendered="#{tbCadEntidadeMB.isAcesso()}" />
+					<p:selectOneRadio id="console"
+						value="#{tbCadEntidadeMB.entidadeSelected.boescritorioPatente}" rendered="#{tbCadEntidadeMB.isAcesso()}">
+						<f:selectItem itemLabel="#{msg.sim}" itemValue="1" />
+						<f:selectItem itemLabel="#{msg.nao}" itemValue="0" />
+					</p:selectOneRadio>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.alterar}"
+							update=":form:dataTableEntidade"
+							oncomplete="PF('dialogAlterar').hide()"
+							actionListener="#{tbCadEntidadeMB.updateEntidade}" />
+
+						<p:commandButton type="reset" value="#{msg.cancelar}"
+							onclick="PF('dialogAlterar').hide()"></p:commandButton>
+
+					</f:facet>
+
+				</p:panelGrid>
+		</h:form>
+
+		</p:dialog>
+
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,10 @@
+.externalToolBuilders/*
+*.db
+*.class
+webapp/WEB-INF/classes/*
+webapp/WEB-INF/*
+target/*
+*/build/*
+.sonar/*
+/target/*
+

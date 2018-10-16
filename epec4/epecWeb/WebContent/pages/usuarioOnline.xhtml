@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:define name="pageTitle">Usuários</ui:define>
+	<ui:define name="pageHeader">Manutenção de Usuários</ui:define>
+
+
+	<ui:define name="content" id="conteudo2">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+
+		<h:form id="form">
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000" />
+
+			<br />
+			<p:outputLabel value="#{msg.labelUsuarioOnline}"
+				styleClass="textOut1" />
+			<p:separator />
+
+			<br />
+			<br />
+
+
+			<p:panelGrid width="530px" var="lista3" id="panelCriar3" columns="1">
+				<p:dataTable id="dataTable4" autoUpdate="true" var="usuarioLogado"
+					value="#{usuarioMB.usurariosLogados}" type="unordered"
+					itemType="none" style="vertical-align: center" paginator="true"
+					rows="10" styleClass="paginated">
+
+					<p:column headerText="#{msg.labelNome}">
+						<h:outputText value="#{usuarioLogado.txNome}" />
+					</p:column>
+					<p:column headerText="#{msg.labelMenuUsuario}">
+						<div align="center">
+							<h:outputText value="#{usuarioLogado.strUsuario}" />
+						</div>
+					</p:column>
+					<p:column headerText="#{msg.labelPais}">
+						<div align="center">
+							<h:outputText
+								value="#{usuarioLogado.idEntidadeEc.idPais.strNomePais}" />
+						</div>
+					</p:column>
+					<p:column headerText="#{msg.labelEntidade}">
+						<div align="center">
+							<h:outputText value="#{usuarioLogado.idEntidadeEc.txOrganizacao}" />
+						</div>
+					</p:column>
+					<p:column headerText="#{msg.labelAcoes}" style="width:62px">
+						<div align="center">
+							<p:commandLink title="#{msg.visualizar}"
+								action="#{usuarioMB.exibirDadosUsuarioSelecionado()}"
+								update=":userDetailForm2"
+								oncomplete="PF('dialogVisualizarUsuario').show()"
+								style="align:center">
+								<p:graphicImage value="./imagens/botoes/veer.gif" />
+								<f:setPropertyActionListener value="#{usuarioLogado}"
+									target="#{usuarioMB.usuarioSelecionado}" />
+								<f:setPropertyActionListener value="1"
+									target="#{usuarioMB.valorValido}" />
+								<f:setPropertyActionListener value="#{usuarioLogado}"
+									target="#{usuarioMB.usuarioOnline}" />
+
+							</p:commandLink>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</p:panelGrid>
+
+			<p:commandButton value="Voltar"
+				actionListener="#{menuView.gerenciarUsuarios}" />
+
+
+		</h:form>
+
+
+		<p:dialog header="#{msg.labelVisualizarUsuario}"
+			widgetVar="dialogVisualizarUsuario" showEffect="blind"
+			hideEffect="explode" resizable="false" id="visualizarUsuario">
+			<h:form id="userDetailForm2">
+
+				<p:panelGrid style="width:660px" id="panelCriar5">
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: left;font-weight: bold;"
+								value="#{msg.labeldadosUsuario}" />
+						</p:column>
+					</p:row>
+					<p></p>
+					<p:row>
+						<p:column>
+							<p:outputLabel style="text-align: right" value="#{msg.labelNome}" />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" readonly="true"
+								value="#{usuarioMB.nomeSelecionado}" size="60" />
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: right"
+								value="#{msg.labelDesignacao}" />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" size="60" readonly="true"
+								value="#{usuarioMB.desiginacaoSelecionado}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+
+						<p:column>
+							<h:outputText value="#{msg.labelOrganizacao}" />
+						</p:column>
+						<p:column>
+							<p:inputText size="60" maxlenght="59"
+								value="#{usuarioMB.usuarioSelecionado.txOrganizacao}" />
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: right" value="E-mail : " />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" size="60" readonly="true"
+								value="#{usuarioMB.emailSelecionado}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: right"
+								value="#{msg.labelTelefone}" />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" size="60" readonly="true"
+								value="#{usuarioMB.telefone}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: right"
+								value="#{msg.labelPrivilegio}" />
+						</p:column>
+						<p:column>
+							<p:inputText readonly="true" size="60"
+								value="#{usuarioMB.privilegio}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText style="text-align: right"
+								value="#{msg.labelSituacao}" />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" readonly="true" size="25"
+								value="#{usuarioMB.situacao}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg.labelStatus}" />
+						</p:column>
+						<p:column>
+							<p:inputText style="text-align: left" readonly="true" size="25"
+								value="#{usuarioMB.statusSelecionado}" />
+						</p:column>
+					</p:row>
+					<p></p>
+					<p:row>
+						<p:column>
+							<p:commandButton value="#{msg.fechar}"
+								onclick="PF('dialogVisualizarUsuario').hide()">
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+	</ui:define>
+</ui:composition>

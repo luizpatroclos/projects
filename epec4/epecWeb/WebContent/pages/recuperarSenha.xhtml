@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content">
+	
+	<p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life="150000"/>
+			
+		<h:outputStylesheet library="css" name="ePec_consulta_Pedido.css" />
+		<h:form id="formRecuperaSenha">
+
+			<p:panel styleClass="panel" id="panelRelatorioA">
+				<h:panelGrid styleClass="panelRecuperaSenha">
+					
+				<p:commandLink icon="icon-arrow-left" id="ajax"  title="#{msg.labelVoltar}" 
+	                                     action="#{loginEPECBean.sendLogin}"  
+					                     style="float:left;margin-right:10px">
+					                     <p:graphicImage value="./imagens/botoes/botao-voltar.gif" />
+					    				</p:commandLink>
+			<p:separator/>
+			
+					<h:outputText styleClass="textOut1" value="#{msg.labelRecuperarSenha}" />
+			<p:separator/>
+					<br/>
+					<br/>
+					<h:outputText value="#{msg.msgRecuperarSenha}"></h:outputText>
+					<br/>
+					<br/>
+					
+					
+					<h:outputText styleClass="textOutA" value="#{msg.labelLogin}"/>
+					<p:row>
+					<p:inputText styleClass="campoTextRecuperaSenha" value="#{loginEPECBean.recuperaUser}"/>
+					</p:row> 
+					
+					<h:outputText styleClass="textOutA" value="E-mail  :"/>
+					<p:row>
+					<p:inputText styleClass="campoTextRecuperaSenha" value="#{loginEPECBean.recuperaEmail}"/>
+					</p:row>
+					
+					<br/>
+						<p:column>
+						<p:commandButton styleClass="botaoRecupera"  value="#{msg.labelRecuperarSenha}" 
+							onclick="PF('dialogRecuperarSenha').hide()"
+							actionListener="#{loginEPECBean.recuperaSenha}">
+						</p:commandButton>
+						</p:column>
+						
+				</h:panelGrid>
+
+			</p:panel>
+	
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

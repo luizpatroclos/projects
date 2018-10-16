@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	lang="#{internacionalizacaoMB.linguagem}">
+
+<f:view locale="#{internacionalizacaoMB.linguagem}" />
+
+<h:outputStylesheet library="css" name="ePec.css" />
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title><ui:insert name="title"><h:outputText value="#{msg.labelCabecalhoEpec}" /></ui:insert></title>
+</h:head>
+
+<h:body>
+	<div align="center">
+
+		<p:layout>
+			<p:layoutUnit styleClass="divPrincipal" position="center">  
+				<div id="container">
+					<div id="cabecalho">
+						<div id="barraCabecalho">
+							<span id="imagemEpec">
+							<img src="/epecWeb/pages/images/logo_epec.png" align="left">
+							</img>
+							</span> 
+							<span id="paises"> 
+							<img title="#{msg.labelArgentina}" src="/epecWeb/pages/images/_bandeirasG/argentina.png" onclick="window.open('http://www.inpi.gov.ar')"></img>
+							<img title="#{msg.labelBrasil}" src="/epecWeb/pages/images/_bandeirasG/brazil.png" onclick="window.open('http://www.inpi.gov.br')"></img>
+							<img title="#{msg.labelChile}" src="/epecWeb/pages/images/_bandeirasG/chile.png" onclick="window.open('http://www.inapi.cl/')"></img>
+							<img title="#{msg.labelColombia}" src="/epecWeb/pages/images/_bandeirasG/colombia.png" onclick="window.open('http://www.sic.gov.co/')"></img>
+							<img title="#{msg.labelEquador}" src="/epecWeb/pages/images/_bandeirasG/equador.png" onclick="window.open('http://www.iepi.gob.ec1')"></img>
+							<img title="#{msg.labelParaguai}" src="/epecWeb/pages/images/_bandeirasG/paraguay.png" onclick="window.open('http://www.mic.gov.py/')"></img>
+							<img title="#{msg.labelPeru}" src="/epecWeb/pages/images/_bandeirasG/peru.png" onclick="window.open('http://www.indecopi.gob.pe')"></img>
+							<img title="#{msg.labelSuriname}" src="/epecWeb/pages/images/_bandeirasG/suriname.png"></img>
+							<img title="#{msg.labelUruguai}" src="/epecWeb/pages/images/_bandeirasG/uruguay.png" onclick="window.open('http://www.miem.gub.uy/')"></img>
+						
+
+							</span>
+						</div>
+
+						<div id="idioma" align="right">
+							<ui:insert name="sessaoUsuario">
+								<ui:include src="sessaoUsuario.xhtml" />
+							</ui:insert>
+
+							<br />
+							<h:form>
+								<h:commandLink
+									actionListener="#{internacionalizacaoMB.mudarPortugues}">
+									<h:outputText value="Português" styleClass="idioma" />
+									
+								</h:commandLink>
+							|
+							<h:commandLink
+									actionListener="#{internacionalizacaoMB.mudarEspanhol}">
+									<h:outputText value="Español" styleClass="idioma" />
+								</h:commandLink>
+							|
+							<h:commandLink
+									actionListener="#{internacionalizacaoMB.mudarEnglish}">
+									<h:outputText value="English" styleClass="idioma" />
+								</h:commandLink>
+
+							</h:form>
+
+						</div>
+						
+						<div id="idioma" align="right">
+							<h:form>
+							<h:commandLink
+									actionListener="#{menuView.manualPdf}">
+									<h:outputText value="Manual" styleClass="idioma" />
+								</h:commandLink>
+					
+						</h:form>
+									
+
+						</div>
+					</div>
+
+					<div id="menu"  align="left">
+
+						<ui:insert name="content">Information....</ui:insert>
+
+						<p:idleMonitor timeout="1800000" rendered="#{sessaoUsuarioMB.paginaAtual != (sessaoUsuarioMB.login || sessaoUsuarioMB.sessao)}">
+						
+					<p:ajax event="idle" listener="#{sessaoUsuarioMB.validaSessao}"/>
+		</p:idleMonitor>
+
+					</div>
+				</div>
+
+			</p:layoutUnit>
+
+		</p:layout>
+		<p:spacer />
+
+
+		<ui:include src="footer.xhtml" />
+
+
+	</div>
+</h:body>
+</html>

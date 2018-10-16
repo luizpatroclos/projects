@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/conteudo.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+
+	<ui:define name="content" id="conteudo1">
+
+		<ui:insert>
+			<ui:include src="/pages/menu.xhtml" />
+		</ui:insert>
+
+		<h:form id="form">
+
+
+			<div class="panelGridTeste">
+
+				<h:commandLink actionListener="#{menuView.homeTela}">
+					<h:outputText value="#{msg.labelBusca}" styleClass="titulo" />
+				</h:commandLink>
+				>
+				<h:commandLink actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}">
+					<h:outputText value="#{msg.labelFamilia}" styleClass="titulo" />
+				</h:commandLink>
+
+
+			</div>
+			<br />
+
+			<h:panelGrid columns="2" columnClasses="logo,detail">
+
+				<p:commandButton class="botaoPesquisa"
+					value="#{msg.labelLogFamilia}"
+					actionListener="#{menuView.logFamilia}">
+				</p:commandButton>
+				<p:commandButton class="botaoPesquisa" value="#{msg.labelMensagem}"
+					actionListener="#{tbFamiliaECMB.mensagemFamilia}">
+				</p:commandButton>
+
+
+
+			</h:panelGrid>
+
+
+			<p:growl id="messages" showDetail="true" autoUpdate="true"
+				closable="true" life="150000"/>
+			<br />
+			<br />
+			<h:outputText styleClass="textOut1" value="#{msg.alterarResponsavel}" />
+			<p:separator />
+
+			<br />
+
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<h:outputText value="#{msg.labelMenuUsuario}"
+					style="font-weight: bold" />
+				<p:selectOneListbox id="selectUsuarioSelecionado"
+					value="#{tbFamiliaECMB.usuarioSelecionado}" filter="true"
+					style="width: 300px">
+					<f:selectItems value="#{tbFamiliaECMB.usuarios}" var="Tbusuario"
+						itemLabel="#{Tbusuario.txNome}" itemValue="#{Tbusuario.idUsuario}"
+						style="width: 300px" />
+				</p:selectOneListbox>
+			</h:panelGrid>
+			<br />
+			<br />
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton id="salvarAlterarResponsavel" value="#{msg.salvar}"
+					styleClass="botaoPesquisa"
+					actionListener="#{tbFamiliaECMB.salvarTrocarUsuario}" />
+
+				<p:commandButton id="cancelarAlterarResponsavel"
+					value="#{msg.cancelar}" styleClass="botaoPesquisa"
+					actionListener="#{tbRelatorioEcMB.menuVoltarFamilia}" />
+			</h:panelGrid>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
