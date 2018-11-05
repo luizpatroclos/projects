@@ -289,8 +289,50 @@ class Program32 {
 	}
 
 }
+
+class Program34 {
+
+	public static void main(String[] args) {
+
+		String out = "0";
+	
+		
+		int i = -1, j = -5;
+		
+		if (i < 5)
+			if (j > 0)
+				if (i > j)
+					out += "1";
+				else
+					out += "2";
+			else
+				out += "3";
+		else
+			out += "4";
+		System.out.println(out);// result is "03" because you can't forget that we're talking about the "String" type.
+								// So, when we have  " += " pay close attention to the type.
+
+	}
+
+}
+
+
+class Program38 {
+
+	public static void main(String[] args) {
+
+		
+        System.out.print("" + 1 + 2);
+        
+        System.out.print("" + (1 + 2));
 		
 		
+		
+		
+
+}
+	
+}		
 		
         
 
