@@ -402,14 +402,14 @@ class Program51C {
 
 	public static void main(String[] args) {
 
-		A ab = new B();
+		/*A ab = new B();
 		
 		System.out.println(ab.x);
 		System.out.println(ab.j);
 		
 		System.out.println(B.j);
 		
-		System.out.println(A.j);
+		System.out.println(A.j);*/
 		
 		//System.out.println(A.x);
 		
@@ -419,7 +419,7 @@ class Program51C {
 
 }
 
-class A {
+/*class A {
 
 	protected int x = 10;
 	static int j = 21;
@@ -428,4 +428,4 @@ class A {
 
 class B extends A {
 
-}
+}*/
