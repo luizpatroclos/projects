@@ -205,7 +205,7 @@ class Program27 {
             
             continue;
              
-            //System.out.print(x + Program27.x);// every statements thats become before 'continue' won't be recognized by compiler 
+            //System.out.print(x + Program27.x);// every statement that becomes before 'continue' won't be recognized by the compiler 
         }
 		
         
@@ -335,5 +335,97 @@ class Program38 {
 }		
 		
         
+class Program42A {
 
-	
+	static void method() {
+
+		System.out.print(" A B");
+
+	}
+
+}
+
+class Program42B extends Program42A {
+
+	protected static void method(String[] args) {
+
+		System.out.print(" C D");
+
+	}
+
+}	
+
+class Program42C {
+
+	public static void main(String[] args) {
+
+		Program42A a = new Program42B();
+		a.method();
+
+	}
+
+}
+
+class Program50C {
+
+	static {
+
+		//x = 10;//Here at this point, primitive types will be recognized only if it were static as well.
+
+		y = 5;
+	}
+
+	//final int x;
+	final static int y;
+
+	public static void main(String[] args) {
+
+		try {
+
+			Program pr = new Program();
+
+			//int c = pr.x / y;
+
+			//System.out.print(c);
+
+		} catch (ArithmeticException E) {
+
+			System.out.print("Arithmetic Exception");
+		}
+
+	}
+
+}
+
+
+class Program51C {
+
+	public static void main(String[] args) {
+
+		A ab = new B();
+		
+		System.out.println(ab.x);
+		System.out.println(ab.j);
+		
+		System.out.println(B.j);
+		
+		System.out.println(A.j);
+		
+		//System.out.println(A.x);
+		
+		//System.out.println(B.x); For both example: They will not be able to get a variable that is not static.
+
+	}
+
+}
+
+class A {
+
+	protected int x = 10;
+	static int j = 21;
+
+}
+
+class B extends A {
+
+}
