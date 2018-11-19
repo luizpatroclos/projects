@@ -205,7 +205,7 @@ class Program27 {
             
             continue;
              
-            //System.out.print(x + Program27.x);// every statements thats become before 'continue' won't be recognized by compiler 
+            //System.out.print(x + Program27.x);// every statement that becomes before 'continue' won't be recognized by the compiler 
         }
 		
         
@@ -289,9 +289,143 @@ class Program32 {
 	}
 
 }
+
+class Program34 {
+
+	public static void main(String[] args) {
+
+		String out = "0";
+	
+		
+		int i = -1, j = -5;
+		
+		if (i < 5)
+			if (j > 0)
+				if (i > j)
+					out += "1";
+				else
+					out += "2";
+			else
+				out += "3";
+		else
+			out += "4";
+		System.out.println(out);// result is "03" because you can't forget that we're talking about the "String" type.
+								// So, when we have  " += " pay close attention to the type.
+
+	}
+
+}
+
+
+class Program38 {
+
+	public static void main(String[] args) {
+
+		
+        System.out.print("" + 1 + 2);
+        
+        System.out.print("" + (1 + 2));
 		
 		
+		
+		
+
+}
+	
+}		
 		
         
+class Program42A {
 
-	
+	static void method() {
+
+		System.out.print(" A B");
+
+	}
+
+}
+
+class Program42B extends Program42A {
+
+	protected static void method(String[] args) {
+
+		System.out.print(" C D");
+
+	}
+
+}	
+
+class Program42C {
+
+	public static void main(String[] args) {
+
+		Program42A a = new Program42B();
+		a.method();
+
+	}
+
+}
+
+class Program50C {
+
+	static {
+
+		//x = 10;//Here at this point, primitive types will be recognized only if it were static as well.
+
+		y = 5;
+	}
+
+	//final int x;
+	final static int y;
+
+	public static void main(String[] args) {
+
+		try {
+
+			Program pr = new Program();
+
+			//int c = pr.x / y;
+
+			//System.out.print(c);
+
+		} catch (ArithmeticException E) {
+
+			System.out.print("Arithmetic Exception");
+		}
+
+	}
+
+}
+
+
+class Program51C {
+
+	public static void main(String[] args) {
+
+		/*A ab = new B();
+		
+		System.out.println(ab.x);
+		System.out.println(ab.j);
+		
+		System.out.println(B.j);
+		
+		System.out.println(A.j);*/
+		
+		//System.out.println(A.x);
+		
+		//System.out.println(B.x); For both example: They will not be able to get a variable that is not static.
+
+	}
+
+}
+
+/*class A {
+
+	protected int x = 10;
+	static int j = 21;
+
+}
+
+class B extends A {
+
+}*/
