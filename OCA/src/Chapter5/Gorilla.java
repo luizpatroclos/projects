@@ -1,6 +1,6 @@
 package Chapter5;
 
-public class Gorilla extends Animal {
+public class Gorilla extends Animals {
 
 	
 	public Gorilla(int age) {
