@@ -68,7 +68,7 @@ class Program4 {
             
             //String[ ] stringsT = {"A","Z"};
             
-            Arrays.sort(strings);
+            //Arrays.sort(strings);
             
             for(String [ ]str : strings) {
             	
@@ -398,9 +398,110 @@ class Program50C {
 }
 
 
+/*class A {
+
+	protected int x = 10;
+	static int j = 21;
+
+}
+
+class B extends A {
+
+}*/
+
+		
+        
+class Program42A1 {
+
+	static void method() {
+
+		System.out.print(" A B");
+
+	}
+
+}
+
+class Program42B2 extends Program42A {
+
+	protected static void method(String[] args) {
+
+		System.out.print(" C D");
+
+	}
+
+}	
+
+class Program42C1 {
+
+	public static void main(String[] args) {
+
+		Program42A a = new Program42B();
+		a.method();
+
+	}
+
+}
+
+class Program50C1 {
+
+	static {
+
+		//x = 10;//Here at this point, primitive types will be recognized only if it were static as well.
+
+		y = 5;
+	}
+
+	//final int x;
+	final static int y;
+
+	public static void main(String[] args) {
+
+		try {
+
+			Program pr = new Program();
+
+			//int c = pr.x / y;
+
+			//System.out.print(c);
+
+		} catch (ArithmeticException E) {
+
+			System.out.print("Arithmetic Exception");
+		}
+
+	}
+
+}
+
+
 class Program51C {
 
 	public static void main(String[] args) {
+		
+		
+		
+		
+		String string = "  % presente";
+		
+		String  valor7 = "78.036.374/0001-54";
+		
+		//Chaining
+		String correct = string.replaceAll("%", "").trim().toLowerCase().replace('p', 'P');
+		
+		//Plano parcelamento = 2018200002
+		
+		String cnpjTratado = valor7.replaceAll("\\.", "").replaceAll("\\-", "").replaceAll("/", "");
+		
+		long valor5;
+		
+		
+		valor5 = (Long.valueOf(cnpjTratado));
+		
+		
+		System.out.println("valor convertido - "+ valor5);
+		
+		
+		
 
 		/*A ab = new B();
 		
@@ -419,13 +520,60 @@ class Program51C {
 
 }
 
-/*class A {
+class AL {
 
-	protected int x = 10;
-	static int j = 21;
+	static int j;
 
+	public static void main (String args[]) {
+		
+		
+		int x = 10;
+		
+		while(x > 0) {
+			
+			do {
+				
+				x -= 2;
+				
+			} while (x > 3);
+			
+			x--;
+			
+			System.err.println(x);
+			
+		}
+		
+		
+		
+		
+		int i = 2;
+		
+		//anonymous array
+		int array[] = new int[] {10,12,14};
+		
+		char arrayT[] = new char[i];
+		
+		arrayT[0] = 64;
+		arrayT[1] = 64;
+		//arrayT[2] = 64;
+		
+		int arrayL[][] = new int[2][];
+		
+		//arrayL[0]= 1;
+		
+		//int arrayW[] = {2,5,9,5,0,3};
+		
+		int arrayW[] = {2,5,9,5,7,3};
+		
+		Arrays.sort(arrayW, 2, 6);
+		
+		System.out.println(arrayW[2]+arrayW[5]);
+		
+		System.out.println(array[j++]);
+		
+		
+		
+	}
+	
+	
 }
-
-class B extends A {
-
-}*/

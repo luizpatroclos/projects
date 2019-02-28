@@ -1,39 +1,14 @@
 package Chapter5;
 
-public class Animal {
+import Abstract.EmitirSom;
 
-	private int age;
-	private String name;
-
-	public Animal(int age, String name) {
-		super();    
-		this.age = age;    
-		this.name = name;
-	}
-	
-	public Animal(int age) {
-		super();
-		this.age = age;
-		this.name = null;
-	}
+public abstract class Animal implements EmitirSom {
 	
 	
-	public int getAge() {
-		return age;
-	}
+	private String nome;
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//getters e setters...
+	public abstract void emitirSom();
 	
 	
-
 }
